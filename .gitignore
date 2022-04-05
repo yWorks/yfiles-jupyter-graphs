@@ -1,0 +1,13 @@
+node_modules
+.idea
+dist/
+lib/
+docs/source
+.ipynb_checkpoints
+screenshots/notebooks
+src/
+yfiles_jupyter_graphs
+yfiles_jupyter_graphs.egg-info
+debug.log
+yarn.lock
+environment.use.*.yml
