@@ -79,4 +79,4 @@ See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 - [json-viewer-js](https://github.com/renhongl/json-viewer-js)
 
 ## License
-See [LICENSE](LICENSE) file.
+See [LICENSE](LICENSE.md) file.
