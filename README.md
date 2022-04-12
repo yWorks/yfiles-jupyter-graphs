@@ -1,8 +1,6 @@
 <p align="center">
-    <img src="screenshots/yfiles-jupyter-graphs-logo.svg" alt='yfiles-jupyter-graphs logo'  width="400px" style='max-width: 400px'>
+    <img src="screenshots/yfiles-jupyter-graphs-logo.svg" alt='yFiles Graphs for Jupyter logo'  width="400px" style='max-width: 400px'>
 </p>
-
-# yFiles Jupyter Graphs
 
 [![PyPI version](https://badge.fury.io/py/yfiles-jupyter-graphs.svg)](https://badge.fury.io/py/yfiles-jupyter-graphs)
 
