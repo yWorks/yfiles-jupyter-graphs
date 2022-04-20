@@ -1,12 +1,12 @@
 <p align="center">
-    <img src="screenshots/yfiles-jupyter-graphs-logo.svg" alt='yFiles Graphs for Jupyter logo'  width="400px" style='max-width: 400px'>
+    <img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-logo.svg" alt='yFiles Graphs for Jupyter logo'  width="400px" style='max-width: 400px'>
 </p>
 
 [![PyPI version](https://badge.fury.io/py/yfiles-jupyter-graphs.svg)](https://badge.fury.io/py/yfiles-jupyter-graphs)
 
 A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
 
-![A screenshot showing the yFiles graph widget in a jupyter lab notebook](screenshots/yfiles-jupyter-graphs-introduction.png)
+![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
 ## Requirements
 - [python](https://www.python.org/) >= 3.6
@@ -34,22 +34,22 @@ You can find the full documentation [here](https://github.com/yWorks/yfiles-jupy
 ## Features
 <table>
     <tr>
-        <td><a href="examples/neighborhood.ipynb"><img src="screenshots/neighborhood.png" title="See Node Neighborhood" alt="neighborhood sidebar"></a>
-        <a href="examples/neighborhood.ipynb">See Node Neighborhood</a></td>
-        <td><a href="examples/layouts.ipynb"><img src="screenshots/layouts.png" title="Choose Graph Layout" alt="layouts"></a>
-        <a href="examples/layouts.ipynb">Choose Graph Layout</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/neighborhood.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/neighborhood.png" title="See Node Neighborhood" alt="neighborhood sidebar"></a>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/neighborhood.ipynb">See Node Neighborhood</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/layouts.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/layouts.png" title="Choose Graph Layout" alt="layouts"></a>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/layouts.ipynb">Choose Graph Layout</a></td>
     </tr>
     <tr>
-        <td><a href="examples/sidebar.ipynb"><img src="screenshots/data.png" title="Investigate Nodes and Edges Data" alt="data sidebar"></a>
-        <a href="examples/sidebar.ipynb">Investigate Nodes or Edges Data</a></td>
-        <td><a href="examples/sidebar.ipynb"><img src="screenshots/search.png" title="Search for Nodes or Edges" alt="search sidebar"></a>
-        <a href="examples/sidebar.ipynb">Search for Nodes or Edges</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/data.png" title="Investigate Nodes and Edges Data" alt="data sidebar"></a>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Investigate Nodes or Edges Data</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/search.png" title="Search for Nodes or Edges" alt="search sidebar"></a>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Search for Nodes or Edges</a></td>
     </tr>
     <tr>
-        <td><a href="examples/import_from_networkx.ipynb"><img src="screenshots/importer.png" title="Import Graph Data" alt="importer"></a>
-        <a href="examples/import_from_networkx.ipynb">Import Graph Data</a></td>
-        <td><a href="examples/element_color_mapping.ipynb"><img src="screenshots/element_color_mapping.png" title="Make Data Dependent Property Changes" alt="element color mapping"></a>
-        <a href="examples/element_color_mapping.ipynb">Make Data Dependent Property Changes</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/import_from_networkx.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/importer.png" title="Import Graph Data" alt="importer"></a>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/import_from_networkx.ipynb">Import Graph Data</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/element_color_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/element_color_mapping.png" title="Make Data Dependent Property Changes" alt="element color mapping"></a>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/element_color_mapping.ipynb">Make Data Dependent Property Changes</a></td>
     </tr>
 </table>
 
@@ -64,10 +64,10 @@ By participating, you are expected to uphold this code.
 Please report unacceptable behavior to [contact@yworks.com](mailto:contact@yworks.com).
 
 ## Feedback
-This widget is by no means perfect. 
-If you find something is not working as expected 
-we are glad to receive an issue report from you. 
-Please make sure to [search for existing issues](https://github.com/yWorks/yfiles-jupyter-graphs/search?q=is%3Aissue+repo%3AyWorks%2Fyfiles-jupyter-graphs&type=issues) first 
+This widget is by no means perfect.
+If you find something is not working as expected
+we are glad to receive an issue report from you.
+Please make sure to [search for existing issues](https://github.com/yWorks/yfiles-jupyter-graphs/search?q=is%3Aissue+repo%3AyWorks%2Fyfiles-jupyter-graphs&type=issues) first
 and check if the issue is not an unsupported feature or known issue.
 If you did not find anything related, report a new issue with necessary information.
 Please also provide a clear and descriptive title and stick to the issue templates.
@@ -79,4 +79,4 @@ See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 - [json-viewer-js](https://github.com/renhongl/json-viewer-js)
 
 ## License
-See [LICENSE](LICENSE.md) file.
+See [LICENSE](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/LICENSE.md) file.

@@ -1,6 +1,6 @@
-# yWorks GmbH - yFiles Jupyter Graphs Free License
+# yWorks GmbH - yFiles Graphs for Jupyter Free License
 
-Version 1.0, March 2022
+Version 1.1, April 2022
 
 # TERMS AND CONDITIONS FOR USE AND DISTRIBUTION
 
@@ -12,7 +12,7 @@ Version 1.0, March 2022
 
 **"You"** shall mean an individual or legal entity exercising the rights granted by this License.
 
-**"Software"** shall mean yFiles Jupyter Graphs Prebuilt Extension.
+**"Software"** shall mean yFiles Graphs for Jupyter Prebuilt Extension.
 
 **"Jupyter System"** shall refer to both a JupyterLab software system as well as Jupyter Notebook software system.
 
@@ -29,14 +29,14 @@ Version 1.0, March 2022
        especially means that you may not expose an API to a third party that will allow them to access functionality
        provided by the Software.
     2. **No-Reverse-Engineering.** You are not allowed to reverse engineer, decompile, de-obfuscate or otherwise attempt
-       to derive the de-obfuscated source code of Software, create derivative works,modify, translate, or disassemble
-       the Software, unless and only to the extent that such activity is expressly permitted by applicable lawor by this
+       to derive the de-obfuscated source code of Software, create derivative works,modify, translate, or disassemble the
+       Software, unless and only to the extent that such activity is expressly permitted by applicable lawor by this
        License.
     3. **No-Distribution.** You may not sell, rent, loan, or otherwise encumber or transfer the Software in whole or in
        part, to a third party, except as expressly granted herein. You may not reproduce or redistribute copies of the
        Software in any medium.
-    4. **Trademark Notices.** You may not remove, alter, or obscure any confidentiality or proprietary notices (
-       including copyright and trademark notices) of yWorks or its suppliers on, in, or displayed by the Software.
+    4. **Trademark Notices.** You may not remove, alter, or obscure any confidentiality or proprietary notices (including
+       copyright and trademark notices) of yWorks or its suppliers on, in, or displayed by the Software.
 
    1.3 **License Breach.** If You fail to comply with any term of this License,this License shall be revoked and You
    shall cease use of, and destroy, all copies of the Software.
@@ -52,13 +52,15 @@ Version 1.0, March 2022
    individual patterns of use or behavior.
 
 3. **DISCLAIMER OF WARRANTY**
-   Unless required by applicable law or agreed to in writing, Licensor provides the Software on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any
-   warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are
-   solely responsible for determining the appropriateness of using the Software and assume any risks associated with
-   your exercise of rights under this License.
+
+   Unless required by applicable law or agreed to in writing, Licensor provides the Software on an "AS IS" BASIS, WITHOUT
+   WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or
+   conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely
+   responsible for determining the appropriateness of using the Software and assume any risks associated with your
+   exercise of rights under this License.
 
 4. **LIMITATION OF LIABILITY**
+
    In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless
    required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall Licensor be
    liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any
@@ -67,5 +69,6 @@ Version 1.0, March 2022
    commercial damages or losses), even if Licensor has been advised of the possibility of such damages.
 
 5. **APPLICABLE LAW AND COURT OF JURISDICTION**
+
    This Agreement is made and shall be construed in accordance with the laws of Germany. Court of Jurisdiction is
    Tübingen, Germany.
