@@ -29,7 +29,7 @@ Version 1.1, April 2022
        especially means that you may not expose an API to a third party that will allow them to access functionality
        provided by the Software.
     2. **No-Reverse-Engineering.** You are not allowed to reverse engineer, decompile, de-obfuscate or otherwise attempt
-       to derive the de-obfuscated source code of Software, create derivative works,modify, translate, or disassemble the
+       to derive the de-obfuscated source code of Software, create derivative works, modify, translate, or disassemble the
        Software, unless and only to the extent that such activity is expressly permitted by applicable lawor by this
        License.
     3. **No-Distribution.** You may not sell, rent, loan, or otherwise encumber or transfer the Software in whole or in
