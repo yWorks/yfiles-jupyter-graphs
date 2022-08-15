@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Graph Importers - yFiles Graphs for Jupyter</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Graph Importers";
+        var mkdocs_page_input_path = "03_graph_importers.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> yFiles Graphs for Jupyter
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">yFiles Graphs for Jupyter</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../01_getting_started/">Getting started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../02_graph_widget/">GraphWidget</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Graph Importers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#class-graphtoolsgraphimporter">class GraphToolsGraphImporter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-igraphgraphimporter">class IGraphGraphImporter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-networkxgraphimporter">class NetworkxGraphImporter</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-pygraphvizgraphimporter">class PyGraphvizGraphImporter</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">yFiles Graphs for Jupyter</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Graph Importers</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/edit/master/docs/03_graph_importers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="graph-importers">Graph Importers</h1>
+<p>Used by the <a href="#import_graph_method"><code>GraphWidget.import_graph</code></a> method.</p>
+<p>Included here mainly for understanding features rather than showing how to use them directly.</p>
+<h2 id="class-graphtoolsgraphimporter">class GraphToolsGraphImporter</h2>
+<p>Class for importing graphs from the <a href="https://graph-tool.skewed.de/">graph tool</a> package.</p>
+<p>Notes</p>
+<ul>
+<li>Graph properties are ignored.</li>
+<li>Nodes and edges are identified by index.</li>
+<li>Node and edge properties are extracted from corresponding property maps.</li>
+<li>Default values for unset properties are used, due to the way graph tool properties work.</li>
+</ul>
+<h2 id="class-igraphgraphimporter">class IGraphGraphImporter</h2>
+<p>Class for importing graphs from the <a href="https://igraph.org/python/">igraph</a> package.</p>
+<p>Notes</p>
+<ul>
+<li>Nodes and edges are identified by index attribute.</li>
+<li>Node and edge properties are provided through attributes method.</li>
+<li>Edges are determined by source and target attribute.</li>
+</ul>
+<h2 id="class-networkxgraphimporter">class NetworkxGraphImporter</h2>
+<p>Class for importing graphs from the <a href="https://networkx.org/">networkx</a> package.</p>
+<p>Notes</p>
+<ul>
+<li>Graph attributes are ignored.</li>
+<li>Node identifiers are saved under property key <em>label</em> (or <em>yf_label</em> if key <em>label</em> already exists).</li>
+<li>Node identifiers have to be unique.</li>
+<li>Subgraphs (graph as node, see <a href="https://networkx.org/documentation/stable/tutorial.html#using-the-graph-constructors">here</a>) are not supported.</li>
+</ul>
+<h2 id="class-pygraphvizgraphimporter">class PyGraphvizGraphImporter</h2>
+<p>Class for importing graphs from the <a href="https://pygraphviz.github.io/">pygraphviz</a> package.</p>
+<p>Notes</p>
+<ul>
+<li>Graph attributes are ignored.</li>
+<li>Node names are saved under property key <em>label</em> (or <em>yf_label</em> if key <em>label</em> already exists).</li>
+<li>Node names have to be unique.</li>
+<li>Unspecified default node/edge attributes are empty (and shown as null in data viewer).</li>
+<li>Subgraphs are dissolved.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../02_graph_widget/" class="btn btn-neutral float-left" title="GraphWidget"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/yWorks/yfiles-jupyter-graphs" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../02_graph_widget/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
