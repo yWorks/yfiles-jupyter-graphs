@@ -1,0 +1,5 @@
+site_name: yFiles Graphs for Jupyter
+theme: readthedocs
+repo_url: https://github.com/yWorks/yfiles-jupyter-graphs
+site_description: The home of the Jupyter notebook graph visualization widget powered by yFiles for HTML
+docs_dir: 'mkdocs'
