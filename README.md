@@ -74,6 +74,7 @@ Please also provide a clear and descriptive title and stick to the issue templat
 See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 
 ## Dependencies
+- [@ctrl/tinycolor](https://github.com/scttcper/tinycolor)
 - [@jupyter-widgets/base](https://github.com/jupyter-widgets/ipywidgets)
 - [@mdi/js](https://github.com/Templarian/MaterialDesign-JS)
 - [json-viewer-js](https://github.com/renhongl/json-viewer-js)
