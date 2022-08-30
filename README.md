@@ -11,7 +11,7 @@ A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [
 ## Requirements
 - [python](https://www.python.org/) >= 3.6
 - [jupyter](https://jupyter.org/install) notebook or lab
-- [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0
+- [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0, <8
 
 ## Installation
 
