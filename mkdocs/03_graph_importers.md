@@ -2,11 +2,9 @@
 
 Used by the [`GraphWidget.import_graph`](#import_graph_method) method.
 
-Included here mainly for understanding features rather than showing how to use them directly.
+## Graph Tool Importer
 
-## class GraphToolsGraphImporter
-
-Class for importing graphs from the [graph tool](https://graph-tool.skewed.de/) package.
+Importer for graphs from the [graph tool](https://graph-tool.skewed.de/) package.
 
 Notes
 
@@ -15,9 +13,9 @@ Notes
 - Node and edge properties are extracted from corresponding property maps.
 - Default values for unset properties are used, due to the way graph tool properties work.
 
-## class IGraphGraphImporter
+## igraph Importer
 
-Class for importing graphs from the [igraph](https://igraph.org/python/) package.
+Importer for graphs from the [igraph](https://igraph.org/python/) package.
 
 Notes
 
@@ -25,9 +23,9 @@ Notes
 - Node and edge properties are provided through attributes method.
 - Edges are determined by source and target attribute.
 
-## class NetworkxGraphImporter
+## Networkx Importer
 
-Class for importing graphs from the [networkx](https://networkx.org/) package.
+Importer for graphs from the [networkx](https://networkx.org/) package.
 
 Notes
 
@@ -36,9 +34,9 @@ Notes
 - Node identifiers have to be unique.
 - Subgraphs (graph as node, see [here](https://networkx.org/documentation/stable/tutorial.html#using-the-graph-constructors)) are not supported.
 
-## class PyGraphvizGraphImporter
+## PyGraphviz Importer
 
-Class for importing graphs from the [pygraphviz](https://pygraphviz.github.io/) package.
+Importer for graphs from the [pygraphviz](https://pygraphviz.github.io/) package.
 
 Notes
 
@@ -47,3 +45,13 @@ Notes
 - Node names have to be unique.
 - Unspecified default node/edge attributes are empty (and shown as null in data viewer).
 - Subgraphs are dissolved.
+
+## Neo4j Importer
+
+Importer for graphs from [Neo4j](https://pypi.org/project/neo4j/).
+
+Notes
+
+- All properties are loaded into the data item
+- Neo4j node labels are combined with ':' and added as 'label' property on the item
+- Relationship types are added as 'label' property on the item
