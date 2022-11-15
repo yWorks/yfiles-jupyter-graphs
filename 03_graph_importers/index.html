@@ -55,13 +55,15 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Graph Importers</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#class-graphtoolsgraphimporter">class GraphToolsGraphImporter</a>
+    <li class="toctree-l2"><a class="reference internal" href="#graph-tool-importer">Graph Tool Importer</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-igraphgraphimporter">class IGraphGraphImporter</a>
+    <li class="toctree-l2"><a class="reference internal" href="#igraph-importer">igraph Importer</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-networkxgraphimporter">class NetworkxGraphImporter</a>
+    <li class="toctree-l2"><a class="reference internal" href="#networkx-importer">Networkx Importer</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-pygraphvizgraphimporter">class PyGraphvizGraphImporter</a>
+    <li class="toctree-l2"><a class="reference internal" href="#pygraphviz-importer">PyGraphviz Importer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#neo4j-importer">Neo4j Importer</a>
     </li>
     </ul>
                 </li>
@@ -92,9 +94,8 @@
               
                 <h1 id="graph-importers">Graph Importers</h1>
 <p>Used by the <a href="#import_graph_method"><code>GraphWidget.import_graph</code></a> method.</p>
-<p>Included here mainly for understanding features rather than showing how to use them directly.</p>
-<h2 id="class-graphtoolsgraphimporter">class GraphToolsGraphImporter</h2>
-<p>Class for importing graphs from the <a href="https://graph-tool.skewed.de/">graph tool</a> package.</p>
+<h2 id="graph-tool-importer">Graph Tool Importer</h2>
+<p>Importer for graphs from the <a href="https://graph-tool.skewed.de/">graph tool</a> package.</p>
 <p>Notes</p>
 <ul>
 <li>Graph properties are ignored.</li>
@@ -102,16 +103,16 @@
 <li>Node and edge properties are extracted from corresponding property maps.</li>
 <li>Default values for unset properties are used, due to the way graph tool properties work.</li>
 </ul>
-<h2 id="class-igraphgraphimporter">class IGraphGraphImporter</h2>
-<p>Class for importing graphs from the <a href="https://igraph.org/python/">igraph</a> package.</p>
+<h2 id="igraph-importer">igraph Importer</h2>
+<p>Importer for graphs from the <a href="https://igraph.org/python/">igraph</a> package.</p>
 <p>Notes</p>
 <ul>
 <li>Nodes and edges are identified by index attribute.</li>
 <li>Node and edge properties are provided through attributes method.</li>
 <li>Edges are determined by source and target attribute.</li>
 </ul>
-<h2 id="class-networkxgraphimporter">class NetworkxGraphImporter</h2>
-<p>Class for importing graphs from the <a href="https://networkx.org/">networkx</a> package.</p>
+<h2 id="networkx-importer">Networkx Importer</h2>
+<p>Importer for graphs from the <a href="https://networkx.org/">networkx</a> package.</p>
 <p>Notes</p>
 <ul>
 <li>Graph attributes are ignored.</li>
@@ -119,8 +120,8 @@
 <li>Node identifiers have to be unique.</li>
 <li>Subgraphs (graph as node, see <a href="https://networkx.org/documentation/stable/tutorial.html#using-the-graph-constructors">here</a>) are not supported.</li>
 </ul>
-<h2 id="class-pygraphvizgraphimporter">class PyGraphvizGraphImporter</h2>
-<p>Class for importing graphs from the <a href="https://pygraphviz.github.io/">pygraphviz</a> package.</p>
+<h2 id="pygraphviz-importer">PyGraphviz Importer</h2>
+<p>Importer for graphs from the <a href="https://pygraphviz.github.io/">pygraphviz</a> package.</p>
 <p>Notes</p>
 <ul>
 <li>Graph attributes are ignored.</li>
@@ -128,6 +129,14 @@
 <li>Node names have to be unique.</li>
 <li>Unspecified default node/edge attributes are empty (and shown as null in data viewer).</li>
 <li>Subgraphs are dissolved.</li>
+</ul>
+<h2 id="neo4j-importer">Neo4j Importer</h2>
+<p>Importer for graphs from <a href="https://pypi.org/project/neo4j/">Neo4j</a>.</p>
+<p>Notes</p>
+<ul>
+<li>All properties are loaded into the data item</li>
+<li>Neo4j node labels are combined with ':' and added as 'label' property on the item</li>
+<li>Relationship types are added as 'label' property on the item</li>
 </ul>
               
             </div>
