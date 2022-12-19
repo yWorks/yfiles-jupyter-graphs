@@ -8,6 +8,8 @@
 
 A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
 
+The widget is supported in the default Jupyter environments, but also in other environments like VS Code or Google Colab.
+
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
 ## Features

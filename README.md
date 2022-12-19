@@ -8,6 +8,8 @@ A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [
 
 Easily visualize graphs from various sources: [Networkx](https://networkx.org/)✅, [igraph](https://igraph.org/python/)✅, [neo4j](https://pypi.org/project/neo4j/)✅, [pygraphviz](https://pygraphviz.github.io/)✅, and any structured Python dictionaries and lists. Many more formats supported indirectly via [Networkx imports](https://networkx.org/documentation/stable/reference/readwrite/index.html#reading-and-writing-graphs)!
 
+The widget is supported in the default Jupyter environments, but also in other environments like VS Code or Google Colab.
+
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
 ## Requirements
