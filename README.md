@@ -13,7 +13,7 @@ Easily visualize graphs from various sources: [Networkx](https://networkx.org/)â
 ## Requirements
 - [python](https://www.python.org/) >= 3.6
 - [jupyter](https://jupyter.org/install) notebook or lab
-- [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0, <8
+- [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0
 
 ## Installation
 
@@ -101,7 +101,8 @@ See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 - [@ctrl/tinycolor](https://github.com/scttcper/tinycolor)
 - [@jupyter-widgets/base](https://github.com/jupyter-widgets/ipywidgets)
 - [@mdi/js](https://github.com/Templarian/MaterialDesign-JS)
-- [json-viewer-js](https://github.com/renhongl/json-viewer-js)
+- [Vue](https://vuejs.org/)
+- [vue-json-viewer](https://github.com/chenfengjw163/vue-json-viewer)
 
 ## License
 See [LICENSE](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/LICENSE.md) file.

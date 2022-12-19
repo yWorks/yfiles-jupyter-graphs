@@ -6,7 +6,7 @@
 
 [![PyPI version](https://badge.fury.io/py/yfiles-jupyter-graphs.svg)](https://badge.fury.io/py/yfiles-jupyter-graphs)
 
-A [graph diagram visualization widget](https://www.yworks.com/products/yfiles-graphs-for-jupyter) for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
+A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
 
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
@@ -56,9 +56,11 @@ Please also provide a clear and descriptive title and stick to the issue templat
 See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 
 ## Dependencies
+- [@ctrl/tinycolor](https://github.com/scttcper/tinycolor)
 - [@jupyter-widgets/base](https://github.com/jupyter-widgets/ipywidgets)
 - [@mdi/js](https://github.com/Templarian/MaterialDesign-JS)
-- [json-viewer-js](https://github.com/renhongl/json-viewer-js)
+- [Vue](https://vuejs.org/)
+- [vue-json-viewer](https://github.com/chenfengjw163/vue-json-viewer)
 
 ## License
 See [LICENSE](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/LICENSE.md) file.
