@@ -12,6 +12,12 @@ The widget is supported in the default Jupyter environments, but also in other e
 
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
+## Supported Environments
+- [JupyterLab or Jupyter Notebook](https://jupyter.org/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Google Colaboratory](https://colab.research.google.com/)
+- Just try it in your preferred platform for Jupyter notebooks
+
 ## Features
 <table>
     <tr>
