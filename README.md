@@ -16,6 +16,7 @@ The widget is supported in the default Jupyter environments, but also in other e
 - [JupyterLab or Jupyter Notebook](https://jupyter.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Google Colaboratory](https://colab.research.google.com/)
+- [Azure Machine Learning Studio Notebooks](https://azure.microsoft.com/en-us/products/machine-learning/)
 - Just try it in your preferred platform for Jupyter notebooks
 
 ## Requirements
