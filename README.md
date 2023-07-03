@@ -17,6 +17,7 @@ The widget is supported in the default Jupyter environments, but also in other e
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Google Colaboratory](https://colab.research.google.com/)
 - [Google Vertex AI Workbench](https://cloud.google.com/vertex-ai)
+- [Google Dataproc](https://cloud.google.com/dataproc)
 - [Azure Machine Learning Studio Notebooks](https://azure.microsoft.com/en-us/products/machine-learning/)
 - [Amazon SageMaker](https://aws.amazon.com/sagemaker/)
 - Just try it in your preferred platform for Jupyter notebooks
