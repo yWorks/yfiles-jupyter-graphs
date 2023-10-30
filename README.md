@@ -12,6 +12,8 @@ The widget is supported in the default Jupyter environments, but also in other e
 
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
+Try the [Introduction](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/introduction.ipynb) notebook on Google Colab [here](https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/introduction.ipynb).
+
 ## Supported Environments
 - [JupyterLab or Jupyter Notebook](https://jupyter.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -70,25 +72,32 @@ You can find the full documentation [here](https://yworks.github.io/yfiles-jupyt
 <table>
     <tr>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/neighborhood.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/neighborhood.png" title="See Node Neighborhood" alt="neighborhood sidebar"></a>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/neighborhood.ipynb">See Node Neighborhood</a></td>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/neighborhood.ipynb">See Node Neighborhood</a><br><a href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/neighborhood.ipynb">Try Notebook on Google Colab</a></td>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/layouts.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/layouts.png" title="Choose Graph Layout" alt="layouts"></a>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/layouts.ipynb">Choose Graph Layout</a></td>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/layouts.ipynb">Choose Graph Layout</a><br><a href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/layouts.ipynb">Try Notebook on Google Colab</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/data.png" title="Investigate Nodes and Edges Data" alt="data sidebar"></a>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Investigate Nodes or Edges Data</a></td>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Investigate Nodes or Edges Data</a><br><a href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Try Notebook on Google Colab</a></td>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/search.png" title="Search for Nodes or Edges" alt="search sidebar"></a>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Search for Nodes or Edges</a></td>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Search for Nodes or Edges</a><br><a href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/sidebar.ipynb">Try Notebook on Google Colab</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/import_from_networkx.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/importer.png" title="Import Graph Data" alt="importer"></a>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/import_from_networkx.ipynb">Import Graph Data</a></td>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/import_from_networkx.ipynb">Import Graph Data</a><br><a href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/import_from_networkx.ipynb">Try Notebook on Google Colab</a></td>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/element_color_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/element_color_mapping.png" title="Make Data Dependent Property Changes" alt="element color mapping"></a>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/element_color_mapping.ipynb">Make Data Dependent Property Changes</a></td>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/element_color_mapping.ipynb">Make Data Dependent Property Changes</a><br><a href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/element_color_mapping.ipynb">Try Notebook on Google Colab</a></td>
     </tr>
 </table>
 
 For example code look [here](https://github.com/yWorks/yfiles-jupyter-graphs/tree/master/examples).
+
+### Google Colab Examples
+You can try the [example notebooks](https://github.com/yWorks/yfiles-jupyter-graphs/tree/master/examples) in Google Colab by
+opening GitHub notebook URL: `https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/<notebook.ipynb>`.
+
+For example the [Introduction](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/introduction.ipynb) notebook: <br> 
+https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/introduction.ipynb
 
 ## Documentation
 You can find the documentation [here](https://yworks.github.io/yfiles-jupyter-graphs/).
