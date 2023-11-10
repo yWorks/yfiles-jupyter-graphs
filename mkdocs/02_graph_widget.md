@@ -144,7 +144,7 @@ This function acts as an alias for using GraphWidget.directed property e.g. `w.d
 
 **Notes**
 
-This function acts as an alias for using GraphWidget.graph_layout property\
+This function acts as an alias for using GraphWidget.graph_layout property
 e.g. `w.graph_layout == w.get_graph_layout()` is `true`.
 
 **Returns**
@@ -167,11 +167,11 @@ Currently the algorithms use default settings from yFiles library.
 
 **Notes**
 
-This function acts as an alias for using GraphWidget.graph_layout property\
-e.g. `w.graph_layout = 'organic'` has the same effect as using `w.set_graph_layout('organic')`.\
-Setting `w.graph_layout = {'algorithm': 'organic', 'options': {}}` works as well,\
-which corresponds to using value given through the associated getter.\
-In case you want to use the edge routers\
+This function acts as an alias for using GraphWidget.graph_layout property
+e.g. `w.graph_layout = 'organic'` has the same effect as using `w.set_graph_layout('organic')`.  
+Setting `w.graph_layout = {'algorithm': 'organic', 'options': {}}` works as well,
+which corresponds to using value given through the associated getter.
+In case you want to use the edge routers
 you should set a custom node position mapping as well.
 
 See [yFiles docs](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary) for more details about the algorithms.
@@ -204,10 +204,10 @@ The number of hops and focused nodes can be chosen.
 
 **Notes**
 
-This function acts as an alias for using GraphWidget.neighborhood property.\
-You can assign values by `w.neighborhood = {'max_distance': 2, 'selected_nodes':[2]}`\
-or `w.set_neighborhood(2, [2])`, both are equivalent.\
-The short form `w.neighborhood = 3` sets only the max_distance variable\
+This function acts as an alias for using GraphWidget.neighborhood property.  
+You can assign values by `w.neighborhood = {'max_distance': 2, 'selected_nodes':[2]}`
+or `w.set_neighborhood(2, [2])`, both are equivalent.  
+The short form `w.neighborhood = 3` sets only the max_distance variable
 and resets the selected nodes.
 
 &nbsp;
@@ -238,10 +238,10 @@ Can be used to collapse sidebar or start with any panel.
 
 **Notes**
 
-This function acts as an alias for using GraphWidget.sidebar property.\
-You can assign values by `w.sidebar = {'enabled': True, 'start_with': 'Search'}`\
-or `w.set_sidebar(True, 'Search')`, both are equivalent.\
-The short form `w.sidebar = True` sets only the enabled variable\
+This function acts as an alias for using GraphWidget.sidebar property.
+You can assign values by `w.sidebar = {'enabled': True, 'start_with': 'Search'}`
+or `w.set_sidebar(True, 'Search')`, both are equivalent.
+The short form `w.sidebar = True` sets only the enabled variable
 and resets the start_with back to the default.
 
 &nbsp;
@@ -261,7 +261,7 @@ and resets the start_with back to the default.
 **`def set_overview(enabled)`**<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the appearance of the overview component in the widget.
 
-Can be used to force open overview in case of a small widget layout or\
+Can be used to force open overview in case of a small widget layout or
 force collapsed overview in case of large widget layout.
 
 **Parameters**
@@ -726,7 +726,7 @@ If no mapping is explicitly set, [`default_node_position_mapping`](#default_node
 
 **Notes**
 
-Only edge router algorithms consider node positions,\
+Only edge router algorithms consider node positions,  
 all other algorithms calculate node positions themselves.
 
 **Example**
@@ -815,15 +815,15 @@ Mappings will only be applied shortly before showing the widget.
 ### <a id="import_graph_method" href="#import_graph_method"><code>def import_graph(graph)</code></a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Import a graph object defined in an external module.
 
-Sets the [`nodes`](#nodes_property), [`edges`](#edges_property) and [`directed`](#directed_property) traitlets properties \
-with information extracted from the graph object. \
+Sets the [`nodes`](#nodes_property), [`edges`](#edges_property) and [`directed`](#directed_property) traitlets properties
+with information extracted from the graph object.   
 See [graph importers](#graph_importers) for object specific transformation details.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `graph` | `networkx.{Multi}{Di}Graph \| graph_tool.Graph \| igraph.Graph \| pygraphviz.AGraph` | The graph data structure. |
+| Name | Type                                                                                                    | Description |
+| ----------- |---------------------------------------------------------------------------------------------------------| ----------- |
+| `graph` | `networkx.{Multi}{Di}Graph`  &#124; `graph_tool.Graph` &#124; `igraph.Graph` &#124; `pygraphviz.AGraph` | The graph data structure. |
 
 **Example**
 ```Python
@@ -835,16 +835,16 @@ In [4]: w.import_graph(florentine_families_graph())
 
 **Notes**
 
-Some graph data structures have special attributes for labels, some don't.\
-Same goes for other graph properties.\
-This method and the underlying transformations should be seen as best effort\
-to provide an easy way to input data into the widget.\
+Some graph data structures have special attributes for labels, some don't.
+Same goes for other graph properties.
+This method and the underlying transformations should be seen as best effort
+to provide an easy way to input data into the widget.
 For more granular control use nodes and edges properties directly.
 
 &nbsp;
 
 ### <a id="circular_layout_method" href="#circular_layout_method"><code>def circular_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "circular".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "circular".
 
 See [yFiles circular layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular)
 for more details about this specific algorithm.
@@ -852,7 +852,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="hierarchic_layout_method" href="#hierarchic_layout_method"><code>def hierarchic_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "hierarchic".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "hierarchic".
 
 See [yFiles hierarchic layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-hierarchical)
 for more details about this specific algorithm.
@@ -860,7 +860,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="organic_layout_method" href="#organic_layout_method"><code>def organic_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "organic".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "organic".
 
 See [yFiles organic layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic)
 for more details about this specific algorithm.
@@ -868,7 +868,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="orthogonal_layout_method" href="#orthogonal_layout_method"><code>def orthogonal_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "orthogonal".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "orthogonal".
 
 See [yFiles orthogonal layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-orthogonal)
 for more details about this specific algorithm.
@@ -876,7 +876,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="radial_layout_method" href="#radial_layout_method"><code>def radial_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "radial".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "radial".
 
 See [yFiles radial layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-radial)
 for more details about this specific algorithm.
@@ -884,7 +884,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="tree_layout_method" href="#tree_layout_method"><code>def tree_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "tree".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "tree".
 
 See [yFiles tree layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-tree)
 for more details about this specific algorithm.
@@ -892,7 +892,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="orthogonal_edge_router_method" href="#orthogonal_edge_router_method"><code>def orthogonal_edge_router()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "orthogonal_edge_router".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "orthogonal_edge_router".
 
 See [yFiles orthogonal edge router guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-polyline_router)
 for more details about this specific algorithm.
@@ -900,7 +900,7 @@ for more details about this specific algorithm.
 &nbsp;
 
 ### <a id="organic_edge_router_method" href="#organic_edge_router_method"><code>def organic_edge_router()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a= "organic_edge_router".
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "organic_edge_router".
 
 See [yFiles organic edge router guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router)
 for more details about this specific algorithm.
@@ -912,7 +912,7 @@ for more details about this specific algorithm.
 
 The default label mapping for graph elements.
 
-Element (dict) should have key properties which itself should be a dict.\
+Element (dict) should have key properties which itself should be a dict.  
 Then one of the following values (in descending priority) is used as label:
 - properties["label"]
 - properties["yf_label"]
@@ -926,7 +926,7 @@ Then one of the following values (in descending priority) is used as label:
 
 **Notes**
 
-This is the default value for the {[node](#node_label_mapping_property)|[edge](#edge_label_mapping_property)}_label_mapping property.\
+This is the default value for the {[node](#node_label_mapping_property)|[edge](#edge_label_mapping_property)}_label_mapping property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -975,7 +975,7 @@ Simply selects the properties value of element dictionary.
 
 **Notes**
 
-This is the default value for the {[node](#node_property_mapping_property)|[edge](#edge_property_mapping_property)}_property_mapping property.\
+This is the default value for the {[node](#node_property_mapping_property)|[edge](#edge_property_mapping_property)}_property_mapping property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1024,7 +1024,7 @@ Provides constant value of '#17bebb' for all nodes.
 
 **Notes**
 
-This is the default value for the [`node_color_mapping`](#node_color_mapping_property) property.\
+This is the default value for the [`node_color_mapping`](#node_color_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1065,7 +1065,7 @@ Provides constant value of {} for all nodes.
 
 **Notes**
 
-This is the default value for the [`node_styles_mapping`](#node_styles_mapping_property) property.\
+This is the default value for the [`node_styles_mapping`](#node_styles_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1117,7 +1117,7 @@ Provides constant value of '#094c4b' for all edges.
 
 **Notes**
 
-This is the default value for the [`edge_color_mapping`](#edge_color_mapping_property) property.\
+This is the default value for the [`edge_color_mapping`](#edge_color_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1158,7 +1158,7 @@ Provides constant value of 1.0 for all nodes.
 
 **Notes**
 
-This is the default value for the [`node_scale_factor_mapping`](#node_scale_factor_mapping_property) property.\
+This is the default value for the [`node_scale_factor_mapping`](#node_scale_factor_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1193,7 +1193,7 @@ Provides constant value of 1.0 for all edges.
 
 **Notes**
 
-This is the default value for the [`edge_thickness_factor_mapping`](#edge_thickness_factor_mapping_property) property.\
+This is the default value for the [`edge_thickness_factor_mapping`](#edge_thickness_factor_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1228,7 +1228,7 @@ Provides constant value of `None` for all nodes.
 
 **Notes**
 
-This is the default value for the [`node_type_mapping`](#node_type_mapping_property) property.\
+This is the default value for the [`node_type_mapping`](#node_type_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1263,7 +1263,7 @@ Provides constant value of [0.0, 0.0] for all nodes.
 
 **Notes**
 
-This is the default value for the [`node_position_mapping`](#node_position_mapping_property) property.\
+This is the default value for the [`node_position_mapping`](#node_position_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
@@ -1298,7 +1298,7 @@ Uses the graph wide directed attribute for all edges.
 
 **Notes**
 
-This is the default value for the [`directed_mapping`](#directed_mapping_property) property.\
+This is the default value for the [`directed_mapping`](#directed_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
 **Example**
