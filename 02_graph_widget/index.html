@@ -350,7 +350,7 @@ In [3]: w.set_edges([
 <p><strong><code>def get_graph_layout()</code></strong><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the graph layout traitlet property.</p>
 <p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.graph_layout property\
+<p>This function acts as an alias for using GraphWidget.graph_layout property
 e.g. <code>w.graph_layout == w.get_graph_layout()</code> is <code>true</code>.</p>
 <p><strong>Returns</strong></p>
 <table>
@@ -395,11 +395,11 @@ e.g. <code>w.graph_layout == w.get_graph_layout()</code> is <code>true</code>.</
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.graph_layout property\
-e.g. <code>w.graph_layout = 'organic'</code> has the same effect as using <code>w.set_graph_layout('organic')</code>.\
-Setting <code>w.graph_layout = {'algorithm': 'organic', 'options': {}}</code> works as well,\
-which corresponds to using value given through the associated getter.\
-In case you want to use the edge routers\
+<p>This function acts as an alias for using GraphWidget.graph_layout property
+e.g. <code>w.graph_layout = 'organic'</code> has the same effect as using <code>w.set_graph_layout('organic')</code>.<br />
+Setting <code>w.graph_layout = {'algorithm': 'organic', 'options': {}}</code> works as well,
+which corresponds to using value given through the associated getter.
+In case you want to use the edge routers
 you should set a custom node position mapping as well.</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary">yFiles docs</a> for more details about the algorithms.</p>
 <p>&nbsp;</p>
@@ -450,10 +450,10 @@ you should set a custom node position mapping as well.</p>
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.neighborhood property.\
-You can assign values by <code>w.neighborhood = {'max_distance': 2, 'selected_nodes':[2]}</code>\
-or <code>w.set_neighborhood(2, [2])</code>, both are equivalent.\
-The short form <code>w.neighborhood = 3</code> sets only the max_distance variable\
+<p>This function acts as an alias for using GraphWidget.neighborhood property.<br />
+You can assign values by <code>w.neighborhood = {'max_distance': 2, 'selected_nodes':[2]}</code>
+or <code>w.set_neighborhood(2, [2])</code>, both are equivalent.<br />
+The short form <code>w.neighborhood = 3</code> sets only the max_distance variable
 and resets the selected nodes.</p>
 <p>&nbsp;</p>
 <h3 id="sidebar-typingdict"><a id="sidebar_property" href="#sidebar_property"><code>sidebar: typing.Dict</code></a><br></h3>
@@ -503,10 +503,10 @@ and resets the selected nodes.</p>
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.sidebar property.\
-You can assign values by <code>w.sidebar = {'enabled': True, 'start_with': 'Search'}</code>\
-or <code>w.set_sidebar(True, 'Search')</code>, both are equivalent.\
-The short form <code>w.sidebar = True</code> sets only the enabled variable\
+<p>This function acts as an alias for using GraphWidget.sidebar property.
+You can assign values by <code>w.sidebar = {'enabled': True, 'start_with': 'Search'}</code>
+or <code>w.set_sidebar(True, 'Search')</code>, both are equivalent.
+The short form <code>w.sidebar = True</code> sets only the enabled variable
 and resets the start_with back to the default.</p>
 <p>&nbsp;</p>
 <h3 id="overview-bool"><a id="overview_property" href="#overview_property"><code>overview: bool</code></a><br></h3>
@@ -532,7 +532,7 @@ and resets the start_with back to the default.</p>
 </table>
 <p><strong><code>def set_overview(enabled)</code></strong><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the appearance of the overview component in the widget.</p>
-<p>Can be used to force open overview in case of a small widget layout or\
+<p>Can be used to force open overview in case of a small widget layout or
 force collapsed overview in case of large widget layout.</p>
 <p><strong>Parameters</strong></p>
 <table>
@@ -1133,7 +1133,7 @@ In [4]: w.set_node_type_mapping(custom_node_type_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>Only edge router algorithms consider node positions,\
+<p>Only edge router algorithms consider node positions,<br />
 all other algorithms calculate node positions themselves.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1238,8 +1238,8 @@ In [4]: w.set_directed_mapping(custom_directed_mapping)
 <p>&nbsp;</p>
 <h3 id="def-import_graphgraph"><a id="import_graph_method" href="#import_graph_method"><code>def import_graph(graph)</code></a><br></h3>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Import a graph object defined in an external module.</p>
-<p>Sets the <a href="#nodes_property"><code>nodes</code></a>, <a href="#edges_property"><code>edges</code></a> and <a href="#directed_property"><code>directed</code></a> traitlets properties \
-with information extracted from the graph object. \
+<p>Sets the <a href="#nodes_property"><code>nodes</code></a>, <a href="#edges_property"><code>edges</code></a> and <a href="#directed_property"><code>directed</code></a> traitlets properties
+with information extracted from the graph object. <br />
 See <a href="#graph_importers">graph importers</a> for object specific transformation details.</p>
 <p><strong>Parameters</strong></p>
 <table>
@@ -1253,7 +1253,7 @@ See <a href="#graph_importers">graph importers</a> for object specific transform
 <tbody>
 <tr>
 <td><code>graph</code></td>
-<td><code>networkx.{Multi}{Di}Graph \| graph_tool.Graph \| igraph.Graph \| pygraphviz.AGraph</code></td>
+<td><code>networkx.{Multi}{Di}Graph</code>  &#124; <code>graph_tool.Graph</code> &#124; <code>igraph.Graph</code> &#124; <code>pygraphviz.AGraph</code></td>
 <td>The graph data structure.</td>
 </tr>
 </tbody>
@@ -1265,56 +1265,56 @@ In [3]: w = GraphWidget()
 In [4]: w.import_graph(florentine_families_graph())
 </code></pre>
 <p><strong>Notes</strong></p>
-<p>Some graph data structures have special attributes for labels, some don't.\
-Same goes for other graph properties.\
-This method and the underlying transformations should be seen as best effort\
-to provide an easy way to input data into the widget.\
+<p>Some graph data structures have special attributes for labels, some don't.
+Same goes for other graph properties.
+This method and the underlying transformations should be seen as best effort
+to provide an easy way to input data into the widget.
 For more granular control use nodes and edges properties directly.</p>
 <p>&nbsp;</p>
 <h3 id="def-circular_layout"><a id="circular_layout_method" href="#circular_layout_method"><code>def circular_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "circular".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "circular".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular">yFiles circular layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-hierarchic_layout"><a id="hierarchic_layout_method" href="#hierarchic_layout_method"><code>def hierarchic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "hierarchic".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "hierarchic".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-hierarchical">yFiles hierarchic layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-organic_layout"><a id="organic_layout_method" href="#organic_layout_method"><code>def organic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "organic".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "organic".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic">yFiles organic layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-orthogonal_layout"><a id="orthogonal_layout_method" href="#orthogonal_layout_method"><code>def orthogonal_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "orthogonal".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "orthogonal".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-orthogonal">yFiles orthogonal layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-radial_layout"><a id="radial_layout_method" href="#radial_layout_method"><code>def radial_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "radial".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "radial".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-radial">yFiles radial layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-tree_layout"><a id="tree_layout_method" href="#tree_layout_method"><code>def tree_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "tree".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "tree".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-tree">yFiles tree layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-orthogonal_edge_router"><a id="orthogonal_edge_router_method" href="#orthogonal_edge_router_method"><code>def orthogonal_edge_router()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "orthogonal_edge_router".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "orthogonal_edge_router".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-polyline_router">yFiles orthogonal edge router guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-organic_edge_router"><a id="organic_edge_router_method" href="#organic_edge_router_method"><code>def organic_edge_router()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout&lt;/a= "organic_edge_router".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "organic_edge_router".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router">yFiles organic edge router guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-default_element_label_mappingindex-element"><a id="default_element_label_mapping" href="#default_element_label_mapping"><code>def default_element_label_mapping(index, element)</code></a><br></h3>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.</p>
 <p>The default label mapping for graph elements.</p>
-<p>Element (dict) should have key properties which itself should be a dict.\
+<p>Element (dict) should have key properties which itself should be a dict.<br />
 Then one of the following values (in descending priority) is used as label:
 - properties["label"]
 - properties["yf_label"]</p>
@@ -1341,7 +1341,7 @@ Then one of the following values (in descending priority) is used as label:
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the {<a href="#node_label_mapping_property">node</a>|<a href="#edge_label_mapping_property">edge</a>}_label_mapping property.\
+<p>This is the default value for the {<a href="#node_label_mapping_property">node</a>|<a href="#edge_label_mapping_property">edge</a>}_label_mapping property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1402,7 +1402,7 @@ In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the {<a href="#node_property_mapping_property">node</a>|<a href="#edge_property_mapping_property">edge</a>}_property_mapping property.\
+<p>This is the default value for the {<a href="#node_property_mapping_property">node</a>|<a href="#edge_property_mapping_property">edge</a>}_property_mapping property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1463,7 +1463,7 @@ In [4]: w.set_{node|edge}_property_mapping(custom_element_property_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_color_mapping_property"><code>node_color_mapping</code></a> property.\
+<p>This is the default value for the <a href="#node_color_mapping_property"><code>node_color_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1519,7 +1519,7 @@ In [4]: w.set_node_color_mapping(custom_node_color_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_styles_mapping_property"><code>node_styles_mapping</code></a> property.\
+<p>This is the default value for the <a href="#node_styles_mapping_property"><code>node_styles_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1584,7 +1584,7 @@ In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#edge_color_mapping_property"><code>edge_color_mapping</code></a> property.\
+<p>This is the default value for the <a href="#edge_color_mapping_property"><code>edge_color_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1640,7 +1640,7 @@ In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_scale_factor_mapping_property"><code>node_scale_factor_mapping</code></a> property.\
+<p>This is the default value for the <a href="#node_scale_factor_mapping_property"><code>node_scale_factor_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1693,7 +1693,7 @@ In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#edge_thickness_factor_mapping_property"><code>edge_thickness_factor_mapping</code></a> property.\
+<p>This is the default value for the <a href="#edge_thickness_factor_mapping_property"><code>edge_thickness_factor_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1746,7 +1746,7 @@ In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_type_mapping_property"><code>node_type_mapping</code></a> property.\
+<p>This is the default value for the <a href="#node_type_mapping_property"><code>node_type_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1799,7 +1799,7 @@ In [4]: w.set_node_type_mapping(custom_node_type_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_position_mapping_property"><code>node_position_mapping</code></a> property.\
+<p>This is the default value for the <a href="#node_position_mapping_property"><code>node_position_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
@@ -1852,7 +1852,7 @@ In [4]: w.set_node_position_mapping(custom_node_position_mapping)
 </tbody>
 </table>
 <p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#directed_mapping_property"><code>directed_mapping</code></a> property.\
+<p>This is the default value for the <a href="#directed_mapping_property"><code>directed_mapping</code></a> property.<br />
 Can be 'overwritten' by setting the property with a function of the same signature.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
