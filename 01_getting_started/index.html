@@ -52,6 +52,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage_1">Usage</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -61,6 +63,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../03_graph_importers/">Graph Importers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../04_key_activation/">Key activation</a>
                 </li>
               </ul>
       </div>
@@ -95,10 +101,22 @@
 <li><a href="https://github.com/jupyter-widgets/ipywidgets">ipywidgets</a> &gt;= 7.6.0</li>
 </ul>
 <h2 id="installation">Installation</h2>
-<p>Install the prebuilt extension from the <a href="https://pypi.org/">Python Package Index</a>.</p>
+<p>If you already have Jupyter installed, just <code>pip install</code> the prebuilt extension from the <a href="https://pypi.org/">Python Package Index</a>.</p>
 <pre><code class="language-bash">pip install yfiles_jupyter_graphs
 </code></pre>
+<p>If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use <a href="https://www.docker.com/"><code>docker</code></a>, too:</p>
+<p>Form a shell, create a docker image that contains all that is required:</p>
+<pre><code class="language-bash">mkdir yfiles-jupyter &amp;&amp; cd yfiles-jupyter
+echo -e &quot;FROM jupyter/scipy-notebook\nRUN pip install yfiles-jupyter-graphs&quot; &gt; Dockerfile
+docker build -t yfiles-jupyter-graphs-on-docker .
+</code></pre>
+<p>(the above has been tested successfully with <code>scipy-notebook:lab-3.4.7</code> and <code>yfiles-jupyter-graphs==1.2.1</code>), but we want to make sure that it will also work with  upcoming versions - file an issue if it doesn't work for you!)</p>
+<p>You can then create a fresh new instance of your server from this image like so:</p>
+<pre><code class="language-bash">docker run -it -p 8888:8888 --name yfiles-jupyter yfiles-jupyter-graphs-on-docker
+</code></pre>
 <h2 id="usage">Usage</h2>
+<p>In a notebook which has the wiget installed in the server, in a Python cell, you can then do this:</p>
+<h2 id="usage_1">Usage</h2>
 <pre><code class="language-python">&quot;&quot;&quot;Execute in jupyter notebook or jupyter lab&quot;&quot;&quot;
 from yfiles_jupyter_graphs import GraphWidget
 # shows empty widget
