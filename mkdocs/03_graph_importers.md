@@ -13,7 +13,7 @@ Notes
 - Node and edge properties are extracted from corresponding property maps.
 - Default values for unset properties are used, due to the way graph tool properties work.
 
-## igraph Importer
+## igraph Importer 
 
 Importer for graphs from the [igraph](https://igraph.org/python/) package.
 

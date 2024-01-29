@@ -105,6 +105,18 @@ This function acts as an alias for using GraphWidget.edges property e.g. `w.edge
 
 &nbsp;
 
+### <a id="get_selection" href="#get_selection"><code>def get_selection()</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Returns the nodes and edges, that are selected in the displayed widget.
+
+**Returns**
+
+| Name    | Type | Description             |
+|---------| ----------- |-------------------------|
+| `nodes` | `typing.List[typing.Dict]` | List of selected nodes. |
+| `edges` | `typing.List[typing.Dict]` | List of selected edges. |
+
+&nbsp;
+
 ### <a id="directed_property" href="#directed_property"><code>directed: bool</code></a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Graph wide flag for edge type.
 
@@ -163,7 +175,7 @@ Currently the algorithms use default settings from yFiles library.
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
 | `algorithm` | `str` | Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "hierarchic", "organic", "orthogonal", "radial", "tree", "orthogonal_edge_router", "organic_edge_router"] |
-| `**kwargs` | `typing.Dict` (optional) | Extra arguments to algorithm configuration, currently ignored. |
+
 
 **Notes**
 
@@ -293,15 +305,15 @@ If no mapping is explicitly set, [`default_node_label_mapping`](#default_node_la
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_label_mapping` | `Union[callable, str]` | A function that produces node labels or the name of the property to use for binding. The function should have the same signature as `default_node_label_mapping` e.g. take in an index and node dictionary and return a string.|
+| Name                 | Type                   | Description                                                                                                                                                                                                          |
+|----------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `node_label_mapping` | `Union[callable, str]` | A function that produces node labels or the name of the property to use for binding. The function should have the same signature as `default_node_label_mapping` e.g. take in a node dictionary and return a string. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_label_mapping(index: int, node: dict):
+In [3]: def custom_node_label_mapping(node: dict):
          ...
 In [4]: w.set_node_label_mapping(custom_node_label_mapping)
 ```
@@ -334,15 +346,15 @@ If no mapping is explicitly set, [`default_edge_label_mapping`](#default_edge_la
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_label_mapping` | `Union[callable, str]` | A function that produces edge labels or the name of the property to use for binding. The funtion should have the same signature as `default_edge_label_mapping` e.g. take in an index and edge dictionary and return a string. |
+| Name                 | Type                   | Description                                                                                                                                                                                                          |
+|----------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `edge_label_mapping` | `Union[callable, str]` | A function that produces edge labels or the name of the property to use for binding. The funtion should have the same signature as `default_edge_label_mapping` e.g. take in an edge dictionary and return a string. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_edge_label_mapping(index: int, node: dict):
+In [3]: def custom_edge_label_mapping(node: dict):
          ...
 In [4]: w.set_edge_label_mapping(custom_edge_label_mapping)
 ```
@@ -377,7 +389,7 @@ If no mapping is explicitly set, [`default_node_property_mapping`](#default_node
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `node_property_mapping` | `Union[callable, str]` | A function that produces node properties or the name of the property to use for binding. The function should have the same signature as `default_node_property_mapping` e.g. take in an index and node dictionary and return a dictionary. |
+| `node_property_mapping` | `Union[callable, str]` | A function that produces node properties or the name of the property to use for binding. The function should have the same signature as `default_node_property_mapping` e.g. take in a node dictionary and return a dictionary. |
 
 **Notes**
 
@@ -387,7 +399,7 @@ Properties are changed inplace by this mapping.
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_property_mapping(index: int, node: dict):
+In [3]: def custom_node_property_mapping(node: dict):
          ...
 In [4]: w.set_node_property_mapping(custom_node_property_mapping)
 ```
@@ -422,7 +434,7 @@ If no mapping is explicitly set, [`default_edge_property_mapping`](#default_edge
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `edge_property_mapping` | `Union[callable, str]` | A function that produces edge properties or the name of the property to use for binding. The function should have the same signature as `default_edge_property_mapping` e.g. take in an index and edge dictionary and return a dictionary. |
+| `edge_property_mapping` | `Union[callable, str]` | A function that produces edge properties or the name of the property to use for binding. The function should have the same signature as `default_edge_property_mapping` e.g. take in an edge dictionary and return a dictionary. |
 
 **Notes**
 
@@ -432,7 +444,7 @@ Properties are changed inplace by this mapping.
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_edge_property_mapping(index: int, node: dict):
+In [3]: def custom_edge_property_mapping(node: dict):
          ...
 In [4]: w.set_edge_property_mapping(custom_edge_property_mapping)
 ```
@@ -467,13 +479,13 @@ If no mapping is explicitly set, [`default_node_color_mapping`](#default_node_co
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `node_color_mapping` | `Union[callable, str]` | A function that produces node colors or the name of the property to use for binding. The function should have the same signature as `default_node_color_mapping` e.g. take in an index and node dictionary and return a string. |
+| `node_color_mapping` | `Union[callable, str]` | A function that produces node colors or the name of the property to use for binding. The function should have the same signature as `default_node_color_mapping` e.g. take in a node dictionary and return a string. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_color_mapping(index: int, node: dict):
+In [3]: def custom_node_color_mapping(node: dict):
          ...
 In [4]: w.set_node_color_mapping(custom_node_color_mapping)
 ```
@@ -508,13 +520,13 @@ If no mapping is explicitly set, [`default_node_styles_mapping`](#default_node_s
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `node_styles_mapping` | `Union[callable, str]` | A function that produces node styles or the name of the property to use for binding. The function should have the same signature as `default_node_styles_mapping` e.g. take in an index and node dictionary and return a string. |
+| `node_styles_mapping` | `Union[callable, str]` | A function that produces node styles or the name of the property to use for binding. The function should have the same signature as `default_node_styles_mapping` e.g. take in a node dictionary and return a string. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_styles_mapping(index: int, node: dict):
+In [3]: def custom_node_styles_mapping(node: dict):
          ...
 In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
 ```
@@ -549,13 +561,13 @@ If no mapping is explicitly set, [`default_edge_color_mapping`](#default_edge_co
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `edge_color_mapping` | `Union[callable, str]` | A function that produces edge colors or the name of the property to use for binding. The function should have the same signature as `default_edge_color_mapping` e.g. take in an index and edge dictionary and return a string. |
+| `edge_color_mapping` | `Union[callable, str]` | A function that produces edge colors or the name of the property to use for binding. The function should have the same signature as `default_edge_color_mapping` e.g. take in an edge dictionary and return a string. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_edge_color_mapping(index: int, node: dict):
+In [3]: def custom_edge_color_mapping(node: dict):
          ...
 In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
 ```
@@ -590,13 +602,13 @@ If no mapping is explicitly set, [`default_node_scale_factor_mapping`](#default_
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `node_scale_factor_mapping` | `Union[callable, str]` | A function that produces node scale factors or the name of the property to use for binding. The function should have the same signature as `default_node_scale_factor_mapping` e.g. take in an index and node dictionary and return a positive float. |
+| `node_scale_factor_mapping` | `Union[callable, str]` | A function that produces node scale factors or the name of the property to use for binding. The function should have the same signature as `default_node_scale_factor_mapping` e.g. take in a node dictionary and return a positive float. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_scale_factor_mapping(index: int, node: dict):
+In [3]: def custom_node_scale_factor_mapping(node: dict):
          ...
 In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
 ```
@@ -605,6 +617,101 @@ In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node scale factor mapping property.
 
 Remove a custom node scale factor mapping.
+
+&nbsp;
+
+### <a id="node_size_mapping_property" href="#node_size_mapping_property"><code>node_size_mapping: Union[callable, str]</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node size on a per node basis.
+
+**`def get_node_size_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node size mapping property.
+
+**Notes**
+
+If no mapping is explicitly set, [`default_node_size_mapping`](#default_node_size_mapping) is returned.
+
+**Returns**
+
+| Name                | Type | Description                                                                         |
+|---------------------| ----------- |-------------------------------------------------------------------------------------|
+| `node_size_mapping` | `Union[callable, str]` | A function that produces node sizes or the name of the property to use for binding. |
+
+**`def set_node_size_mapping(node_size_mapping)`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node size mapping property.
+
+A custom size mapping is only used if there is no custom [`node_layout`](#node_layout_mapping_property) mapping.
+
+If a custom node layout mapping and a custom size mapping is set, the node layout mapping always takes precedence.
+
+**Parameters**
+
+| Name                | Type | Description                                                                                                                                                                                                                        |
+|---------------------| ----------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `node_size_mapping` | `Union[callable, str]` | A function that produces node sizes or the name of the property to use for binding. The function should have the same signature as `default_node_size_mapping` e.g. take in a node dictionary and return a positive float 2-tuple. |
+
+**Example**
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_size_mapping(node: dict):
+         ...
+In [4]: w.set_node_size_mapping(custom_node_size_mapping)
+```
+
+**`def del_node_size_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node size mapping property.
+
+Remove a custom node size mapping.
+
+&nbsp;
+
+### <a id="node_layout_mapping_property" href="#node_layout_mapping_property"><code>node_layout_mapping: Union[callable, str]</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node layout on a per node basis.
+
+**`def get_node_layout_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node layout mapping property.
+
+**Notes**
+
+If no mapping is explicitly set, [`default_node_layout_mapping`](#default_node_layout_mapping) is returned.
+Node layouts combine node position and node size. 
+The default node layout mapping is the currently set position and size mapping.
+
+If a custom size or position mapping is set using [`set_node_size_mapping`](#default_node_size_mapping) or [`set_node_position_mapping`](#default_node_position_mapping),
+the default layout changes.
+
+If a custom node layout mapping and a custom size/position mapping is set, the layout mapping takes precedence.
+
+**Returns**
+
+| Name                  | Type | Description                                                                           |
+|-----------------------| ----------- |---------------------------------------------------------------------------------------|
+| `node_layout_mapping` | `Union[callable, str]` | A function that produces node layouts or the name of the property to use for binding. |
+
+**`def set_node_layout_mapping(node_layout_mapping)`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node layout mapping property.
+
+**Parameters**
+
+| Name                  | Type | Description                                                                                                                                                                                                                            |
+|-----------------------| ----------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `node_layout_mapping` | `Union[callable, str]` | A function that produces node layouts or the name of the property to use for binding. The function should have the same signature as `default_node_layout_mapping` e.g. take in a node dictionary and return a positive float 4-tuple. |
+
+**Example**
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_layout_mapping(node: dict):
+         ...
+In [4]: w.set_node_layout_mapping(custom_node_layout_mapping)
+```
+
+**`def del_node_layout_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node layout mapping property.
+
+
+Remove a custom node layout mapping.
+
 
 &nbsp;
 
@@ -631,13 +738,13 @@ If no mapping is explicitly set, [`default_edge_thickness_factor_mapping`](#defa
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `edge_thickness_factor_mapping` | `Union[callable, str]` | A function that produces edge thickness factors or the name of the property to use for binding. The function should have the same signature as `default_edge_thickness_factor_mapping` e.g. take in an index and edge dictionary and return a positive float. |
+| `edge_thickness_factor_mapping` | `Union[callable, str]` | A function that produces edge thickness factors or the name of the property to use for binding. The function should have the same signature as `default_edge_thickness_factor_mapping` e.g. take in an edge dictionary and return a positive float. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_edge_thickness_factor_mapping(index: int, node: dict):
+In [3]: def custom_edge_thickness_factor_mapping(node: dict):
          ...
 In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping)
 ```
@@ -672,7 +779,7 @@ If no mapping is explicitly set, [`default_node_type_mapping`](#default_node_typ
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `node_type_mapping` | `Union[callable, str]` | A function that produces node types or the name of the property to use for binding. The function should have the same signature as `default_node_type_mapping` e.g. take in an index and node dictionary and return a bool/int/float or str value. |
+| `node_type_mapping` | `Union[callable, str]` | A function that produces node types or the name of the property to use for binding. The function should have the same signature as `default_node_type_mapping` e.g. take in a node dictionary and return a bool/int/float or str value. |
 
 **Notes**
 
@@ -682,7 +789,7 @@ Node types give more information for some layout algorithms.
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_type_mapping(index: int, node: dict):
+In [3]: def custom_node_type_mapping(node: dict):
          ...
 In [4]: w.set_node_type_mapping(custom_node_type_mapping)
 ```
@@ -718,11 +825,15 @@ If no mapping is explicitly set, [`default_node_position_mapping`](#default_node
 **`def set_node_position_mapping(node_position_mapping)`**<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node position mapping property.
 
+A custom position mapping is only used if there is no custom [`node_layout`](#node_layout_mapping_property) mapping.
+
+If a custom node layout mapping and a custom position mapping is set, the node layout mapping takes precedence.
+
 **Parameters**
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `node_position_mapping` | `Union[callable, str]` | A function that produces node positions or the name of the property to use for binding. The function should have the same signature as `default_node_position_mapping` e.g. take in an index and node dictionary and return a float 2-tuple. |
+| `node_position_mapping` | `Union[callable, str]` | A function that produces node positions or the name of the property to use for binding. The function should have the same signature as `default_node_position_mapping` e.g. take in a node dictionary and return a float 2-tuple. |
 
 **Notes**
 
@@ -733,7 +844,7 @@ all other algorithms calculate node positions themselves.
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_position_mapping(index: int, node: dict):
+In [3]: def custom_node_position_mapping(node: dict):
          ...
 In [4]: w.set_node_position_mapping(custom_node_position_mapping)
 ```
@@ -768,13 +879,13 @@ If no mapping is explicitly set, [`default_directed_mapping`](#default_directed_
 
 | Name | Type | Description |
 | ----------- | ----------- | ----------- |
-| `directed_mapping` | `Union[callable, str]` | A function that produces edge directions or the name of the property to use for binding. The function should have the same signature as `default_directed_mapping` e.g. take in an index and edge dictionary and return a boolean value. |
+| `directed_mapping` | `Union[callable, str]` | A function that produces edge directions or the name of the property to use for binding. The function should have the same signature as `default_directed_mapping` e.g. take in an edge dictionary and return a boolean value. |
 
 **Example**
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_directed_mapping(index: int, node: dict):
+In [3]: def custom_directed_mapping(node: dict):
          ...
 In [4]: w.set_directed_mapping(custom_directed_mapping)
 ```
@@ -836,7 +947,7 @@ In [4]: w.import_graph(florentine_families_graph())
 **Notes**
 
 Some graph data structures have special attributes for labels, some don't.
-Same goes for other graph properties.
+Same goes for other graph properties. 
 This method and the underlying transformations should be seen as best effort
 to provide an easy way to input data into the widget.
 For more granular control use nodes and edges properties directly.
@@ -919,22 +1030,25 @@ Then one of the following values (in descending priority) is used as label:
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in corresponding nodes or edges list. |
-| `element` | `typing.Dict` | Can be both node or edge. |
+| Name | Type | Description                                               |
+| ----------- | ----------- |-----------------------------------------------------------|
+| `index` | `int` | (optional) Position in corresponding nodes or edges list. |
+| `element` | `typing.Dict` | Can be both node or edge.                                 |
 
 **Notes**
 
 This is the default value for the {[node](#node_label_mapping_property)|[edge](#edge_label_mapping_property)}_label_mapping property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_element_label_mapping(index: int, element: typing.Dict):
+In [3]: def custom_element_label_mapping(element: typing.Dict):
          ...
 In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
 ```
@@ -968,22 +1082,25 @@ Simply selects the properties value of element dictionary.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in corresponding nodes or edges list. |
-| `element` | `typing.Dict` | Can be both node or edge. |
+| Name | Type | Description                                               |
+| ----------- | ----------- |-----------------------------------------------------------|
+| `index` | `int` | (optional) Position in corresponding nodes or edges list. |
+| `element` | `typing.Dict` | Can be both node or edge.                                 |
 
 **Notes**
 
 This is the default value for the {[node](#node_property_mapping_property)|[edge](#edge_property_mapping_property)}_property_mapping property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_element_property_mapping(index: int, element: typing.Dict):
+In [3]: def custom_element_property_mapping(element: typing.Dict):
          ...
 In [4]: w.set_{node|edge}_property_mapping(custom_element_property_mapping)
 ```
@@ -1013,26 +1130,29 @@ See [`default_element_property_mapping`](#default_element_property_mapping).
 ### <a id="default_node_color_mapping" href="#default_node_color_mapping"><code>def default_node_color_mapping(index, node)</code></a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default color mapping for nodes.
 
-Provides constant value of '#17bebb' for all nodes.
+Provides constant value of '#15afac' for all nodes.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in nodes list. |
+| `node` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`node_color_mapping`](#node_color_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_color_mapping(index: int, node: typing.Dict):
+In [3]: def custom_node_color_mapping(node: typing.Dict):
           ...
 In [4]: w.set_node_color_mapping(custom_node_color_mapping)
 ```
@@ -1058,22 +1178,25 @@ Provides constant value of {} for all nodes.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in nodes list. |
+| `node` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`node_styles_mapping`](#node_styles_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_styles_mapping(index: int, node: typing.Dict):
+In [3]: def custom_node_styles_mapping(node: typing.Dict):
           ...
 In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
 ```
@@ -1106,26 +1229,29 @@ can contain the following key-value-pairs:
 ### <a id="default_edge_color_mapping" href="#default_edge_color_mapping"><code>def default_edge_color_mapping(index, edge)</code></a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default color mapping for edges.
 
-Provides constant value of '#094c4b' for all edges.
+Provides constant value of '#15afac' for all edges.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in edges list. |
-| `edge` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in edges list. |
+| `edge` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`edge_color_mapping`](#edge_color_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_edge_color_mapping(index: int, edge: typing.Dict):
+In [3]: def custom_edge_color_mapping(edge: typing.Dict):
          ...
 In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
 ```
@@ -1151,22 +1277,25 @@ Provides constant value of 1.0 for all nodes.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in nodes list. |
+| `node` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`node_scale_factor_mapping`](#node_scale_factor_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_scale_factor_mapping(index: int, node: typing.Dict):
+In [3]: def custom_node_scale_factor_mapping(node: typing.Dict):
          ...
 In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
 ```
@@ -1179,6 +1308,82 @@ In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
 
 &nbsp;
 
+### <a id="default_node_size_mapping" href="#default_node_size_mapping"><code>def default_node_size_mapping(index, node)</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default size mapping for nodes.
+
+Provides constant value of [55.0,55.0] for all nodes.
+
+**Parameters**
+
+| Name | Type | Description |
+| ----------- | ----------- | ----------- |
+| `index` | `int` | Position in nodes list. |
+| `node` | `typing.Dict` | |
+
+**Notes**
+
+This is the default value for the [`node_size_mapping`](#node_size_mapping_property) property.  
+Can be 'overwritten' by setting the property with a function of the same signature.
+
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
+**Example**
+
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_size_mapping(node: typing.Dict):
+         ...
+In [4]: w.set_node_size_mapping(custom_node_size_mapping)
+```
+
+**Returns**
+
+| Name        | Type            | Description                |
+|-------------|-----------------|----------------------------|
+| `node_size` | `float 2-tuple` | `size in (width, height).` |
+
+&nbsp;
+
+### <a id="default_node_layout_mapping" href="#default_node_layout_mapping"><code>def default_node_layout_mapping(index, node)</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default layout mapping for nodes.
+
+Provides constant value of [0.00, 0.00, 55.0, 55.0] for all nodes.
+
+**Parameters**
+
+| Name | Type | Description |
+| ----------- | ----------- | ----------- |
+| `index` | `int` | Position in nodes list. |
+| `node` | `typing.Dict` | |
+
+**Notes**
+
+This is the default value for the [`node_layout_mapping`](#node_layout_mapping_property) property.  
+Can be 'overwritten' by setting the property with a function of the same signature.
+
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
+**Example**
+
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_layout_mapping(node: typing.Dict):
+         ...
+In [4]: w.set_node_layout_mapping(custom_node_layout_mapping)
+```
+
+**Returns**
+
+| Name          | Type            | Description                                                  |
+|---------------|-----------------|--------------------------------------------------------------|
+| `node_layout` | `float 4-tuple` | `layout containin position and size: (x, y, width, height).` |
+
+&nbsp;
+
 ### <a id="default_edge_thickness_factor_mapping" href="#default_edge_thickness_factor_mapping"><code>def default_edge_thickness_factor_mapping(index, edge)</code></a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default thickness factor mapping for edges.
 
@@ -1186,22 +1391,25 @@ Provides constant value of 1.0 for all edges.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in edges list. |
-| `edge` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in edges list. |
+| `edge` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`edge_thickness_factor_mapping`](#edge_thickness_factor_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_edge_thickness_factor_mapping(index: int, edge: typing.Dict):
+In [3]: def custom_edge_thickness_factor_mapping(edge: typing.Dict):
          ...
 In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping)
 ```
@@ -1221,22 +1429,25 @@ Provides constant value of `None` for all nodes.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in nodes list. |
+| `node` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`node_type_mapping`](#node_type_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_type_mapping(index: int, node: typing.Dict):
+In [3]: def custom_node_type_mapping(node: typing.Dict):
          ...
 In [4]: w.set_node_type_mapping(custom_node_type_mapping)
 ```
@@ -1256,22 +1467,25 @@ Provides constant value of [0.0, 0.0] for all nodes.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in nodes list. |
+| `node` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`node_position_mapping`](#node_position_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_node_position_mapping(index: int, node: typing.Dict):
+In [3]: def custom_node_position_mapping(node: typing.Dict):
          ...
 In [4]: w.set_node_position_mapping(custom_node_position_mapping)
 ```
@@ -1291,22 +1505,25 @@ Uses the graph wide directed attribute for all edges.
 
 **Parameters**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in edges list. |
-| `edge` | `typing.Dict` | |
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in edges list. |
+| `edge` | `typing.Dict` |                                    |
 
 **Notes**
 
 This is the default value for the [`directed_mapping`](#directed_mapping_property) property.  
 Can be 'overwritten' by setting the property with a function of the same signature.
 
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
 **Example**
 
 ```Python
 In [1]: from yfiles_jupyter_graphs import GraphWidget
 In [2]: w = GraphWidget()
-In [3]: def custom_directed_mapping(index: int, edge: typing.Dict):
+In [3]: def custom_directed_mapping(edge: typing.Dict):
          ...
 In [4]: w.set_directed_mapping(custom_directed_mapping)
 ```
