@@ -1024,10 +1024,14 @@ for more details about this specific algorithm.
 The default label mapping for graph elements.
 
 Element (dict) should have key properties which itself should be a dict.  
-Then one of the following values (in descending priority) is used as label:
+Then one of the following values (in descending priority) is used as label if the label is a string:
 - properties["label"]
 - properties["yf_label"]
 
+If a label styling is given as the label mapping, the following is used as a label:
+
+- label["text"]
+ 
 **Parameters**
 
 | Name | Type | Description                                               |
@@ -1055,9 +1059,34 @@ In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
 
 **Returns**
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `label` | `str` | The node or edge label. |
+| Name                 | Type         | Description |
+|----------------------|--------------|------------|
+| `label`              | `str`        | The node or edge label. |
+| `label` | typing.Dict` | A `Dict` with mappings for style attributes. See below for supported values. |
+
+Supported style attributes in the return `Dict`:
+```Python
+can contain the following key-value-pairs:
+    "text": str
+        Is used as the label.
+    "fontSize": number
+        Sets the size of the font.
+    "color": string
+        Css color value for the text color.
+    "backgroundColor": str
+        Css color value for the background color.
+    "position": 'center' | 'north' | 'east' | 'south' | 'west'
+        The label position at the node. Applies only to node labels.
+    "maximumWidth": number
+        The maximum width of the label. By default, the label is clipped at the given size, or wrapped when "wrapping" is set.
+    "maximumHeight": number
+        The maximum height of the label. Clips the label at the given height. May be combined with "wrapping".
+    "wrapping": 'character' | 'character_ellipsis' | 'none' | 'word' | 'word_ellipsis'
+        Text wrapping for the label. Must be set in combination with "maximumWidth".
+    "textAlignment": 'center' | 'left' | 'right'
+        The horizontal text alignment when "wrapping" is enabled.
+```
+
 
 &nbsp;
 
