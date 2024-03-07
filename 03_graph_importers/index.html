@@ -54,15 +54,45 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Graph Importers</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#neo4j-importer">Neo4j Importer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#graph-tool-importer">Graph Tool Importer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notes_1">Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_1">Example</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#igraph-importer">igraph Importer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notes_2">Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_2">Example</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#networkx-importer">Networkx Importer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notes_3">Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_3">Example</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pygraphviz-importer">PyGraphviz Importer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notes_4">Notes</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#neo4j-importer">Neo4j Importer</a>
+    <li class="toctree-l3"><a class="reference internal" href="#example_4">Example</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -97,35 +127,85 @@
               
                 <h1 id="graph-importers">Graph Importers</h1>
 <p>Used by the <a href="#import_graph_method"><code>GraphWidget.import_graph</code></a> method.</p>
+<h2 id="neo4j-importer">Neo4j Importer</h2>
+<p>Importer for graphs from <a href="https://pypi.org/project/neo4j/">Neo4j</a>.</p>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>By default, the widget displays the node's label and the edge's type as text. This may be adjusted by setting a different label-mapping, e.g., see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02_label_mapping.ipynb">02_label_mapping</a>.</li>
+<li>Node labels are combined with ':' and added as 'label' property on the item</li>
+<li>Node and relationship properties are available on the graph item's <code>properties</code>.</li>
+<li>Each node label or relationship type is assigned a specific color.</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>First, create a Neo4j driver with access to your database</p>
+<pre><code class="language-python">from neo4j import GraphDatabase
+from yfiles_jupyter_graphs import GraphWidget
+
+NEO4J_URI      = &quot;neo4j+s://demo.neo4jlabs.com&quot; 
+NEO4J_USERNAME = &quot;movies&quot;
+NEO4J_PASSWORD = &quot;movies&quot;
+
+# create a neo4j session to run queries
+driver = GraphDatabase.driver(uri = NEO4J_URI, auth = (NEO4J_USERNAME, NEO4J_PASSWORD), database = 'movies')
+session = driver.session()
+</code></pre>
+<p>This driver can then be used to query a result graph by importing the result with the yFiles Graphs for Jupyter widget:</p>
+<pre><code class="language-python"># directly show the graph resulting from the given Cypher query
+def showGraph(cypher: str):
+    widget = GraphWidget(graph = session.run(cypher).graph()) 
+
+    # potentially configure some mappings of the widget...
+    def node_label_mapping(node):
+        properties = node['properties']
+        return properties.get('name', properties.get('label', '&lt;unlabeled&gt;')) 
+
+    w.node_label_mapping = node_label_mapping
+
+    display(widget)
+
+# display a Cypher query as graph
+showGraph(&quot;MATCH (s)-[r]-&gt;(t) RETURN s,r,t LIMIT 20&quot;)
+</code></pre>
+<p>See also this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb">Jupyter Notebook</a>
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <h2 id="graph-tool-importer">Graph Tool Importer</h2>
 <p>Importer for graphs from the <a href="https://graph-tool.skewed.de/">graph tool</a> package.</p>
-<p>Notes</p>
+<h3 id="notes_1">Notes</h3>
 <ul>
 <li>Graph properties are ignored.</li>
 <li>Nodes and edges are identified by index.</li>
 <li>Node and edge properties are extracted from corresponding property maps.</li>
 <li>Default values for unset properties are used, due to the way graph tool properties work.</li>
 </ul>
+<h3 id="example_1">Example</h3>
+<p>See this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb">Jupyter Notebook</a>
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <h2 id="igraph-importer">igraph Importer</h2>
 <p>Importer for graphs from the <a href="https://igraph.org/python/">igraph</a> package.</p>
-<p>Notes</p>
+<h3 id="notes_2">Notes</h3>
 <ul>
 <li>Nodes and edges are identified by index attribute.</li>
 <li>Node and edge properties are provided through attributes method.</li>
 <li>Edges are determined by source and target attribute.</li>
 </ul>
+<h3 id="example_2">Example</h3>
+<p>See this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb">Jupyter Notebook</a>
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <h2 id="networkx-importer">Networkx Importer</h2>
 <p>Importer for graphs from the <a href="https://networkx.org/">networkx</a> package.</p>
-<p>Notes</p>
+<h3 id="notes_3">Notes</h3>
 <ul>
 <li>Graph attributes are ignored.</li>
 <li>Node identifiers are saved under property key <em>label</em> (or <em>yf_label</em> if key <em>label</em> already exists).</li>
 <li>Node identifiers have to be unique.</li>
 <li>Subgraphs (graph as node, see <a href="https://networkx.org/documentation/stable/tutorial.html#using-the-graph-constructors">here</a>) are not supported.</li>
 </ul>
+<h3 id="example_3">Example</h3>
+<p>See this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb">Jupyter Notebook</a>
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <h2 id="pygraphviz-importer">PyGraphviz Importer</h2>
 <p>Importer for graphs from the <a href="https://pygraphviz.github.io/">pygraphviz</a> package.</p>
-<p>Notes</p>
+<h3 id="notes_4">Notes</h3>
 <ul>
 <li>Graph attributes are ignored.</li>
 <li>Node names are saved under property key <em>label</em> (or <em>yf_label</em> if key <em>label</em> already exists).</li>
@@ -133,14 +213,9 @@
 <li>Unspecified default node/edge attributes are empty (and shown as null in data viewer).</li>
 <li>Subgraphs are dissolved.</li>
 </ul>
-<h2 id="neo4j-importer">Neo4j Importer</h2>
-<p>Importer for graphs from <a href="https://pypi.org/project/neo4j/">Neo4j</a>.</p>
-<p>Notes</p>
-<ul>
-<li>All properties are loaded into the data item</li>
-<li>Neo4j node labels are combined with ':' and added as 'label' property on the item</li>
-<li>Relationship types are added as 'label' property on the item</li>
-</ul>
+<h3 id="example_4">Example</h3>
+<p>See this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb">Jupyter Notebook</a>
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
               
             </div>
           </div><footer>

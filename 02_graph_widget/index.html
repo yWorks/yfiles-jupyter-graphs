@@ -1464,9 +1464,13 @@ for more details about this specific algorithm.</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.</p>
 <p>The default label mapping for graph elements.</p>
 <p>Element (dict) should have key properties which itself should be a dict.<br />
-Then one of the following values (in descending priority) is used as label:
+Then one of the following values (in descending priority) is used as label if the label is a string:
 - properties["label"]
 - properties["yf_label"]</p>
+<p>If a label styling is given as the label mapping, the following is used as a label:</p>
+<ul>
+<li>label["text"]</li>
+</ul>
 <p><strong>Parameters</strong></p>
 <table>
 <thead>
@@ -1516,8 +1520,34 @@ In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
 <td><code>str</code></td>
 <td>The node or edge label.</td>
 </tr>
+<tr>
+<td><code>label</code></td>
+<td>typing.Dict<code>| A</code>Dict` with mappings for style attributes. See below for supported values.</td>
+<td></td>
+</tr>
 </tbody>
 </table>
+<p>Supported style attributes in the return <code>Dict</code>:</p>
+<pre><code class="language-Python">can contain the following key-value-pairs:
+    &quot;text&quot;: str
+        Is used as the label.
+    &quot;fontSize&quot;: number
+        Sets the size of the font.
+    &quot;color&quot;: string
+        Css color value for the text color.
+    &quot;backgroundColor&quot;: str
+        Css color value for the background color.
+    &quot;position&quot;: 'center' | 'north' | 'east' | 'south' | 'west'
+        The label position at the node. Applies only to node labels.
+    &quot;maximumWidth&quot;: number
+        The maximum width of the label. By default, the label is clipped at the given size, or wrapped when &quot;wrapping&quot; is set.
+    &quot;maximumHeight&quot;: number
+        The maximum height of the label. Clips the label at the given height. May be combined with &quot;wrapping&quot;.
+    &quot;wrapping&quot;: 'character' | 'character_ellipsis' | 'none' | 'word' | 'word_ellipsis'
+        Text wrapping for the label. Must be set in combination with &quot;maximumWidth&quot;.
+    &quot;textAlignment&quot;: 'center' | 'left' | 'right'
+        The horizontal text alignment when &quot;wrapping&quot; is enabled.
+</code></pre>
 <p>&nbsp;</p>
 <h3 id="def-default_node_label_mappingindex-node"><a id="default_node_label_mapping" href="#default_node_label_mapping"><code>def default_node_label_mapping(index, node)</code></a><br></h3>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default label mapping for nodes.</p>
