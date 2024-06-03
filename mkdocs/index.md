@@ -46,6 +46,14 @@ A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/element_color_mapping.png" title="Make Data Dependent Property Changes" alt="element color mapping"></a><br>
         <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb">Make Data Dependent Property Changes</a></td>
     </tr>
+    <tr>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/heat_mapping.png" title="Define a heatmap background" alt="heat mapping"></a><br>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb">Define a Heatmap Background</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/leaflet_map.png" title="Use a Map background" alt="leaflet mapping"></a><br>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb">Use a Map Background</a></td>
+    </tr>
 </table>
 
 For example code look [here](https://github.com/yWorks/yfiles-jupyter-graphs/tree/master/examples).
