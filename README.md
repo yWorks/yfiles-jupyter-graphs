@@ -2,7 +2,7 @@
     <img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-logo.svg" alt='yFiles Graphs for Jupyter logo'  width="400px" style='max-width: 400px'>
 </p>
 
-[![PyPI version](https://badge.fury.io/py/yfiles-jupyter-graphs.svg)](https://badge.fury.io/py/yfiles-jupyter-graphs)
+[![PyPI - Version](https://img.shields.io/pypi/v/yfiles-jupyter-graphs?label=pypi%20package&color=%234c1)](https://pypi.org/project/yfiles-jupyter-graphs/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/yfiles-jupyter-graphs)](https://pypi.org/project/yfiles-jupyter-graphs/)
 
 A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
 
