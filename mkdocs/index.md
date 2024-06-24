@@ -10,6 +10,16 @@ A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [
 
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
+## `yfiles-jupyter-graphs-for-neo4j`
+
+For working with Neo4j databases, we
+built [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/), an open-source
+extension on top of `yfiles-jupyter-graphs`. This extension provides an easier Python interface for the
+driver and allows direct configuration of data mappings depending on the label or type of the node or relationship.
+
+So if you are planning to use the extension with Neo4j databases, consider
+using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/).
+
 ## Supported Environments
 - [JupyterLab or Jupyter Notebook](https://jupyter.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)

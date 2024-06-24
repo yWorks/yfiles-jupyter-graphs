@@ -14,6 +14,16 @@ The widget is supported in the default Jupyter environments, but also in other e
 
 Try the [Introduction](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb) notebook on Google Colab [here](https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb).
 
+## `yfiles-jupyter-graphs-for-neo4j`
+
+For working with Neo4j databases, we
+built [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/), an open-source
+extension on top of `yfiles-jupyter-graphs`. This extension provides an easier Python interface for the
+driver and allows direct configuration of data mappings depending on the label or type of the node or relationship.
+
+So if you are planning to use the extension with Neo4j databases, consider
+using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/).
+
 ## Supported Environments
 - [JupyterLab or Jupyter Notebook](https://jupyter.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)
