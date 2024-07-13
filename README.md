@@ -32,6 +32,7 @@ using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter
 - [Google Dataproc](https://cloud.google.com/dataproc)
 - [Azure Machine Learning Studio Notebooks](https://azure.microsoft.com/en-us/products/machine-learning/)
 - [Amazon SageMaker](https://aws.amazon.com/sagemaker/)
+- [Kaggle](https://www.kaggle.com)
 - Just try it in your preferred platform for Jupyter notebooks
 
 ## Requirements
