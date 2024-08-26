@@ -113,3 +113,19 @@ Importer for graphs from the [pygraphviz](https://pygraphviz.github.io/) package
 
 See this [Jupyter Notebook](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb)
 <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+
+## Pandas Importer
+
+### Notes 
+- each row corresponds to an edge
+- the edges are defined by pairs of `source` and `target` indices
+- if you have a `label` column in your DataFrame, the edges automatically have this label
+- the default edge is always directed
+- nodes are created for every id used in `source` and `target`
+- any additional DataFrame columns are stored in `properties` under the same name
+
+### Example
+
+See this [Jupyter Notebook](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb)
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>

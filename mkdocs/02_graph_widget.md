@@ -862,6 +862,51 @@ In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
 
 Remove a custom node parent mapping.
 
+&nbsp;### <a id="node_parent_group_mapping_property" href="#node_parent_group_mapping_property"><code>node_parent_group_mapping: Union[callable, str]</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node parent group on a per node basis.
+
+**`def get_node_parent_group_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node parent group mapping property.
+
+**Notes**
+
+If no mapping is explicitly set, [`default_node_parent_group_mapping`](#default_node_parent_group_mapping) is returned.
+
+**Returns**
+
+| Name | Type                   | Description                                                                           |
+| ----------- |------------------------|---------------------------------------------------------------------------------------|
+| `node_parent_group_mapping` | `Union[callable, str]` | A function that produces node parents or the name of the property to use for binding. |
+
+**`def set_node_parent_group_mapping(node_parent_group_mapping)`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node parent group mapping property.
+
+**Parameters**
+
+| Name | Type                   | Description                                                                                                                                                                                                                                                                      |
+| ----------- |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `node_parent_group_mapping` | `Union[callable, str]` | A function that produces node parents ids or the name of the property to use for binding. The function should have the same signature as `default_node_parent_group_mapping` e.g. take in a node dictionary and return a str/int/float or dict with a required `label` property. |
+
+**Notes**
+
+For every returned parent group, a new group node is created. In contrast to `node_parent_mapping` this mapping does not
+require the group nodes to be part of the given node dataset.
+
+**Example**
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_parent_group_mapping(node: dict):
+         ...
+In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
+```
+
+
+**`def del_node_parent_group_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent group mapping property.
+
+Remove a custom node parent group mapping.
+
 &nbsp;
 
 ### <a id="node_position_mapping_property" href="#node_position_mapping_property"><code>node_position_mapping: Union[callable, str]</code></a><br>
@@ -1185,10 +1230,15 @@ Then one of the following values (in descending priority) is used as label if th
 - properties["label"]
 - properties["yf_label"]
 
-If a label styling is given as the label mapping, the following is used as a label:
+When importing a Neo4j graph, the following properties are values are used as labels (in descending priority):
 
-- label["text"]
- 
+- properties['name']
+- properties['title']
+- properties['label']
+- properties['description']
+- properties['caption']
+- properties['text']
+
 **Parameters**
 
 | Name | Type | Description                                               |
@@ -1728,6 +1778,44 @@ In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
 | Name | parent | Description     |
 | ----------- | ----------- |-----------------|
 | `node_parent` | `None` | Node parent Id. |
+
+&nbsp;
+
+### <a id="default_node_parent_group_mapping" href="#default_node_parent_group_mapping"><code>def default_node_parent_group_mapping(index, node)</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default parent group mapping for nodes.
+
+Provides constant value of `None` for all nodes.
+
+**Parameters**
+
+| Name | parent | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in nodes list. |
+| `node` | `typing.Dict` |                                    |
+
+**Notes**
+
+This is the default value for the [`node_parent_group_mapping`](#node_parent_group_mapping_property) property.  
+Can be 'overwritten' by setting the property with a function of the same signature.
+
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
+**Example**
+
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_parent_group_mapping(node: typing.Dict):
+         ...
+In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
+```
+
+**Returns**
+
+| Name                | parent | Description        |
+|---------------------| ----------- |--------------------|
+| `node_parent_group` | `None` | Node parent label. |
 
 &nbsp;
 
