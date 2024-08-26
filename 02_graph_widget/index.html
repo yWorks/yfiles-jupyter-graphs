@@ -166,6 +166,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_node_parent_mappingindex-node">def default_node_parent_mapping(index, node)</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_parent_group_mappingindex-node">def default_node_parent_group_mapping(index, node)</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_node_position_mappingindex-node">def default_node_position_mapping(index, node)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_node_coordinate_mappingindex-node">def default_node_coordinate_mapping(index, node)</a>
@@ -1313,6 +1315,61 @@ In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
 <p><strong><code>def del_node_parent_mapping()</code></strong><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent mapping property.</p>
 <p>Remove a custom node parent mapping.</p>
+<p>&nbsp;### <a id="node_parent_group_mapping_property" href="#node_parent_group_mapping_property"><code>node_parent_group_mapping: Union[callable, str]</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node parent group on a per node basis.</p>
+<p><strong><code>def get_node_parent_group_mapping()</code></strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node parent group mapping property.</p>
+<p><strong>Notes</strong></p>
+<p>If no mapping is explicitly set, <a href="#default_node_parent_group_mapping"><code>default_node_parent_group_mapping</code></a> is returned.</p>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node_parent_group_mapping</code></td>
+<td><code>Union[callable, str]</code></td>
+<td>A function that produces node parents or the name of the property to use for binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>def set_node_parent_group_mapping(node_parent_group_mapping)</code></strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node parent group mapping property.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node_parent_group_mapping</code></td>
+<td><code>Union[callable, str]</code></td>
+<td>A function that produces node parents ids or the name of the property to use for binding. The function should have the same signature as <code>default_node_parent_group_mapping</code> e.g. take in a node dictionary and return a str/int/float or dict with a required <code>label</code> property.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<p>For every returned parent group, a new group node is created. In contrast to <code>node_parent_mapping</code> this mapping does not
+require the group nodes to be part of the given node dataset.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_parent_group_mapping(node: dict):
+         ...
+In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
+</code></pre>
+<p><strong><code>def del_node_parent_group_mapping()</code></strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent group mapping property.</p>
+<p>Remove a custom node parent group mapping.</p>
 <p>&nbsp;</p>
 <h3 id="node_position_mapping-unioncallable-str"><a id="node_position_mapping_property" href="#node_position_mapping_property"><code>node_position_mapping: Union[callable, str]</code></a><br></h3>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node position on a per node basis.</p>
@@ -1660,9 +1717,14 @@ for more details about this specific algorithm.</p>
 Then one of the following values (in descending priority) is used as label if the label is a string:
 - properties["label"]
 - properties["yf_label"]</p>
-<p>If a label styling is given as the label mapping, the following is used as a label:</p>
+<p>When importing a Neo4j graph, the following properties are values are used as labels (in descending priority):</p>
 <ul>
-<li>label["text"]</li>
+<li>properties['name']</li>
+<li>properties['title']</li>
+<li>properties['label']</li>
+<li>properties['description']</li>
+<li>properties['caption']</li>
+<li>properties['text']</li>
 </ul>
 <p><strong>Parameters</strong></p>
 <table>
@@ -2383,6 +2445,61 @@ In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
 <td><code>node_parent</code></td>
 <td><code>None</code></td>
 <td>Node parent Id.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3 id="def-default_node_parent_group_mappingindex-node"><a id="default_node_parent_group_mapping" href="#default_node_parent_group_mapping"><code>def default_node_parent_group_mapping(index, node)</code></a><br></h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default parent group mapping for nodes.</p>
+<p>Provides constant value of <code>None</code> for all nodes.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>parent</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index</code></td>
+<td><code>int</code></td>
+<td>(optional) Position in nodes list.</td>
+</tr>
+<tr>
+<td><code>node</code></td>
+<td><code>typing.Dict</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<p>This is the default value for the <a href="#node_parent_group_mapping_property"><code>node_parent_group_mapping</code></a> property.<br />
+Can be 'overwritten' by setting the property with a function of the same signature.</p>
+<p>If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_node_parent_group_mapping(node: typing.Dict):
+         ...
+In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
+</code></pre>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>parent</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node_parent_group</code></td>
+<td><code>None</code></td>
+<td>Node parent label.</td>
 </tr>
 </tbody>
 </table>

@@ -94,6 +94,14 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pandas-importer">Pandas Importer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notes_5">Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example_5">Example</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -216,6 +224,19 @@ showGraph(&quot;MATCH (s)-[r]-&gt;(t) RETURN s,r,t LIMIT 20&quot;)
 <h3 id="example_4">Example</h3>
 <p>See this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb">Jupyter Notebook</a>
 <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<h2 id="pandas-importer">Pandas Importer</h2>
+<h3 id="notes_5">Notes</h3>
+<ul>
+<li>each row corresponds to an edge</li>
+<li>the edges are defined by pairs of <code>source</code> and <code>target</code> indices</li>
+<li>if you have a <code>label</code> column in your DataFrame, the edges automatically have this label</li>
+<li>the default edge is always directed</li>
+<li>nodes are created for every id used in <code>source</code> and <code>target</code></li>
+<li>any additional DataFrame columns are stored in <code>properties</code> under the same name</li>
+</ul>
+<h3 id="example_5">Example</h3>
+<p>See this <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb">Jupyter Notebook</a>
+<a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
               
             </div>
           </div><footer>
