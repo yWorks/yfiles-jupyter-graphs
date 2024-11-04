@@ -118,6 +118,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-circular_layout">def circular_layout()</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#def-circular_straight_line_layout">def circular_straight_line_layout()</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-hierarchic_layout">def hierarchic_layout()</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-organic_layout">def organic_layout()</a>
@@ -440,7 +442,7 @@ e.g. <code>w.graph_layout == w.get_graph_layout()</code> is <code>true</code>.</
 <tr>
 <td><code>algorithm</code></td>
 <td><code>str</code></td>
-<td>Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "hierarchic", "organic", "orthogonal", "radial", "tree", "orthogonal_edge_router", "organic_edge_router"]</td>
+<td>Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router"]</td>
 </tr>
 </tbody>
 </table>
@@ -1666,47 +1668,53 @@ to provide an easy way to input data into the widget.
 For more granular control use nodes and edges properties directly.</p>
 <p>&nbsp;</p>
 <h3 id="def-circular_layout"><a id="circular_layout_method" href="#circular_layout_method"><code>def circular_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "circular".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "circular".</p>
+<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular">yFiles circular layout guide</a>
+for more details about this specific algorithm.</p>
+<p>&nbsp;</p>
+<h3 id="def-circular_straight_line_layout"><a id="circular_straight_line_layout_method" href="#circular_straight_line_layout_method"><code>def circular_straight_line_layout()</code></a><br></h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "circular_straight_line".</p>
+<p>Similar to circular layout but with straight edge paths instead of bundled paths.</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular">yFiles circular layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-hierarchic_layout"><a id="hierarchic_layout_method" href="#hierarchic_layout_method"><code>def hierarchic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "hierarchic".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "hierarchic".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-hierarchical">yFiles hierarchic layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-organic_layout"><a id="organic_layout_method" href="#organic_layout_method"><code>def organic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "organic".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic">yFiles organic layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-orthogonal_layout"><a id="orthogonal_layout_method" href="#orthogonal_layout_method"><code>def orthogonal_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "orthogonal".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "orthogonal".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-orthogonal">yFiles orthogonal layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-radial_layout"><a id="radial_layout_method" href="#radial_layout_method"><code>def radial_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "radial".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "radial".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-radial">yFiles radial layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-tree_layout"><a id="tree_layout_method" href="#tree_layout_method"><code>def tree_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "tree".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "tree".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-tree">yFiles tree layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-orthogonal_edge_router"><a id="orthogonal_edge_router_method" href="#orthogonal_edge_router_method"><code>def orthogonal_edge_router()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "orthogonal_edge_router".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "orthogonal_edge_router".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-polyline_router">yFiles orthogonal edge router guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-interactive_organic_layout"><a id="interactive_organic_layout_method" href="#interactive_organic:layout_method"><code>def interactive_organic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "interactive_organic_layout".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "interactive_organic_layout".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/organic_layout#interactive_organic_layout">yFiles interactive organic layout guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
 <h3 id="def-organic_edge_router"><a id="organic_edge_router_method" href="#organic_edge_router_method"><code>def organic_edge_router()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a>= "organic_edge_router".</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic_edge_router".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router">yFiles organic edge router guide</a>
 for more details about this specific algorithm.</p>
 <p>&nbsp;</p>
