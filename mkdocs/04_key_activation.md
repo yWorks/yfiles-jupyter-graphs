@@ -20,7 +20,7 @@ and
 If your domain is unknown to the widget, you will see a popup in the widget that states that it runs on an unknown
 domain.
 
-The widget's popup provides a button with which you can continue using yFiles Graphs for Jupyter anyway.
+The widget's popup provides a button with which you can temporarily continue using yFiles Graphs for Jupyter.
 
 If you think the widget should also be allow-listed on the domain you are running it on, or if you need a specific
 activation license for your domain, please get in touch with us 
