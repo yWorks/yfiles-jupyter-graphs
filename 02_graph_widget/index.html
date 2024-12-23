@@ -84,6 +84,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#node_styles_mapping-unioncallable-str">node_styles_mapping: Union[callable, str]</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#edge_styles_mapping-unioncallable-str">edge_styles_mapping: Union[callable, str]</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#edge_color_mapping-unioncallable-str">edge_color_mapping: Union[callable, str]</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#node_scale_factor_mapping-unioncallable-str">node_scale_factor_mapping: Union[callable, str]</a>
@@ -151,6 +153,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#def-default_node_color_mappingindex-node">def default_node_color_mapping(index, node)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_node_styles_mappingindex-node">def default_node_styles_mapping(index, node)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_styles_mappingindex-edge">def default_edge_styles_mapping(index, edge)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_color_mappingindex-edge">def default_edge_color_mapping(index, edge)</a>
     </li>
@@ -933,6 +937,59 @@ In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
 <p><strong><code>def del_node_styles_mapping()</code></strong><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node styles mapping property.</p>
 <p>Remove a custom node styles mapping.</p>
+<p>&nbsp;</p>
+<h3 id="edge_styles_mapping-unioncallable-str"><a id="edge_styles_mapping_property" href="#edge_styles_mapping_property"><code>edge_styles_mapping: Union[callable, str]</code></a><br></h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge styles on a per edge basis.</p>
+<p><strong><code>def get_edge_styles_mapping()</code></strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge styles mapping property.</p>
+<p><strong>Notes</strong></p>
+<p>If no mapping is explicitly set, <a href="#default_edge_styles_mapping"><code>default_edge_styles_mapping</code></a> is returned.</p>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>edge_styles_mapping</code></td>
+<td><code>Union[callable, str]</code></td>
+<td>A function that produces edge styles or the name of the property to use for binding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>def set_edge_styles_mapping(edge_styles_mapping)</code></strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge styles mapping property.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>edge_styles_mapping</code></td>
+<td><code>Union[callable, str]</code></td>
+<td>A function that produces edge styles or the name of the property to use for binding. The function should have the same signature as <code>default_edge_styles_mapping</code> e.g. take in a edge dictionary and return a string.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_edge_styles_mapping(edge: dict):
+         ...
+In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
+</code></pre>
+<p><strong><code>def del_edge_styles_mapping()</code></strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge styles mapping property.</p>
+<p>Remove a custom edge styles mapping.</p>
 <p>&nbsp;</p>
 <h3 id="edge_color_mapping-unioncallable-str"><a id="edge_color_mapping_property" href="#edge_color_mapping_property"><code>edge_color_mapping: Union[callable, str]</code></a><br></h3>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge color on a per edge basis.</p>
@@ -1814,6 +1871,8 @@ In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
         Text wrapping for the label. Must be set in combination with &quot;maximumWidth&quot;.
     &quot;textAlignment&quot;: 'center' | 'left' | 'right'
         The horizontal text alignment when &quot;wrapping&quot; is enabled.
+    &quot;fontWeight&quot;: 'bold' | 'bolder' | 'lighter' | 'normal'`: The font thickness.
+
 </code></pre>
 <p>&nbsp;</p>
 <h3 id="def-default_node_label_mappingindex-node"><a id="default_node_label_mapping" href="#default_node_label_mapping"><code>def default_node_label_mapping(index, node)</code></a><br></h3>
@@ -2004,11 +2063,88 @@ In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
 <p>Supported style attributes in the return <code>Dict</code>:</p>
 <pre><code class="language-Python">can contain the following key-value-pairs:
     &quot;color&quot;: str
-        css color value
+        CSS color value.
     &quot;shape&quot;: str
-        possible values: 'ellipse', 'hexagon', 'hexagon2', 'octagon', 'pill', 'rectangle', 'round-rectangle' or 'triangle'
+        The shape of the node. Possible values: 'ellipse', 'hexagon', 'hexagon2', 'octagon', 'pill', 'rectangle', 'round-rectangle' or 'triangle'.
     &quot;image&quot;: str
-        url or data URL of the image
+        Url or data URL of the image.
+</code></pre>
+<p><strong>References</strong></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">css color value</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs">Data URL</a></p>
+<p>&nbsp;</p>
+<h3 id="def-default_edge_styles_mappingindex-edge"><a id="default_edge_styles_mapping" href="#default_edge_styles_mapping"><code>def default_edge_styles_mapping(index, edge)</code></a><br></h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default styles mapping for edges.</p>
+<p>Provides constant value of {} for all edges.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index</code></td>
+<td><code>int</code></td>
+<td>(optional) Position in edges list.</td>
+</tr>
+<tr>
+<td><code>edge</code></td>
+<td><code>typing.Dict</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<p>This is the default value for the <a href="#edge_styles_mapping_property"><code>edge_styles_mapping</code></a> property.<br />
+Can be 'overwritten' by setting the property with a function of the same signature.</p>
+<p>If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_edge_styles_mapping(edge: typing.Dict):
+          ...
+In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
+</code></pre>
+<p><strong>Returns</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>styles</code></td>
+<td><code>typing.Dict</code></td>
+<td>A <code>Dict</code> with mappings for style attributes. See below for supported values.</td>
+</tr>
+</tbody>
+</table>
+<p>Supported style attributes in the return <code>Dict</code>:</p>
+<pre><code class="language-Python">can contain the following key-value-pairs:
+    &quot;color&quot;: str
+        CSS color value.
+    &quot;directed&quot;: bool
+        Whether the edge should be visualized with a target arrow.
+    &quot;thickness&quot;: float
+        The thickness of the stroke of the edge.
+    &quot;dashStyle&quot;: str
+        The dash styling of the edge. Can be one of the following strings:
+            - &quot;solid&quot;
+            - &quot;dash&quot;
+            - &quot;dot&quot;
+            - &quot;dash-dot&quot;
+            - &quot;dash-dot-dot&quot;
+            - &quot;5 10&quot;
+            - &quot;5, 10&quot;
+            - ...
 </code></pre>
 <p><strong>References</strong></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">css color value</a></p>
