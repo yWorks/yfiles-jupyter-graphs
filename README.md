@@ -50,7 +50,7 @@ pip install yfiles_jupyter_graphs
 
 If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use [`docker`](https://www.docker.com/), too:
 
-Form a shell, create a docker image that contains all that is required:
+From a shell, create a docker image that contains all that is required:
 
 ```bash
 mkdir yfiles-jupyter && cd yfiles-jupyter
@@ -58,7 +58,7 @@ echo -e "FROM jupyter/scipy-notebook\nRUN pip install yfiles-jupyter-graphs" > D
 docker build -t yfiles-jupyter-graphs-on-docker .
 ```
 
-(the above has been tested successfully with `scipy-notebook:lab-3.4.7` and `yfiles-jupyter-graphs==1.2.1`), but we want to make sure that it will also work with  upcoming versions - file an issue if it doesn't work for you!)
+(the above has been tested successfully with `scipy-notebook:lab-3.4.7` and `yfiles-jupyter-graphs==1.2.1`), but we want to make sure that it will also work with upcoming versions - file an issue if it doesn't work for you!)
 
 You can then create a fresh new instance of your server from this image like so:
 
@@ -68,7 +68,7 @@ docker run -it -p 8888:8888 --name yfiles-jupyter yfiles-jupyter-graphs-on-docke
 
 ## Usage
 
-In a notebook which has the wiget installed in the server, in a Python cell, you can then do this:
+In a notebook which has the widget installed in the server, in a Python cell, you can then do this:
 
 ```python
 """Execute in jupyter notebook or jupyter lab"""
