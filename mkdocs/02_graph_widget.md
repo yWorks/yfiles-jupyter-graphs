@@ -550,6 +550,47 @@ Remove a custom node styles mapping.
 
 &nbsp;
 
+### <a id="edge_styles_mapping_property" href="#edge_styles_mapping_property"><code>edge_styles_mapping: Union[callable, str]</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge styles on a per edge basis.
+
+**`def get_edge_styles_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge styles mapping property.
+
+**Notes**
+
+If no mapping is explicitly set, [`default_edge_styles_mapping`](#default_edge_styles_mapping) is returned.
+
+**Returns**
+
+| Name | Type | Description |
+| ----------- | ----------- | ----------- |
+| `edge_styles_mapping` | `Union[callable, str]` | A function that produces edge styles or the name of the property to use for binding. |
+
+**`def set_edge_styles_mapping(edge_styles_mapping)`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge styles mapping property.
+
+**Parameters**
+
+| Name | Type | Description |
+| ----------- | ----------- | ----------- |
+| `edge_styles_mapping` | `Union[callable, str]` | A function that produces edge styles or the name of the property to use for binding. The function should have the same signature as `default_edge_styles_mapping` e.g. take in a edge dictionary and return a string. |
+
+**Example**
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_edge_styles_mapping(edge: dict):
+         ...
+In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
+```
+
+**`def del_edge_styles_mapping()`**<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge styles mapping property.
+
+Remove a custom edge styles mapping.
+
+&nbsp;
+
 ### <a id="edge_color_mapping_property" href="#edge_color_mapping_property"><code>edge_color_mapping: Union[callable, str]</code></a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge color on a per edge basis.
 
@@ -1308,6 +1349,8 @@ can contain the following key-value-pairs:
         Text wrapping for the label. Must be set in combination with "maximumWidth".
     "textAlignment": 'center' | 'left' | 'right'
         The horizontal text alignment when "wrapping" is enabled.
+    "fontWeight": 'bold' | 'bolder' | 'lighter' | 'normal'`: The font thickness.
+        
 ```
 
 
@@ -1466,11 +1509,76 @@ Supported style attributes in the return `Dict`:
 ```Python
 can contain the following key-value-pairs:
     "color": str
-        css color value
+        CSS color value.
     "shape": str
-        possible values: 'ellipse', 'hexagon', 'hexagon2', 'octagon', 'pill', 'rectangle', 'round-rectangle' or 'triangle'
+        The shape of the node. Possible values: 'ellipse', 'hexagon', 'hexagon2', 'octagon', 'pill', 'rectangle', 'round-rectangle' or 'triangle'.
     "image": str
-        url or data URL of the image
+        Url or data URL of the image.
+```
+
+**References**
+
+[css color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
+
+[Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)
+
+&nbsp;
+
+### <a id="default_edge_styles_mapping" href="#default_edge_styles_mapping"><code>def default_edge_styles_mapping(index, edge)</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default styles mapping for edges.
+
+Provides constant value of {} for all edges.
+
+**Parameters**
+
+| Name | Type | Description                        |
+| ----------- | ----------- |------------------------------------|
+| `index` | `int` | (optional) Position in edges list. |
+| `edge` | `typing.Dict` |                                    |
+
+**Notes**
+
+This is the default value for the [`edge_styles_mapping`](#edge_styles_mapping_property) property.  
+Can be 'overwritten' by setting the property with a function of the same signature.
+
+If the given mapping function has only one parameter (that is not typed as int),
+then it will be called with the element (typing.Dict) as first parameter.
+
+**Example**
+
+```Python
+In [1]: from yfiles_jupyter_graphs import GraphWidget
+In [2]: w = GraphWidget()
+In [3]: def custom_edge_styles_mapping(edge: typing.Dict):
+          ...
+In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
+```
+
+**Returns**
+
+| Name | Type | Description                                                                  |
+| ----------- | ----------- |------------------------------------------------------------------------------|
+| `styles` | `typing.Dict` | A `Dict` with mappings for style attributes. See below for supported values. |
+
+Supported style attributes in the return `Dict`:
+```Python
+can contain the following key-value-pairs:
+    "color": str
+        CSS color value.
+    "directed": bool
+        Whether the edge should be visualized with a target arrow.
+    "thickness": float
+        The thickness of the stroke of the edge.
+    "dashStyle": str
+        The dash styling of the edge. Can be one of the following strings:
+            - "solid"
+            - "dash"
+            - "dot"
+            - "dash-dot"
+            - "dash-dot-dot"
+            - "5 10"
+            - "5, 10"
+            - ...
 ```
 
 **References**
