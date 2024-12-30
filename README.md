@@ -36,7 +36,7 @@ using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter
 - Just try it in your preferred platform for Jupyter notebooks
 
 ## Requirements
-- [python](https://www.python.org/) >= 3.6
+- [python](https://www.python.org/) >= 3.9
 - [jupyter](https://jupyter.org/install) notebook or lab
 - [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0
 
