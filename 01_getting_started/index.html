@@ -96,7 +96,7 @@
                 <h1 id="getting-started">Getting started</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><a href="https://www.python.org/">python</a> &gt;= 3.9</li>
+<li><a href="https://www.python.org/">python</a> &gt;= 3.6</li>
 <li><a href="https://jupyter.org/install">jupyter</a> notebook or lab</li>
 <li><a href="https://github.com/jupyter-widgets/ipywidgets">ipywidgets</a> &gt;= 7.6.0</li>
 </ul>
@@ -104,6 +104,8 @@
 <p>If you already have Jupyter installed, just <code>pip install</code> the prebuilt extension from the <a href="https://pypi.org/">Python Package Index</a>.</p>
 <pre><code class="language-bash">pip install yfiles_jupyter_graphs
 </code></pre>
+<p>To install <code>yfiles_jupyter_graphs</code> from within a Jupyter Notebook cell, use <code>%pip</code> instead of <code>!pip</code> to ensure that it
+is installed in the correct Python environment.</p>
 <p>If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use <a href="https://www.docker.com/"><code>docker</code></a>, too:</p>
 <p>Form a shell, create a docker image that contains all that is required:</p>
 <pre><code class="language-bash">mkdir yfiles-jupyter &amp;&amp; cd yfiles-jupyter

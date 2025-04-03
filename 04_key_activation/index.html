@@ -120,7 +120,19 @@ on <a href="https://github.com/yWorks/yfiles-jupyter-graphs/discussions/">GitHub
 by <a href="mailto:contact@yworks.com?subject=yFiles%20Graphs%20For%20Jupyter%20-%20Domain%20license%20request">email</a> if 
 you require a specific activation key for your domain.</p>
 <h2 id="using-a-license-key">Using a license Key</h2>
-<p>To use a specific activation license, provide it as <code>license</code> parameter to the <code>GraphWidget</code> constructor:</p>
+<p>To use a specific activation license, set <code>GraphWidget.license</code></p>
+<pre><code class="language-python">from yfiles_jupyter_graphs import GraphWidget
+GraphWidget.license = {
+  &quot;id&quot;: &quot;6440496d-b481-49a5-a824-78d591e590b4&quot;,
+  &quot;domains&quot;: [
+    &quot;my.domain.com&quot;
+  ],
+  &quot;expiry&quot;: &quot;2024-01-05&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;signature&quot;: &quot;8214787cc5f7e2bf25f4a25e43f9d7e9d482c...&quot;
+}
+</code></pre>
+<p>or provide it as <code>license</code> parameter to the <code>GraphWidget</code> constructor:</p>
 <pre><code class="language-python">w = GraphWidget(license={
   &quot;id&quot;: &quot;6440496d-b481-49a5-a824-78d591e590b4&quot;,
   &quot;domains&quot;: [
@@ -131,6 +143,8 @@ you require a specific activation key for your domain.</p>
   &quot;signature&quot;: &quot;8214787cc5f7e2bf25f4a25e43f9d7e9d482c...&quot;
 })
 </code></pre>
+<p>The license is stored statically on <code>GraphWidget</code> in both cases. Therefore, you only need to specify it once on the 
+imported <code>GraphWidget</code>.</p>
               
             </div>
           </div><footer>

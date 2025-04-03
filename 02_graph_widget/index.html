@@ -138,6 +138,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-organic_edge_router">def organic_edge_router()</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#def-no_layout">def no_layout()</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_element_label_mappingindex-element">def default_element_label_mapping(index, element)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#def-default_node_label_mappingindex-node">def default_node_label_mapping(index, node)</a>
@@ -446,7 +448,7 @@ e.g. <code>w.graph_layout == w.get_graph_layout()</code> is <code>true</code>.</
 <tr>
 <td><code>algorithm</code></td>
 <td><code>str</code></td>
-<td>Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router"]</td>
+<td>Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router", "no_layout"]</td>
 </tr>
 </tbody>
 </table>
@@ -1774,6 +1776,10 @@ for more details about this specific algorithm.</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic_edge_router".</p>
 <p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router">yFiles organic edge router guide</a>
 for more details about this specific algorithm.</p>
+<p>&nbsp;</p>
+<h3 id="def-no_layout"><a id="no_layout" href="#no_layout"><code>def no_layout()</code></a><br></h3>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "no_layout".</p>
+<p>No layout algorithm is applied.</p>
 <p>&nbsp;</p>
 <h3 id="def-default_element_label_mappingindex-element"><a id="default_element_label_mapping" href="#default_element_label_mapping"><code>def default_element_label_mapping(index, element)</code></a><br></h3>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.</p>
