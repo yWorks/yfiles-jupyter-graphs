@@ -35,7 +35,22 @@ you require a specific activation key for your domain.
 
 ## Using a license Key
 
-To use a specific activation license, provide it as `license` parameter to the `GraphWidget` constructor:
+To use a specific activation license, set `GraphWidget.license`
+
+```python
+from yfiles_jupyter_graphs import GraphWidget
+GraphWidget.license = {
+  "id": "6440496d-b481-49a5-a824-78d591e590b4",
+  "domains": [
+    "my.domain.com"
+  ],
+  "expiry": "2024-01-05",
+  "version": "1.0",
+  "signature": "8214787cc5f7e2bf25f4a25e43f9d7e9d482c..."
+}
+```
+
+or provide it as `license` parameter to the `GraphWidget` constructor:
 
 ```python
 w = GraphWidget(license={
@@ -48,3 +63,6 @@ w = GraphWidget(license={
   "signature": "8214787cc5f7e2bf25f4a25e43f9d7e9d482c..."
 })
 ```
+
+The license is stored statically on `GraphWidget` in both cases. Therefore, you only need to specify it once on the 
+imported `GraphWidget`.

@@ -1,7 +1,7 @@
 # Getting started
 
 ## Requirements
-- [python](https://www.python.org/) >= 3.9
+- [python](https://www.python.org/) >= 3.6
 - [jupyter](https://jupyter.org/install) notebook or lab
 - [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0
 
@@ -12,6 +12,9 @@ If you already have Jupyter installed, just `pip install` the prebuilt extension
 ```bash
 pip install yfiles_jupyter_graphs
 ```
+
+To install `yfiles_jupyter_graphs` from within a Jupyter Notebook cell, use `%pip` instead of `!pip` to ensure that it
+is installed in the correct Python environment.
 
 If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use [`docker`](https://www.docker.com/), too:
 

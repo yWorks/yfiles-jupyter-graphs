@@ -2,9 +2,9 @@
     <img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-logo.svg" alt='yFiles Graphs for Jupyter logo'  width="400px" style='max-width: 400px'>
 </p>
 
-[![PyPI - Version](https://img.shields.io/pypi/v/yfiles-jupyter-graphs?label=pypi%20package&color=%234c1)](https://pypi.org/project/yfiles-jupyter-graphs/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/yfiles-jupyter-graphs)](https://pypi.org/project/yfiles-jupyter-graphs/)
+[![PyPI - Version](https://img.shields.io/pypi/v/yfiles-jupyter-graphs?label=pypi%20package&color=%234c1)](https://pypi.org/project/yfiles-jupyter-graphs/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/yfiles-jupyter-graphs)](https://pypi.org/project/yfiles-jupyter-graphs/) [![Docs - Latest](https://img.shields.io/badge/docs-latest-green?color=%234c1)](https://yworks.github.io/yfiles-jupyter-graphs/)
 
-A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
+A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yfiles.com/the-yfiles-sdk/web/yfiles-for-html?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
 
 Easily visualize graphs from various sources: [Networkx](https://networkx.org/)✅, [igraph](https://igraph.org/python/)✅, [neo4j](https://pypi.org/project/neo4j/)✅, [pygraphviz](https://pygraphviz.github.io/)✅, and any structured Python dictionaries and lists. Many more formats supported indirectly via [Networkx imports](https://networkx.org/documentation/stable/reference/readwrite/index.html#reading-and-writing-graphs)!
 
@@ -12,7 +12,8 @@ The widget is supported in the default Jupyter environments, but also in other e
 
 [![yFiles Graphs for Jupyter](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs.gif)](https://player.vimeo.com/video/715615671)
 
-Try the [Introduction](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb) notebook on Google Colab [here](https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb).
+Try the [Showcase](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/showcase.ipynb) notebook on Google Colab [here](https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/showcase.ipynb). Or see the simple [Introduction](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb)
+notebook.
 
 ## `yfiles-jupyter-graphs-for-neo4j`
 
@@ -20,6 +21,13 @@ For working with Neo4j databases, we
 built [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/), an open-source
 extension on top of `yfiles-jupyter-graphs`. This extension provides an easier Python interface for the
 driver and allows direct configuration of data mappings depending on the label or type of the node or relationship.
+
+## `yfiles-jupyter-graphs-for-sparql`
+
+For working with RDF databases and SPARQL queries, we built 
+[yfiles-jupyter-graphs-for-sparql](https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql/), an open-source
+extension on top of `yfiles-jupyter-graphs`. This extension provides a specifically tailored API for easier and more
+domain specific usage in RDF databases with SPARQL. 
 
 So if you are planning to use the extension with Neo4j databases, consider
 using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/).
@@ -36,7 +44,7 @@ using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter
 - Just try it in your preferred platform for Jupyter notebooks
 
 ## Requirements
-- [python](https://www.python.org/) >= 3.9
+- [python](https://www.python.org/) >= 3.6
 - [jupyter](https://jupyter.org/install) notebook or lab
 - [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0
 
@@ -47,6 +55,9 @@ If you already have Jupyter installed, just `pip install` the prebuilt extension
 ```bash
 pip install yfiles_jupyter_graphs
 ```
+> [!IMPORTANT]  
+> To install `yfiles_jupyter_graphs` from within a Jupyter Notebook cell, use `%pip` instead of `!pip` to ensure that it
+> is installed in the correct Python environment.
 
 If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use [`docker`](https://www.docker.com/), too:
 
@@ -139,7 +150,7 @@ Please also provide a clear and descriptive title and stick to the issue templat
 See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 
 ## Dependencies
-- [yFiles for HTML](https://www.yworks.com/yfiles)
+- [yFiles for HTML](https://www.yfiles.com/the-yfiles-sdk/web/yfiles-for-html)
 - [@ctrl/tinycolor](https://github.com/scttcper/tinycolor)
 - [@jupyter-widgets/base](https://github.com/jupyter-widgets/ipywidgets)
 - [@mdi/js](https://github.com/Templarian/MaterialDesign-JS)

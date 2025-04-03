@@ -172,9 +172,9 @@ Currently the algorithms use default settings from yFiles library.
 
 **Parameters**
 
-| Name | Type | Description                                                                                                                                                                                                                                              |
-| ----------- | ----------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `algorithm` | `str` | Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router"] |
+| Name | Type | Description                                                                                                                                                                                                                                                           |
+| ----------- | ----------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `algorithm` | `str` | Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router", "no_layout"] |
 
 
 **Notes**
@@ -1268,6 +1268,13 @@ for more details about this specific algorithm.
 
 See [yFiles organic edge router guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router)
 for more details about this specific algorithm.
+
+&nbsp;
+
+### <a id="no_layout" href="#no_layout"><code>def no_layout()</code></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "no_layout".
+
+No layout algorithm is applied.
 
 &nbsp;
 

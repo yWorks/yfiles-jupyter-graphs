@@ -6,7 +6,7 @@
 
 [![PyPI version](https://badge.fury.io/py/yfiles-jupyter-graphs.svg)](https://badge.fury.io/py/yfiles-jupyter-graphs)
 
-A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yworks.com/yfiles-overview?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
+A graph diagram visualization widget for Jupyter Notebooks and Labs powered by [yFiles for HTML](https://www.yfiles.com/the-yfiles-sdk/web/yfiles-for-html?utm_campaign=yfiles4jupyter&utm_source=github&utm_medium=readme).
 
 ![A screenshot showing the yFiles graph widget in a jupyter lab notebook](https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png)
 
@@ -16,6 +16,13 @@ For working with Neo4j databases, we
 built [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/), an open-source
 extension on top of `yfiles-jupyter-graphs`. This extension provides an easier Python interface for the
 driver and allows direct configuration of data mappings depending on the label or type of the node or relationship.
+
+## `yfiles-jupyter-graphs-for-sparql`
+
+For working with RDF databases and SPARQL queries, we built
+[yfiles-jupyter-graphs-for-sparql](https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql/), an open-source
+extension on top of `yfiles-jupyter-graphs`. This extension provides a specifically tailored API for easier and more
+domain specific usage in RDF databases with SPARQL.
 
 So if you are planning to use the extension with Neo4j databases, consider
 using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/).
