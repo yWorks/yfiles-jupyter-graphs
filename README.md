@@ -22,15 +22,22 @@ built [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter
 extension on top of `yfiles-jupyter-graphs`. This extension provides an easier Python interface for the
 driver and allows direct configuration of data mappings depending on the label or type of the node or relationship.
 
-## `yfiles-jupyter-graphs-for-sparql`
-
-For working with RDF databases and SPARQL queries, we built 
-[yfiles-jupyter-graphs-for-sparql](https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql/), an open-source
-extension on top of `yfiles-jupyter-graphs`. This extension provides a specifically tailored API for easier and more
-domain specific usage in RDF databases with SPARQL. 
-
 So if you are planning to use the extension with Neo4j databases, consider
 using [yfiles-jupyter-graphs-for-neo4j](https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/).
+
+## `yfiles-jupyter-graphs-for-kuzu`
+
+For working with Kuzu databases, we
+built [yfiles-jupyter-graphs-for-kuzu](https://github.com/yWorks/yfiles-jupyter-graphs-for-kuzu/), an open-source
+extension on top of `yfiles-jupyter-graphs`. This extension provides a specifically tailored API for easier and more
+domain specific usage in Kuzu databases (see [Kuzu integration guide](https://docs.kuzudb.com/visualization/third-party-integrations/yfiles/)).
+
+## `yfiles-jupyter-graphs-for-sparql`
+
+For working with RDF databases and SPARQL queries, we built
+[yfiles-jupyter-graphs-for-sparql](https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql/), an open-source
+extension on top of `yfiles-jupyter-graphs`. This extension provides a specifically tailored API for easier and more
+domain specific usage in RDF databases with SPARQL.
 
 ## Supported Environments
 - [JupyterLab or Jupyter Notebook](https://jupyter.org/)
