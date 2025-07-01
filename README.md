@@ -161,6 +161,7 @@ See [issues](https://github.com/yWorks/yfiles-jupyter-graphs/issues).
 - [@ctrl/tinycolor](https://github.com/scttcper/tinycolor)
 - [@jupyter-widgets/base](https://github.com/jupyter-widgets/ipywidgets)
 - [@mdi/js](https://github.com/Templarian/MaterialDesign-JS)
+- [leaflet](https://leafletjs.com/)
 - [Vue](https://vuejs.org/)
 - [vue-json-viewer](https://github.com/chenfengjw163/vue-json-viewer)
 
