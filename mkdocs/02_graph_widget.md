@@ -1,7 +1,7 @@
 # GraphWidget
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Class
 
-Inherits from [ipywidgets.DOMWidget](https://github.com/jupyter-widgets/ipywidgets/blob/master/python/ipywidgets/ipywidgets/widgets/domwidget.py)
+Inherits from `ipywidgets.DOMWidget`.
 
 **The main widget class.**
 

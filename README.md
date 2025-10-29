@@ -129,10 +129,10 @@ You can find the full documentation [here](https://yworks.github.io/yfiles-jupyt
     </tr>
 </table>
 
-For example code look [here](https://github.com/yWorks/yfiles-jupyter-graphs/tree/master/examples).
+For example code look [here](https://github.com/yWorks/yfiles-jupyter-graphs/tree/main/examples).
 
 ### Google Colab Examples
-You can try the [example notebooks](https://github.com/yWorks/yfiles-jupyter-graphs/tree/master/examples) in Google Colab by
+You can try the [example notebooks](https://github.com/yWorks/yfiles-jupyter-graphs/tree/main/examples) in Google Colab by
 opening GitHub notebook URL: `https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/<notebook.ipynb>`.
 
 For example the [Introduction](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb) notebook: <br>
@@ -142,7 +142,7 @@ https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/
 You can find the documentation [here](https://yworks.github.io/yfiles-jupyter-graphs/).
 
 ## Code of Conduct
-This project and everyone participating in it is governed by the [Code of Conduct](https://github.com/yWorks/yfiles-jupyter-graphs/blob/master/CODE_OF_CONDUCT.md).
+This project and everyone participating in it is governed by the [Code of Conduct](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
 Please report unacceptable behavior to [contact@yworks.com](mailto:contact@yworks.com).
 
