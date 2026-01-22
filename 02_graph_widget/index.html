@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>GraphWidget - yFiles Graphs for Jupyter</title>
+    <title>GraphWidget API documentation - yFiles Graphs for Jupyter</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "GraphWidget";
+        var mkdocs_page_name = "GraphWidget API documentation";
         var mkdocs_page_input_path = "02_graph_widget.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,141 +48,59 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">GraphWidget</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">GraphWidget API documentation</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#properties">Properties</a>
+    <li class="toctree-l2"><a class="reference internal" href="#constructor">Constructor</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#nodes-typinglisttypingdict">nodes: typing.List[typing.Dict]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#edges-typinglisttypingdict">edges: typing.List[typing.Dict]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-get_selection">def get_selection()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#directed-bool">directed: bool</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#graph_layout-typingdict">graph_layout: typing.Dict</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#neighborhood-typingdict">neighborhood: typing.Dict</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sidebar-typingdict">sidebar: typing.Dict</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#overview-bool">overview: bool</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_label_mapping-unioncallable-str">node_label_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#edge_label_mapping-unioncallable-str">edge_label_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_property_mapping-unioncallable-str">node_property_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#edge_property_mapping-unioncallable-str">edge_property_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_color_mapping-unioncallable-str">node_color_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_styles_mapping-unioncallable-str">node_styles_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#edge_styles_mapping-unioncallable-str">edge_styles_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#edge_color_mapping-unioncallable-str">edge_color_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_scale_factor_mapping-unioncallable-str">node_scale_factor_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_size_mapping-unioncallable-str">node_size_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_layout_mapping-unioncallable-str">node_layout_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#edge_thickness_factor_mapping-unioncallable-str">edge_thickness_factor_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_type_mapping-unioncallable-str">node_type_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_parent_mapping-unioncallable-str">node_parent_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_position_mapping-unioncallable-str">node_position_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#heat_mapping-unioncallable-str">heat_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#node_coordinate_mapping-unioncallable-str">node_coordinate_mapping: Union[callable, str]</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#directed_mapping-unioncallable-str">directed_mapping: Union[callable, str]</a>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
+    <li class="toctree-l2"><a class="reference internal" href="#providing-data">Providing data</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#def-initwidget_layout-none-overview_enabled-none-context_start_with">def init(widget_layout = None, overview_enabled = None, context_start_with = '')</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-show">def show()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-import_graphgraph">def import_graph(graph)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-circular_layout">def circular_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-circular_straight_line_layout">def circular_straight_line_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-hierarchic_layout">def hierarchic_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-organic_layout">def organic_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-orthogonal_layout">def orthogonal_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-radial_layout">def radial_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-tree_layout">def tree_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-orthogonal_edge_router">def orthogonal_edge_router()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-interactive_organic_layout">def interactive_organic_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-organic_edge_router">def organic_edge_router()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-no_layout">def no_layout()</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_element_label_mappingindex-element">def default_element_label_mapping(index, element)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_label_mappingindex-node">def default_node_label_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_label_mappingindex-edge">def default_edge_label_mapping(index, edge)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_element_property_mappingindex-element">def default_element_property_mapping(index, element)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_property_mappingindex-node">def default_node_property_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_property_mappingindex-edge">def default_edge_property_mapping(index, edge)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_color_mappingindex-node">def default_node_color_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_styles_mappingindex-node">def default_node_styles_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_styles_mappingindex-edge">def default_edge_styles_mapping(index, edge)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_color_mappingindex-edge">def default_edge_color_mapping(index, edge)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_scale_factor_mappingindex-node">def default_node_scale_factor_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_size_mappingindex-node">def default_node_size_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_layout_mappingindex-node">def default_node_layout_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_heat_mappingindex-node">def default_heat_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_edge_thickness_factor_mappingindex-edge">def default_edge_thickness_factor_mapping(index, edge)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_type_mappingindex-node">def default_node_type_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_parent_mappingindex-node">def default_node_parent_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_parent_group_mappingindex-node">def default_node_parent_group_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_position_mappingindex-node">def default_node_position_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_node_coordinate_mappingindex-node">def default_node_coordinate_mapping(index, node)</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#def-default_directed_mappingindex-edge">def default_directed_mapping(index, edge)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#importing-from-other-graph-packages">Importing from other graph packages</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#automatic-layout-algorithms">Automatic layout algorithms</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-driven-visualization-mappings">Data-driven visualization mappings</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#property-mappings">Property mappings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#label-mappings">Label mappings</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#label-style-dict">Label style dict</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#color-mappings">Color mappings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#node-and-edge-visualization-mappings">Node and edge visualization mappings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#geometry-mappings">Geometry mappings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#geospatial-mapping">Geospatial mapping</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hierarchy-mappings">Hierarchy mappings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#heat-mapping">Heat mapping</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fine-tuning-automatic-layouts">Fine-tuning automatic layouts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#edge-direction">Edge direction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#neighborhood">Neighborhood</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sidebar">Sidebar</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#selection">Selection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#displaying-the-graph-widget">Displaying the graph widget</a>
     </li>
     </ul>
                 </li>
@@ -209,7 +127,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">GraphWidget</li>
+      <li class="breadcrumb-item active">GraphWidget API documentation</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/yWorks/yfiles-jupyter-graphs/edit/master/docs/02_graph_widget.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -219,2606 +137,438 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="graphwidget">GraphWidget</h1>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Class</p>
-<p>Inherits from <code>ipywidgets.DOMWidget</code>.</p>
-<p><strong>The main widget class.</strong></p>
-<p>To be used in jupyter-notebook or jupyter-lab.</p>
-<h3 id="example">Example</h3>
-<pre><code class="language-Python">from yfiles_jupyter_graphs import GraphWidget
-w = GraphWidget()
-w.show()
-</code></pre>
-<p>See notebooks for more examples.</p>
-<h3 id="notes">Notes</h3>
-<p>Nodes and edges properties should be constructed recursively with basic python types otherwise {de-}serializers will fail.</p>
-<h2 id="properties">Properties</h2>
-<h3 id="nodes-typinglisttypingdict"><a id="nodes_property" href="#nodes_property"><code>nodes: typing.List[typing.Dict]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data structure.</p>
-<p><strong><code>def get_nodes()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the nodes traitlets property.</p>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.nodes property e.g. <code>w.nodes == w.get_nodes()</code>.</p>
-<p><strong>Returns</strong></p>
+                <h1 id="graphwidget-api-documentation"><code>GraphWidget</code> API documentation</h1>
+<p>The main class of the widget that can be imported from the <code>yfiles_jupyter_graphs</code> module.</p>
+<h2 id="constructor">Constructor</h2>
 <table>
 <thead>
 <tr>
-<th>Name</th>
+<th>Argument</th>
 <th>Type</th>
 <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>nodes</code></td>
-<td><code>typing.List[typing.Dict]</code></td>
-<td>Each node has the keys <code>id: int</code> and <code>properties: typing.Dict</code>. It might include keys that are not set directly, see (default) node mappings for details.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_nodes(nodes)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the nodes traitlets property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>nodes</code></td>
-<td><code>typing.List[typing.Dict]</code></td>
-<td>Each node should have the keys <code>id: int</code> and <code>properties: typing.Dict</code>. Properties should be constructed recursively with basic python types, otherwise {de-}serializers will fail.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.set_nodes([
-            {'id': 0, 'properties': {'label': 'Hello World'}},
-            {'id': 1, 'properties': {'label': 'This is a second node.'}}
-        ])
-</code></pre>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.nodes property e.g. <code>w.nodes = [{...}]</code> has the same effect as using <code>w.set_nodes([{...}])</code>.</p>
-<p>&nbsp;</p>
-<h3 id="edges-typinglisttypingdict"><a id="edges_property" href="#edges_property"><code>edges: typing.List[typing.Dict]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data structure.</p>
-<p><strong><code>def get_edges()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edges traitlets property.</p>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.edges property e.g. <code>w.edges == w.get_edges()</code> is <code>true</code>.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edges</code></td>
-<td><code>typing.List[typing.Dict]</code></td>
-<td>Each edge has the keys <code>id: int</code>, <code>start: int</code>, <code>end: int</code> and <code>properties: typing.Dict</code>. It might include keys that are not set directly, see (default) edge mappings for details.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_edges(edges)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edges traitlets property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edges</code></td>
-<td><code>typing.List[typing.Dict]</code></td>
-<td>Each edge should have the keys <code>id: int</code>, <code>start: int</code>, <code>end:int</code> and <code>properties: typing.Dict</code>. Ids for start and end should be among used node ids, otherwise the edge does not appear. Properties should be constructed recursively with basic python types, otherwise {de-}serializers will fail.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.set_edges([
-            {'id': 0, 'start': 0, 'end': 1, 'properties': {'label': 'edge between first and second node'}}
-        ])
-</code></pre>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.edges property e.g. <code>w.edges = [{...}]</code> has the same effect as using <code>w.set_edges([{...}])</code>.</p>
-<p>&nbsp;</p>
-<h3 id="def-get_selection"><a id="get_selection" href="#get_selection"><code>def get_selection()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Returns the nodes and edges, that are selected in the displayed widget.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>nodes</code></td>
-<td><code>typing.List[typing.Dict]</code></td>
-<td>List of selected nodes.</td>
-</tr>
-<tr>
-<td><code>edges</code></td>
-<td><code>typing.List[typing.Dict]</code></td>
-<td>List of selected edges.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="directed-bool"><a id="directed_property" href="#directed_property"><code>directed: bool</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Graph wide flag for edge type.</p>
-<p><strong><code>def get_directed()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the directed traitlets property.</p>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.directed property e.g. <code>w.directed == w.get_directed()</code> is <code>true</code>.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>directed</code></td>
-<td><code>bool</code></td>
-<td>Whether the graph is interpreted as directed.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_directed(directed)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the directed traitlets property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>directed</code></td>
-<td><code>bool</code></td>
-<td>Whether the graph is interpreted as directed.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.directed property e.g. <code>w.directed = x</code> has the same effect as using <code>w.set_directed(x)</code>.</p>
-<p>&nbsp;</p>
-<h3 id="graph_layout-typingdict"><a id="graph_layout_property" href="#graph_layout_property"><code>graph_layout: typing.Dict</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Choose an algorithm for positioning nodes and/or edges.</p>
-<p><strong><code>def get_graph_layout()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the graph layout traitlet property.</p>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.graph_layout property
-e.g. <code>w.graph_layout == w.get_graph_layout()</code> is <code>true</code>.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>graph_layout</code></td>
-<td><code>typing.Dict</code></td>
-<td>Returned dict has keys algorithm: str and options: dict, however options are empty because the algorithms use default settings from yFiles library.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_graph_layout(algorithm)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Choose graph layout.</p>
-<p>Currently the algorithms use default settings from yFiles library.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>algorithm</code></td>
-<td><code>str</code></td>
-<td>Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router", "no_layout"]</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.graph_layout property
-e.g. <code>w.graph_layout = 'organic'</code> has the same effect as using <code>w.set_graph_layout('organic')</code>.<br />
-Setting <code>w.graph_layout = {'algorithm': 'organic', 'options': {}}</code> works as well,
-which corresponds to using value given through the associated getter.
-In case you want to use the edge routers
-you should set a custom node position mapping as well.</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary">yFiles docs</a> for more details about the algorithms.</p>
-<p>&nbsp;</p>
-<h3 id="neighborhood-typingdict"><a id="neighborhood_property" href="#neighborhood_property"><code>neighborhood: typing.Dict</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Control neighborhood view component.</p>
-<p><strong><code>def get_neighborhood()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the neighborhood traitlets property.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>neighborhood</code></td>
-<td><code>typing.Dict</code></td>
-<td>Returned dict has keys max_distance: int and selected_nodes: list, a list of node ids.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_neighborhood(max_distance, selected_nodes)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the neighborhood view in the widget.</p>
-<p>The number of hops and focused nodes can be chosen.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>max_distance</code></td>
-<td><code>int</code></td>
-<td>Set the maximum distance between selected and included nodes. If there are multiple paths to one (or multiple) selected nodes, the smallest path length is considered for this threshold.</td>
-</tr>
-<tr>
-<td><code>selected_nodes</code></td>
-<td><code>typing.List</code> (optional)</td>
-<td>Choose a list of node ids that are highlighted in both main and neighborhood component. They act as starting points for neighborhood calculation.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.neighborhood property.<br />
-You can assign values by <code>w.neighborhood = {'max_distance': 2, 'selected_nodes':[2]}</code>
-or <code>w.set_neighborhood(2, [2])</code>, both are equivalent.<br />
-The short form <code>w.neighborhood = 3</code> sets only the max_distance variable
-and resets the selected nodes.</p>
-<p>&nbsp;</p>
-<h3 id="sidebar-typingdict"><a id="sidebar_property" href="#sidebar_property"><code>sidebar: typing.Dict</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Control sidebar component.</p>
-<p><strong><code>def get_sidebar()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the sidebar traitlets property.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sidebar</code></td>
-<td><code>typing.Dict</code></td>
-<td>Returned dict has keys enabled: bool and start_with: str, whereat first one indicates open or closed sidebar and second one indicates start panel on widget show.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_sidebar(enabled, start_with)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the appearance of the sidebar in the widget.</p>
-<p>Can be used to collapse sidebar or start with any panel.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>enabled</code></td>
-<td><code>bool</code></td>
-<td>Whether to open or collapse sidebar at widget startup.</td>
-</tr>
-<tr>
-<td><code>start_with</code></td>
-<td><code>str</code></td>
-<td>The start panel identifier. Available are 'Neighborhood', 'Data', 'Search' and 'About' (the default).</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This function acts as an alias for using GraphWidget.sidebar property.
-You can assign values by <code>w.sidebar = {'enabled': True, 'start_with': 'Search'}</code>
-or <code>w.set_sidebar(True, 'Search')</code>, both are equivalent.
-The short form <code>w.sidebar = True</code> sets only the enabled variable
-and resets the start_with back to the default.</p>
-<p>&nbsp;</p>
-<h3 id="overview-bool"><a id="overview_property" href="#overview_property"><code>overview: bool</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Control overview component.</p>
-<p><strong><code>def get_overview()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the overview traitlets property.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>overview</code></td>
-<td><code>bool</code></td>
-<td>Indicates open or closed overview state. A value of None means that a specific behaviour based on widget layout is followed.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_overview(enabled)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the appearance of the overview component in the widget.</p>
-<p>Can be used to force open overview in case of a small widget layout or
-force collapsed overview in case of large widget layout.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>enabled</code></td>
-<td><code>bool</code></td>
-<td>Whether to open or collapse overview at widget startup.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="node_label_mapping-unioncallable-str"><a id="node_label_mapping_property" href="#node_label_mapping_property"><code>node_label_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node label on a per node basis.</p>
-<p><strong><code>def get_node_label_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node label mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_label_mapping"><code>default_node_label_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_label_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node labels or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_label_mapping(node_label_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node label mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_label_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node labels or the name of the property to use for binding. The function should have the same signature as <code>default_node_label_mapping</code> e.g. take in a node dictionary and return a string.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.node_label_mapping = 'id'
-</code></pre>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_label_mapping(node: dict):
-         ...
-In [4]: w.set_node_label_mapping(custom_node_label_mapping)
-</code></pre>
-<p><strong><code>def del_node_label_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the name property.</p>
-<p>Remove a custom node label mapping.</p>
-<p>&nbsp;</p>
-<h3 id="edge_label_mapping-unioncallable-str"><a id="edge_label_mapping_property" href="#edge_label_mapping_property"><code>edge_label_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge label on a per edge basis.</p>
-<p><strong><code>def get_edge_label_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge label mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_edge_label_mapping"><code>default_edge_label_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_label_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge labels or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_edge_label_mapping(edge_label_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge label mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_label_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge labels or the name of the property to use for binding. The funtion should have the same signature as <code>default_edge_label_mapping</code> e.g. take in an edge dictionary and return a string.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.edge_label_mapping = 'id'
-</code></pre>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_label_mapping(node: dict):
-         ...
-In [4]: w.set_edge_label_mapping(custom_edge_label_mapping)
-</code></pre>
-<p><strong><code>def del_edge_label_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge label mapping property.</p>
-<p>Remove a custom edge label mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_property_mapping-unioncallable-str"><a id="node_property_mapping_property" href="#node_property_mapping_property"><code>node_property_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node properties on a per node basis.</p>
-<p><strong><code>def get_node_property_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node property mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_property_mapping"><code>default_node_property_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_property_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node properties or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_property_mapping(node_property_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node property mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_property_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node properties or the name of the property to use for binding. The function should have the same signature as <code>default_node_property_mapping</code> e.g. take in a node dictionary and return a dictionary.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>Properties are changed inplace by this mapping.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_property_mapping(node: dict):
-         ...
-In [4]: w.set_node_property_mapping(custom_node_property_mapping)
-</code></pre>
-<p><strong><code>def del_node_property_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node property mapping property.</p>
-<p>Remove a custom node property mapping.</p>
-<p>&nbsp;</p>
-<h3 id="edge_property_mapping-unioncallable-str"><a id="edge_property_mapping_property" href="#edge_property_mapping_property"><code>edge_property_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge properties on a per edge basis.</p>
-<p><strong><code>def get_edge_property_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge property mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_edge_property_mapping"><code>default_edge_property_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_property_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge properties or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_edge_property_mapping(edge_property_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge property mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_property_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge properties or the name of the property to use for binding. The function should have the same signature as <code>default_edge_property_mapping</code> e.g. take in an edge dictionary and return a dictionary.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>Properties are changed inplace by this mapping.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_property_mapping(node: dict):
-         ...
-In [4]: w.set_edge_property_mapping(custom_edge_property_mapping)
-</code></pre>
-<p><strong><code>def del_edge_property_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge property mapping property.</p>
-<p>Remove a custom edge property mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_color_mapping-unioncallable-str"><a id="node_color_mapping_property" href="#node_color_mapping_property"><code>node_color_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node color on a per node basis.</p>
-<p><strong><code>def get_node_color_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node color mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_color_mapping"><code>default_node_color_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_color_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node colors or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_color_mapping(node_color_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node color mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_color_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node colors or the name of the property to use for binding. The function should have the same signature as <code>default_node_color_mapping</code> e.g. take in a node dictionary and return a string.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_color_mapping(node: dict):
-         ...
-In [4]: w.set_node_color_mapping(custom_node_color_mapping)
-</code></pre>
-<p><strong><code>def del_node_color_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node color mapping property.</p>
-<p>Remove a custom node color mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_styles_mapping-unioncallable-str"><a id="node_styles_mapping_property" href="#node_styles_mapping_property"><code>node_styles_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node styles on a per node basis.</p>
-<p><strong><code>def get_node_styles_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node styles mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_styles_mapping"><code>default_node_styles_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_styles_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node styles or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_styles_mapping(node_styles_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node styles mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_styles_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node styles or the name of the property to use for binding. The function should have the same signature as <code>default_node_styles_mapping</code> e.g. take in a node dictionary and return a string.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_styles_mapping(node: dict):
-         ...
-In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
-</code></pre>
-<p><strong><code>def del_node_styles_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node styles mapping property.</p>
-<p>Remove a custom node styles mapping.</p>
-<p>&nbsp;</p>
-<h3 id="edge_styles_mapping-unioncallable-str"><a id="edge_styles_mapping_property" href="#edge_styles_mapping_property"><code>edge_styles_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge styles on a per edge basis.</p>
-<p><strong><code>def get_edge_styles_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge styles mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_edge_styles_mapping"><code>default_edge_styles_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_styles_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge styles or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_edge_styles_mapping(edge_styles_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge styles mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_styles_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge styles or the name of the property to use for binding. The function should have the same signature as <code>default_edge_styles_mapping</code> e.g. take in a edge dictionary and return a string.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_styles_mapping(edge: dict):
-         ...
-In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
-</code></pre>
-<p><strong><code>def del_edge_styles_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge styles mapping property.</p>
-<p>Remove a custom edge styles mapping.</p>
-<p>&nbsp;</p>
-<h3 id="edge_color_mapping-unioncallable-str"><a id="edge_color_mapping_property" href="#edge_color_mapping_property"><code>edge_color_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge color on a per edge basis.</p>
-<p><strong><code>def get_edge_color_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge color mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_edge_color_mapping"><code>default_edge_color_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_color_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge colors or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_edge_color_mapping(edge_color_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge color mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_color_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge colors or the name of the property to use for binding. The function should have the same signature as <code>default_edge_color_mapping</code> e.g. take in an edge dictionary and return a string.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_color_mapping(node: dict):
-         ...
-In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
-</code></pre>
-<p><strong><code>def del_edge_color_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge color mapping property.</p>
-<p>Remove a custom edge color mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_scale_factor_mapping-unioncallable-str"><a id="node_scale_factor_mapping_property" href="#node_scale_factor_mapping_property"><code>node_scale_factor_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node scale factor on a per node basis.</p>
-<p><strong><code>def get_node_scale_factor_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node scale factor mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_scale_factor_mapping"><code>default_node_scale_factor_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_scale_factor_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node scale factor or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_scale_factor_mapping(node_scale_factor_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node scale factor mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_scale_factor_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node scale factors or the name of the property to use for binding. The function should have the same signature as <code>default_node_scale_factor_mapping</code> e.g. take in a node dictionary and return a positive float.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_scale_factor_mapping(node: dict):
-         ...
-In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
-</code></pre>
-<p><strong><code>def del_node_scale_factor_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node scale factor mapping property.</p>
-<p>Remove a custom node scale factor mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_size_mapping-unioncallable-str"><a id="node_size_mapping_property" href="#node_size_mapping_property"><code>node_size_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node size on a per node basis.</p>
-<p><strong><code>def get_node_size_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node size mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_size_mapping"><code>default_node_size_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_size_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node sizes or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_size_mapping(node_size_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node size mapping property.</p>
-<p>A custom size mapping is only used if there is no custom <a href="#node_layout_mapping_property"><code>node_layout</code></a> mapping.</p>
-<p>If a custom node layout mapping and a custom size mapping is set, the node layout mapping always takes precedence.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_size_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node sizes or the name of the property to use for binding. The function should have the same signature as <code>default_node_size_mapping</code> e.g. take in a node dictionary and return a positive float 2-tuple.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_size_mapping(node: dict):
-         ...
-In [4]: w.set_node_size_mapping(custom_node_size_mapping)
-</code></pre>
-<p><strong><code>def del_node_size_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node size mapping property.</p>
-<p>Remove a custom node size mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_layout_mapping-unioncallable-str"><a id="node_layout_mapping_property" href="#node_layout_mapping_property"><code>node_layout_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node layout on a per node basis.</p>
-<p><strong><code>def get_node_layout_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node layout mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_layout_mapping"><code>default_node_layout_mapping</code></a> is returned.
-Node layouts combine node position and node size. 
-The default node layout mapping is the currently set position and size mapping.</p>
-<p>If a custom size or position mapping is set using <a href="#default_node_size_mapping"><code>set_node_size_mapping</code></a> or <a href="#default_node_position_mapping"><code>set_node_position_mapping</code></a>,
-the default layout changes.</p>
-<p>If a custom node layout mapping and a custom size/position mapping is set, the layout mapping takes precedence.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_layout_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node layouts or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_layout_mapping(node_layout_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node layout mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_layout_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node layouts or the name of the property to use for binding. The function should have the same signature as <code>default_node_layout_mapping</code> e.g. take in a node dictionary and return a positive float 4-tuple.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_layout_mapping(node: dict):
-         ...
-In [4]: w.set_node_layout_mapping(custom_node_layout_mapping)
-</code></pre>
-<p><strong><code>def del_node_layout_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node layout mapping property.</p>
-<p>Remove a custom node layout mapping.</p>
-<p>&nbsp;</p>
-<h3 id="edge_thickness_factor_mapping-unioncallable-str"><a id="edge_thickness_factor_mapping_property" href="#edge_thickness_factor_mapping_property"><code>edge_thickness_factor_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge thickness factor on a per edge basis.</p>
-<p><strong><code>def get_edge_thickness_factor_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge thickness factor mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_edge_thickness_factor_mapping"><code>default_edge_thickness_factor_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_thickness_factor_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge thickness factors or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_edge_thickness_factor_mapping(edge_thickness_factor_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge thickness factor mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_thickness_factor_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge thickness factors or the name of the property to use for binding. The function should have the same signature as <code>default_edge_thickness_factor_mapping</code> e.g. take in an edge dictionary and return a positive float.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_thickness_factor_mapping(node: dict):
-         ...
-In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping)
-</code></pre>
-<p><strong><code>def del_edge_thickness_factor_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge thickness factor mapping property.</p>
-<p>Remove a custom edge thickness factor mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_type_mapping-unioncallable-str"><a id="node_type_mapping_property" href="#node_type_mapping_property"><code>node_type_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node type on a per node basis.</p>
-<p><strong><code>def get_node_type_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node type mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_type_mapping"><code>default_node_type_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_type_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node types or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_type_mapping(node_type_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node type mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_type_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node types or the name of the property to use for binding. The function should have the same signature as <code>default_node_type_mapping</code> e.g. take in a node dictionary and return a bool/int/float or str value.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>Node types give more information for some layout algorithms.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_type_mapping(node: dict):
-         ...
-In [4]: w.set_node_type_mapping(custom_node_type_mapping)
-</code></pre>
-<p><strong>References</strong></p>
-<p><a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#node_types">Layout with Custom Node Types</a></p>
-<p><strong><code>def del_node_type_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node type mapping property.</p>
-<p>Remove a custom node type mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_parent_mapping-unioncallable-str"><a id="node_parent_mapping_property" href="#node_parent_mapping_property"><code>node_parent_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node parent on a per node basis.</p>
-<p><strong><code>def get_node_parent_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node parent mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_parent_mapping"><code>default_node_parent_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>parent</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_parent_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node parents or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_parent_mapping(node_parent_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node parent mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>parent</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_parent_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node parent ids or the name of the property to use for binding. The function should have the same signature as <code>default_node_parent_mapping</code> e.g. take in a node dictionary and return a bool/int/float or str value.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>Given node parent ids create group nodes instead of regular nodes.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_mapping(node: dict):
-         ...
-In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
-</code></pre>
-<p><strong><code>def del_node_parent_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent mapping property.</p>
-<p>Remove a custom node parent mapping.</p>
-<p>&nbsp;### <a id="node_parent_group_mapping_property" href="#node_parent_group_mapping_property"><code>node_parent_group_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node parent group on a per node basis.</p>
-<p><strong><code>def get_node_parent_group_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node parent group mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_parent_group_mapping"><code>default_node_parent_group_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_parent_group_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node parents or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_parent_group_mapping(node_parent_group_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node parent group mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_parent_group_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node parents ids or the name of the property to use for binding. The function should have the same signature as <code>default_node_parent_group_mapping</code> e.g. take in a node dictionary and return a str/int/float or dict with a required <code>label</code> property.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>For every returned parent group, a new group node is created. In contrast to <code>node_parent_mapping</code> this mapping does not
-require the group nodes to be part of the given node dataset.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_group_mapping(node: dict):
-         ...
-In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
-</code></pre>
-<p><strong><code>def del_node_parent_group_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent group mapping property.</p>
-<p>Remove a custom node parent group mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_position_mapping-unioncallable-str"><a id="node_position_mapping_property" href="#node_position_mapping_property"><code>node_position_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node position on a per node basis.</p>
-<p><strong><code>def get_node_position_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node position mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_position_mapping"><code>default_node_position_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_position_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node positions or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_position_mapping(node_position_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node position mapping property.</p>
-<p>A custom position mapping is only used if there is no custom <a href="#node_layout_mapping_property"><code>node_layout</code></a> mapping.</p>
-<p>If a custom node layout mapping and a custom position mapping is set, the node layout mapping takes precedence.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_position_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node positions or the name of the property to use for binding. The function should have the same signature as <code>default_node_position_mapping</code> e.g. take in a node dictionary and return a float 2-tuple.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>Only edge router algorithms consider node positions,<br />
-all other algorithms calculate node positions themselves.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_position_mapping(node: dict):
-         ...
-In [4]: w.set_node_position_mapping(custom_node_position_mapping)
-</code></pre>
-<p><strong><code>def del_node_position_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node position mapping property.</p>
-<p>Remove a custom node position mapping.</p>
-<p>&nbsp;</p>
-<h3 id="heat_mapping-unioncallable-str"><a id="heat_mapping_property" href="#heat_mapping_property"><code>heat_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of heat value on a per node and edge basis.</p>
-<p><strong><code>def get_heat_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the heat mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_heat_mapping"><code>default_heat_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>heat_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces heat values or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_heat_mapping(heat_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the heat mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>heat_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces heat values or the name of the property to use for binding. The function should have the same signature as <code>default_heat_mapping</code> e.g. take in a element dictionary and return a float.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This mapping is used for both edges and nodes</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_heat_mapping(element: dict):
-         ...
-In [4]: w.set_heat_mapping(custom_heat_mapping)
-</code></pre>
-<p><strong><code>def del_heat_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the heat mapping property.</p>
-<p>Remove a custom heat mapping.</p>
-<p>&nbsp;</p>
-<h3 id="node_coordinate_mapping-unioncallable-str"><a id="node_coordinate_mapping_property" href="#node_coordinate_mapping_property"><code>node_coordinate_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node coordinate on a per node basis.</p>
-<p><strong><code>def get_node_coordinate_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node coordinate mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_node_coordinate_mapping"><code>default_node_coordinate_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_coordinate_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node coordinates or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_node_coordinate_mapping(node_coordinate_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node coordinate mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_coordinate_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces node coordinates or the name of the property to use for binding. The function should have the same signature as <code>default_node_coordinate_mapping</code> e.g. take in a node dictionary and return a float 2-tuple.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>Only the map layout consider node coordinates,<br />
-all other algorithms ignore node coordinates.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_coordinate_mapping(node: dict):
-         ...
-In [4]: w.set_node_coordinate_mapping(custom_node_coordinate_mapping)
-</code></pre>
-<p><strong><code>def del_node_coordinate_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node coordinate mapping property.</p>
-<p>Remove a custom node coordinate mapping.</p>
-<p>&nbsp;</p>
-<h3 id="directed_mapping-unioncallable-str"><a id="directed_mapping_property" href="#directed_mapping_property"><code>directed_mapping: Union[callable, str]</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change if an edge is directed or not.</p>
-<p><strong><code>def get_directed_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the directed mapping property.</p>
-<p><strong>Notes</strong></p>
-<p>If no mapping is explicitly set, <a href="#default_directed_mapping"><code>default_directed_mapping</code></a> is returned.</p>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>directed_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge directions or the name of the property to use for binding.</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>def set_directed_mapping(directed_mapping)</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the directed mapping property.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>directed_mapping</code></td>
-<td><code>Union[callable, str]</code></td>
-<td>A function that produces edge directions or the name of the property to use for binding. The function should have the same signature as <code>default_directed_mapping</code> e.g. take in an edge dictionary and return a boolean value.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_directed_mapping(node: dict):
-         ...
-In [4]: w.set_directed_mapping(custom_directed_mapping)
-</code></pre>
-<p><strong><code>def del_directed_mapping()</code></strong><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the directed mapping property.</p>
-<p>Remove a custom directed mapping.</p>
-<p>&nbsp;</p>
-<h2 id="methods">Methods</h2>
-<h3 id="def-initwidget_layout-none-overview_enabled-none-context_start_with"><a id="init_method" href="#init_method"><code>def <strong>init</strong>(widget_layout = None, overview_enabled = None, context_start_with = '')</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GraphWidget constructor.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
+<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>widget_layout</code></td>
-<td><code>ipywidgets.Layout</code> (optional)</td>
-<td>Can be used to specify general widget appearance through css attributes. See <a href="#References">references</a> for a link to their documentation and available keywords.</td>
+<td><code>ipywidgets.Layout</code></td>
+<td>Optional. Specifies the widget's size.<br> See <a href="https://ipywidgets.readthedocs.io/en/7.6.3/examples/Widget%20Styling.html#The-layout-attribute">ipywidgets.Layout</a> for more.</td>
+<td><code>None</code></td>
 </tr>
 <tr>
 <td><code>overview_enabled</code></td>
-<td><code>bool</code> (optional)</td>
-<td>Enable graph overview component. Default behaviour depends on cell width.</td>
+<td><code>bool</code></td>
+<td>Optional. Whether the overview is expanded.<br>By default, dependant on the widget's width.</td>
+<td><code>None</code></td>
 </tr>
 <tr>
 <td><code>context_start_with</code></td>
-<td><code>str</code> (optional)</td>
-<td>Specify context tab name to start with that tab opened. Default behaviour is open with <em>About</em> dialog. Use <code>None</code> to start with closed sidebar. Available are <em>Neighborhood</em>, <em>Data</em>, <em>Search</em> and <em>About</em>.</td>
+<td><code>str</code></td>
+<td>Optional. The sidebar panel that should<br> be opened at start. Collapsed by default.<br> Supported values:<br><code>"About"</code>, <code>"Search"</code>, <code>"Data"</code>, <code>"Neighborhood"</code>.</td>
+<td><code>None</code></td>
 </tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-show"><a id="show_method" href="#show_method"><code>def show()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Display widget in Jupyter.</p>
-<p>Same as using single object reference in cell directly.</p>
-<p><strong>Notes</strong></p>
-<p>Mappings will only be applied shortly before showing the widget.</p>
-<p>&nbsp;</p>
-<h3 id="def-import_graphgraph"><a id="import_graph_method" href="#import_graph_method"><code>def import_graph(graph)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Import a graph object defined in an external module.</p>
-<p>Sets the <a href="#nodes_property"><code>nodes</code></a>, <a href="#edges_property"><code>edges</code></a> and <a href="#directed_property"><code>directed</code></a> traitlets properties
-with information extracted from the graph object. <br />
-See <a href="#graph_importers">graph importers</a> for object specific transformation details.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td><code>graph</code></td>
-<td><code>networkx.{Multi}{Di}Graph</code>  &#124; <code>graph_tool.Graph</code> &#124; <code>igraph.Graph</code> &#124; <code>pygraphviz.AGraph</code></td>
-<td>The graph data structure.</td>
+<td><code>object</code></td>
+<td>Optional. Specify a graph object to import<br> from start.</td>
+<td><code>None</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from networkx import florentine_families_graph
-In [2]: from yfiles_jupyter_graphs import GraphWidget
-In [3]: w = GraphWidget()
-In [4]: w.import_graph(florentine_families_graph())
+<h3 id="example">Example</h3>
+<pre><code class="language-Python">from yfiles_jupyter_graphs import GraphWidget
+w = GraphWidget()
+w.nodes = [
+    {&quot;id&quot;: 0, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Alpha&quot;, &quot;label&quot;: &quot;Person A&quot;}},
+    {&quot;id&quot;: &quot;one&quot;, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Bravo&quot;, &quot;label&quot;: &quot;Person B&quot;}},
+    {&quot;id&quot;: 2.0, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Charlie&quot;, &quot;label&quot;: &quot;Person C&quot;, &quot;has_hat&quot;: False}},
+    {&quot;id&quot;: True, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Delta&quot;, &quot;label&quot;: &quot;Person D&quot;, &quot;likes_pizza&quot;: True}}
+]
+w.edges = [
+    {&quot;id&quot;: &quot;zero&quot;, &quot;start&quot;: 0, &quot;end&quot;: &quot;one&quot;, &quot;properties&quot;: {&quot;since&quot;: &quot;1992&quot;, &quot;label&quot;: &quot;knows&quot;}},
+    {&quot;id&quot;: 1, &quot;start&quot;: &quot;one&quot;, &quot;end&quot;: True, &quot;properties&quot;: {&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}},
+    {&quot;id&quot;: 2.0, &quot;start&quot;: 2.0, &quot;end&quot;: True, &quot;properties&quot;: {&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}},
+    {&quot;id&quot;: False, &quot;start&quot;: 0, &quot;end&quot;: 2.0, &quot;properties&quot;: {&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: 234}}
+]
+display(w)
 </code></pre>
-<p><strong>Notes</strong></p>
-<p>Some graph data structures have special attributes for labels, some don't.
-Same goes for other graph properties. 
+<p>See the <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/00_toc.ipynb">example notebooks</a> for more.</p>
+<h2 id="providing-data">Providing data</h2>
+<p>To pass data to the widget, you need to set the <code>nodes</code> and <code>edges</code> properties of the widget. There are only few requirements to the structuring of the provided data:</p>
+<ul>
+<li>
+<p><code>nodes: List[dict[str, Any]]</code></p>
+<ul>
+<li>Each node must provide an <code>id</code> property.</li>
+</ul>
+</li>
+<li>
+<p><code>edges: List[dict[str, Any]]</code></p>
+<ul>
+<li>Each edge must provide a <code>start</code> and <code>end</code> property that resolve to the node <code>id</code>s to form the graph structure.</li>
+</ul>
+</li>
+</ul>
+<p>Optionally, provide additional properties in a <code>properties</code> property.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb">01_introduction.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>To map custom properties to visual features, see <a href="#data-driven-visualization-mappings">Data-driven visualization mappings</a>.</p>
+<h3 id="importing-from-other-graph-packages">Importing from other graph packages</h3>
+<p>Aside from passing structured data, you can also import from other graph formats by passing the graph object to the constructor's <code>graph</code> kwarg,
+or use:</p>
+<ul>
+<li><code>w.import_graph(graph_object)</code></li>
+</ul>
+<p>The import supports the following packages: <code>neo4j</code>, <code>graph_tool</code>, <code>igraph</code>, <code>networkx</code>, <code>pygraphviz</code>, <code>rdflib</code> and <code>pandas</code> dataframes.</p>
+<p>For example, see</p>
+<ul>
+<li>NetworkX: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb">13_networkx_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>Pandas dataframes: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb">14_pandas_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>PyGraphviz: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb">15_graphviz_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>Neo4j: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb">16_neo4j_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>iGraph: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb">17_igraph_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>graph-tool: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb">18_graph-tool_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>RDFLib: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb">19_rdflib_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+</ul>
+<p><strong>Note</strong><br>
+Some graph data structures have special attributes for labels, some don't.
+The same goes for other graph properties.
 This method and the underlying transformations should be seen as best effort
 to provide an easy way to input data into the widget.
 For more granular control use nodes and edges properties directly.</p>
-<p>&nbsp;</p>
-<h3 id="def-circular_layout"><a id="circular_layout_method" href="#circular_layout_method"><code>def circular_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "circular".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular">yFiles circular layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-circular_straight_line_layout"><a id="circular_straight_line_layout_method" href="#circular_straight_line_layout_method"><code>def circular_straight_line_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "circular_straight_line".</p>
-<p>Similar to circular layout but with straight edge paths instead of bundled paths.</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular">yFiles circular layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-hierarchic_layout"><a id="hierarchic_layout_method" href="#hierarchic_layout_method"><code>def hierarchic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "hierarchic".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-hierarchical">yFiles hierarchic layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-organic_layout"><a id="organic_layout_method" href="#organic_layout_method"><code>def organic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic">yFiles organic layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-orthogonal_layout"><a id="orthogonal_layout_method" href="#orthogonal_layout_method"><code>def orthogonal_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "orthogonal".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-orthogonal">yFiles orthogonal layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-radial_layout"><a id="radial_layout_method" href="#radial_layout_method"><code>def radial_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "radial".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-radial">yFiles radial layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-tree_layout"><a id="tree_layout_method" href="#tree_layout_method"><code>def tree_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "tree".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-tree">yFiles tree layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-orthogonal_edge_router"><a id="orthogonal_edge_router_method" href="#orthogonal_edge_router_method"><code>def orthogonal_edge_router()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "orthogonal_edge_router".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-polyline_router">yFiles orthogonal edge router guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-interactive_organic_layout"><a id="interactive_organic_layout_method" href="#interactive_organic:layout_method"><code>def interactive_organic_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "interactive_organic_layout".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/organic_layout#interactive_organic_layout">yFiles interactive organic layout guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-organic_edge_router"><a id="organic_edge_router_method" href="#organic_edge_router_method"><code>def organic_edge_router()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic_edge_router".</p>
-<p>See <a href="https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router">yFiles organic edge router guide</a>
-for more details about this specific algorithm.</p>
-<p>&nbsp;</p>
-<h3 id="def-no_layout"><a id="no_layout" href="#no_layout"><code>def no_layout()</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "no_layout".</p>
-<p>No layout algorithm is applied.</p>
-<p>&nbsp;</p>
-<h3 id="def-default_element_label_mappingindex-element"><a id="default_element_label_mapping" href="#default_element_label_mapping"><code>def default_element_label_mapping(index, element)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.</p>
-<p>The default label mapping for graph elements.</p>
-<p>Element (dict) should have key properties which itself should be a dict.<br />
-Then one of the following values (in descending priority) is used as label if the label is a string:
-- properties["label"]
-- properties["yf_label"]</p>
-<p>When importing a Neo4j graph, the following properties are values are used as labels (in descending priority):</p>
+<h2 id="automatic-layout-algorithms">Automatic layout algorithms</h2>
+<p>There are different layouts available to customize the arrangement of nodes and edges in the graph visualization.</p>
 <ul>
-<li>properties['name']</li>
-<li>properties['title']</li>
-<li>properties['label']</li>
-<li>properties['description']</li>
-<li>properties['caption']</li>
-<li>properties['text']</li>
+<li><code>graph_layout: Optional[str]</code><ul>
+<li>By default, a force-directed layout is applied to the graph. Otherwise, the values of the below table can be used.</li>
 </ul>
-<p><strong>Parameters</strong></p>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Type</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in corresponding nodes or edges list.</td>
+<td><code>"circular"</code></td>
+<td>Arranges nodes in singly cycle and bundles edge paths.</td>
 </tr>
 <tr>
-<td><code>element</code></td>
-<td><code>typing.Dict</code></td>
-<td>Can be both node or edge.</td>
+<td><code>"circular_straight_line"</code></td>
+<td>Arranges nodes in singly cycle and uses straight-line edge paths.</td>
+</tr>
+<tr>
+<td><code>"hierarchic"</code></td>
+<td>Organizes nodes in hierarchical layers to emphasize directional flow.</td>
+</tr>
+<tr>
+<td><code>"organic"</code></td>
+<td>Uses a force-directed algorithm to create a natural, free-form<br> network layout.</td>
+</tr>
+<tr>
+<td><code>"interactive_organic"</code></td>
+<td>Similar to <code>ORGANIC</code> but dynamically adjusts the layout as the user<br>interacts with it.</td>
+</tr>
+<tr>
+<td><code>"orthogonal"</code></td>
+<td>Positions nodes on a grid with right-angled edges for clear,<br> structured diagrams.</td>
+</tr>
+<tr>
+<td><code>"radial"</code></td>
+<td>Places a central node in the middle and arranges others in rings<br> around it to show hierarchy or influence.</td>
+</tr>
+<tr>
+<td><code>"tree"</code></td>
+<td>Displays nodes in a branching tree structure from a defined root node.</td>
+</tr>
+<tr>
+<td><code>"map"</code></td>
+<td>Uses user-defined geo-coordinates to place the nodes on a world map</td>
+</tr>
+<tr>
+<td><code>"orthogonal_edge_router"</code></td>
+<td>Reroutes edges at right angles to minimize overlap and improve readability.</td>
+</tr>
+<tr>
+<td><code>"organic_edge_router"</code></td>
+<td>Smoothly routes edges around obstacles in a natural, curved manner.</td>
+</tr>
+<tr>
+<td><code>"no_layout"</code></td>
+<td>Leaves node positions unchanged without applying any automatic layout.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the {<a href="#node_label_mapping_property">node</a>|<a href="#edge_label_mapping_property">edge</a>}_label_mapping property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.{node|edge}_label_mapping = 'id'
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb">22_layouts.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>The layouts can also be set through methods on the widget, e.g. <code>w.hierarchic_layout()</code>.</p>
+<p>For more in-depth information about layout algorithms, see <a href="https://www.yfiles.com/the-yfiles-sdk/key-benefits#layout-algorithms">yFiles SDK – Layout Algorithms</a>.</p>
+<h2 id="data-driven-visualization-mappings">Data-driven visualization mappings</h2>
+<p>You can adjust the graph visualization on an item basis by providing the following mapping functions.
+Each mapping is passed the original data object of your original node / edge data, and you need to return
+a mapping-specific dict or value to that is reflected in the graph visualization.</p>
+<h3 id="property-mappings">Property mappings</h3>
+<p>Specify what data should be put on the items <code>properties</code> field, and therefore considered by the other data mappings</p>
+<ul>
+<li><code>node_property_mapping: Optional[Union[str, Callable[[dict], dict]]]</code></li>
+<li><code>edge_property_mapping: Optional[Union[str, Callable[[dict], dict]]]</code></li>
+</ul>
+<p>By default, the origin dict for each item is returned.</p>
+<h3 id="label-mappings">Label mappings</h3>
+<p>Specify the visualized text on each item.</p>
+<ul>
+<li><code>node_label_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]</code></li>
+<li><code>edge_label_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]</code></li>
+</ul>
+<p>Returning a string will first be resolved against the <code>properties</code> of the item's dict and if there is no such property 
+key the value is used as-is. Alternatively, return a <code>dict</code> with the following properties to have full 
+control over the item's text:</p>
+<h4 id="label-style-dict">Label style dict</h4>
+<ul>
+<li><code>font: str</code>: The font used for the label.</li>
+<li><code>text: str</code>: The text that is added to the item.</li>
+<li><code>font_size: int</code>: The text size.</li>
+<li><code>font_weight: str</code>: The font weight. One of <code>"bold"</code>, <code>"bolder"</code>, <code>"normal"</code>, <code>"lighter"</code>.</li>
+<li><code>color: string</code>: The text color.</li>
+<li><code>background_color: str</code>: A color string that is used as the label's background.</li>
+<li><code>position: str</code>: Where the label is placed relatively to the node. One of <code>"center"</code>, <code>"north"</code>, <code>"east"</code>, <code>"south"</code>, <code>"west"</code>.</li>
+<li><code>maximum_width: int</code>: The maximum width of the label. By default, the label is clipped at the given size, or wrapped when <code>wrapping</code> is set.</li>
+<li><code>maximum_height: int</code>: The maximum height of the label. Clips the label at the given height. May be combined with <code>wrapping</code>.</li>
+<li><code>wrapping: str</code>: Text wrapping for the label. Must be set in combination with <code>maximum_width</code>. One of <code>"none"</code>, <code>"character"</code>, <code>"character_ellipsis"</code>, <code>"word"</code>, <code>"word_ellipsis"</code>.</li>
+<li><code>text_alignment: str</code>: The horizontal text alignment when <code>wrapping</code> is enabled. One of <code>"left"</code>, <code>"center"</code>, <code>"right"</code>.</li>
+</ul>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb">02a_label_styles_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h3 id="color-mappings">Color mappings</h3>
+<p>Specify the color of each item.
+* <code>node_color_mapping: Optional[Union[str, Callable[[dict], str]]]</code>
+* <code>edge_color_mapping: Optional[Union[str, Callable[[dict], str]]]</code></p>
+<p>Return any CSS color value (e.g., a color constant, a hex value, a rgb string, etc.).</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb">03_color_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h3 id="node-and-edge-visualization-mappings">Node and edge visualization mappings</h3>
+<p>Specify the visualization properties of nodes and edges by returning a dict with specific properties.</p>
+<ul>
+<li>
+<p><code>node_styles_mapping: Optional[Union[str, Callable[[dict], dict]]]</code></p>
+<ul>
+<li>Return a dict with the following, optional properties:<ul>
+<li><code>color</code>: CSS color value</li>
+<li><code>image</code>: URL or data URL of the image</li>
+<li><code>shape</code>: One of <code>"ellipse"</code>, <code>"hexagon"</code>, <code>"hexagon2"</code>, <code>"octagon"</code>, <code>"pill"</code>, <code>"rectangle"</code>, <code>"round-rectangle"</code>, <code>"triangle"</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>edge_styles_mapping: Optional[Union[str, Callable[[dict], dict]]]</code></p>
+<ul>
+<li>Return a dict with the following, optional properties:<ul>
+<li><code>color</code>: <code>str</code> (a CSS color value)</li>
+<li><code>directed</code>: <code>bool</code></li>
+<li><code>thickness</code>: <code>float</code></li>
+<li><code>dash_style</code>: One of <code>"solid"</code>, <code>"dash"</code>, <code>"dot"</code>, <code>"dash-dot"</code>, <code>"dash-dot-dot"</code>, or a dashing string like <code>"5 10"</code> or <code>"5, 10"</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>edge_thickness_factor_mapping: Optional[Union[str, Callable[[dict], float]]]</code></p>
+<ul>
+<li>Controls the thickness of the edges with a factor that is multiplied to its base size.</li>
+</ul>
+</li>
+<li>
+<p><code>directed_mapping: Optional[Union[str, Callable[[dict], bool]]]</code></p>
+<ul>
+<li>Allows specifying which edge should be visualized with direction (indicated by an arrow).</li>
+</ul>
+</li>
+</ul>
+<p>For example, see</p>
+<ul>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb">08_styles_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb">10_direction_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb">11_thickness_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+</ul>
+<h3 id="geometry-mappings">Geometry mappings</h3>
+<p>Specify the location and/or size of nodes. Note that the location of an item is overwritten from an automatic layout,
+unless the <code>no_layout</code> option is used.</p>
+<ul>
+<li>
+<p><code>node_scale_factor_mapping: Optional[Union[str, Callable[[dict], float]]]</code></p>
+<ul>
+<li>Controls the node size with a factor that is multiplied to its base size.</li>
+</ul>
+</li>
+<li>
+<p><code>node_size_mapping: Optional[Union[str, Callable[[int, dict], float]]]</code></p>
+<ul>
+<li>Controls the node size by width and height by returning a tuple <code>(width, height)</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>node_position_mapping: Optional[Union[str, Callable[[dict], Tuple[float, float]]]]</code></p>
+<ul>
+<li>Controls the position of the node by returning a tuple: <code>(x, y)</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>node_layout_mapping: Optional[Union[str, Callable[[dict], Tuple[float, float, float, float]]]]</code></p>
+<ul>
+<li>Controls the bounding box of the nodes (position and size) by returning a 4-tuple: <code>(x, y, width, height)</code>.</li>
+</ul>
+</li>
+</ul>
+<p>For example, see</p>
+<ul>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb">04_layout_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb">05_size_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb">06_position_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+</ul>
+<h3 id="geospatial-mapping">Geospatial mapping</h3>
+<p>Specify a geo-coordinate for the nodes that is used by the geospatial layout option.</p>
+<ul>
+<li><code>node_coordinate_mapping: Optional[Union[str, Callable[[dict], Tuple[float, float]]]]</code><ul>
+<li>The mapping is supposed to return a tuple of <code>(latitude, longitude)</code>.</li>
+</ul>
+</li>
+</ul>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb">30_leaflet_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h3 id="hierarchy-mappings">Hierarchy mappings</h3>
+<p>Specify which nodes should be grouped together.</p>
+<ul>
+<li>
+<p><code>node_parent_mapping: Optional[Union[str, Callable[[dict], Union[str, int, float]]]]</code></p>
+<ul>
+<li>This mapping does not create new group nodes and just resolves the mapped id against the given dataset.
+  It should be used when the group nodes are already <strong>part of</strong> the given dataset.</li>
+<li>It should return an id for each given node object which is then used as parent group node for this child node. If the parent node does not existing in the dataset, no grouping is created.</li>
+</ul>
+</li>
+<li>
+<p><code>node_parent_group_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]</code></p>
+<ul>
+<li>This mapping always creates new group nodes based on the given mapping.
+  It should be used when the group nodes are <strong>not part of</strong> the given dataset.</li>
+<li>The returned value must either be a <code>str</code> which is used as label and id for the new group node (i.e. nodes with the same mapped <code>str</code> are grouped together), or it must be a dict with a mandatory <code>label</code> property (return same labels for different nodes defines the group for these nodes) and optional more key-value pairs that are added as properties to the group. These additional properties are also considered when resolving other node mappings (e.g. for the styling of group nodes).</li>
+<li>Example Snippets</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-python">w = GraphWidget()
+w.nodes = airports
+w.edges = flight_paths
+# Assuming each node has a &quot;country&quot; property, group all nodes with the same &quot;country&quot; into groups, 
+# labeled with the value of the &quot;country&quot; property.
+w.node_parent_group_mapping = &quot;country&quot;
+display(w)
 </code></pre>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_element_label_mapping(element: typing.Dict):
-         ...
-In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
+<pre><code class="language-python">w = GraphWidget()
+w.nodes = airports
+w.edges = flight_paths
+# Assuming each node has a &quot;country&quot; property, group all nodes with the same &quot;country&quot; into groups, 
+# and assign additional properties to group nodes that can be mapped e.g. by node_styles_mapping.
+w.node_parent_group_mapping = lambda node: {&quot;label&quot;: node[&quot;properties&quot;][&quot;country&quot;], &quot;color&quot;: &quot;#9F4499&quot;, &quot;char_count&quot;: len(node[&quot;properties&quot;][&quot;country&quot;])}
+display(w)
 </code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>label</code></td>
-<td><code>str</code></td>
-<td>The node or edge label.</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td>typing.Dict<code>| A</code>Dict` with mappings for style attributes. See below for supported values.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Supported style attributes in the return <code>Dict</code>:</p>
-<pre><code class="language-Python">can contain the following key-value-pairs:
-    &quot;text&quot;: str
-        Is used as the label.
-    &quot;fontSize&quot;: number
-        Sets the size of the font.
-    &quot;color&quot;: string
-        Css color value for the text color.
-    &quot;backgroundColor&quot;: str
-        Css color value for the background color.
-    &quot;position&quot;: 'center' | 'north' | 'east' | 'south' | 'west'
-        The label position at the node. Applies only to node labels.
-    &quot;maximumWidth&quot;: number
-        The maximum width of the label. By default, the label is clipped at the given size, or wrapped when &quot;wrapping&quot; is set.
-    &quot;maximumHeight&quot;: number
-        The maximum height of the label. Clips the label at the given height. May be combined with &quot;wrapping&quot;.
-    &quot;wrapping&quot;: 'character' | 'character_ellipsis' | 'none' | 'word' | 'word_ellipsis'
-        Text wrapping for the label. Must be set in combination with &quot;maximumWidth&quot;.
-    &quot;textAlignment&quot;: 'center' | 'left' | 'right'
-        The horizontal text alignment when &quot;wrapping&quot; is enabled.
-    &quot;fontWeight&quot;: 'bold' | 'bolder' | 'lighter' | 'normal'`: The font thickness.
-
-</code></pre>
-<p>&nbsp;</p>
-<h3 id="def-default_node_label_mappingindex-node"><a id="default_node_label_mapping" href="#default_node_label_mapping"><code>def default_node_label_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default label mapping for nodes.</p>
-<p>See <a href="#default_element_label_mapping"><code>default_element_label_mapping</code></a>.</p>
-<p>&nbsp;</p>
-<h3 id="def-default_edge_label_mappingindex-edge"><a id="default_edge_label_mapping" href="#default_edge_label_mapping"><code>def default_edge_label_mapping(index, edge)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default label mapping for edges.</p>
-<p>See <a href="#default_element_label_mapping"><code>default_element_label_mapping</code></a>.</p>
-<p>&nbsp;</p>
-<h3 id="def-default_element_property_mappingindex-element"><a id="default_element_property_mapping" href="#default_element_property_mapping"><code>def default_element_property_mapping(index, element)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.</p>
-<p>Simply selects the properties value of element dictionary.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in corresponding nodes or edges list.</td>
-</tr>
-<tr>
-<td><code>element</code></td>
-<td><code>typing.Dict</code></td>
-<td>Can be both node or edge.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the {<a href="#node_property_mapping_property">node</a>|<a href="#edge_property_mapping_property">edge</a>}_property_mapping property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p>When a string is provided as the function argument, the key will be searched for in both the properties 
-dictionary and the element keys.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_element_property_mapping(element: typing.Dict):
-         ...
-In [4]: w.set_{node|edge}_property_mapping(custom_element_property_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>properties</code></td>
-<td><code>typing.Dict</code></td>
-<td>The node or edge properties.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_property_mappingindex-node"><a id="default_node_property_mapping" href="#default_node_property_mapping"><code>def default_node_property_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for nodes.</p>
-<p>See <a href="#default_element_property_mapping"><code>default_element_property_mapping</code></a>.</p>
-<p>&nbsp;</p>
-<h3 id="def-default_edge_property_mappingindex-edge"><a id="default_edge_property_mapping" href="#default_edge_property_mapping"><code>def default_edge_property_mapping(index, edge)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for edges.</p>
-<p>See <a href="#default_element_property_mapping"><code>default_element_property_mapping</code></a>.</p>
-<p>&nbsp;</p>
-<h3 id="def-default_node_color_mappingindex-node"><a id="default_node_color_mapping" href="#default_node_color_mapping"><code>def default_node_color_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default color mapping for nodes.</p>
-<p>Provides constant value of '#15afac' for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_color_mapping_property"><code>node_color_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_color_mapping(node: typing.Dict):
-          ...
-In [4]: w.set_node_color_mapping(custom_node_color_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>color</code></td>
-<td><code>str</code></td>
-<td>CSS color value.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>References</strong></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">css color value</a></p>
-<p><a href="https://docs.yworks.com/yfileshtml/#/api/Fill">yFiles docs Fill api</a></p>
-<p>&nbsp;</p>
-<h3 id="def-default_node_styles_mappingindex-node"><a id="default_node_styles_mapping" href="#default_node_styles_mapping"><code>def default_node_styles_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default styles mapping for nodes.</p>
-<p>Provides constant value of {} for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_styles_mapping_property"><code>node_styles_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_styles_mapping(node: typing.Dict):
-          ...
-In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>styles</code></td>
-<td><code>typing.Dict</code></td>
-<td>A <code>Dict</code> with mappings for style attributes. See below for supported values.</td>
-</tr>
-</tbody>
-</table>
-<p>Supported style attributes in the return <code>Dict</code>:</p>
-<pre><code class="language-Python">can contain the following key-value-pairs:
-    &quot;color&quot;: str
-        CSS color value.
-    &quot;shape&quot;: str
-        The shape of the node. Possible values: 'ellipse', 'hexagon', 'hexagon2', 'octagon', 'pill', 'rectangle', 'round-rectangle' or 'triangle'.
-    &quot;image&quot;: str
-        Url or data URL of the image.
-</code></pre>
-<p><strong>References</strong></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">css color value</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs">Data URL</a></p>
-<p>&nbsp;</p>
-<h3 id="def-default_edge_styles_mappingindex-edge"><a id="default_edge_styles_mapping" href="#default_edge_styles_mapping"><code>def default_edge_styles_mapping(index, edge)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default styles mapping for edges.</p>
-<p>Provides constant value of {} for all edges.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in edges list.</td>
-</tr>
-<tr>
-<td><code>edge</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#edge_styles_mapping_property"><code>edge_styles_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_styles_mapping(edge: typing.Dict):
-          ...
-In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>styles</code></td>
-<td><code>typing.Dict</code></td>
-<td>A <code>Dict</code> with mappings for style attributes. See below for supported values.</td>
-</tr>
-</tbody>
-</table>
-<p>Supported style attributes in the return <code>Dict</code>:</p>
-<pre><code class="language-Python">can contain the following key-value-pairs:
-    &quot;color&quot;: str
-        CSS color value.
-    &quot;directed&quot;: bool
-        Whether the edge should be visualized with a target arrow.
-    &quot;thickness&quot;: float
-        The thickness of the stroke of the edge.
-    &quot;dashStyle&quot;: str
-        The dash styling of the edge. Can be one of the following strings:
-            - &quot;solid&quot;
-            - &quot;dash&quot;
-            - &quot;dot&quot;
-            - &quot;dash-dot&quot;
-            - &quot;dash-dot-dot&quot;
-            - &quot;5 10&quot;
-            - &quot;5, 10&quot;
-            - ...
-</code></pre>
-<p><strong>References</strong></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">css color value</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs">Data URL</a></p>
-<p>&nbsp;</p>
-<h3 id="def-default_edge_color_mappingindex-edge"><a id="default_edge_color_mapping" href="#default_edge_color_mapping"><code>def default_edge_color_mapping(index, edge)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default color mapping for edges.</p>
-<p>Provides constant value of '#15afac' for all edges.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in edges list.</td>
-</tr>
-<tr>
-<td><code>edge</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#edge_color_mapping_property"><code>edge_color_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_color_mapping(edge: typing.Dict):
-         ...
-In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>color</code></td>
-<td><code>str</code></td>
-<td>CSS color value.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>References</strong></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">css color value</a></p>
-<p><a href="https://docs.yworks.com/yfileshtml/#/api/Fill">yFiles docs Fill api</a></p>
-<p>&nbsp;</p>
-<h3 id="def-default_node_scale_factor_mappingindex-node"><a id="default_node_scale_factor_mapping" href="#default_node_scale_factor_mapping"><code>def default_node_scale_factor_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default scale factor mapping for nodes.</p>
-<p>Provides constant value of 1.0 for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_scale_factor_mapping_property"><code>node_scale_factor_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_scale_factor_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_scale_factor</code></td>
-<td><code>float</code></td>
-<td>Positive scale factor.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_size_mappingindex-node"><a id="default_node_size_mapping" href="#default_node_size_mapping"><code>def default_node_size_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default size mapping for nodes.</p>
-<p>Provides constant value of [55.0,55.0] for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_size_mapping_property"><code>node_size_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_size_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_size_mapping(custom_node_size_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_size</code></td>
-<td><code>float 2-tuple</code></td>
-<td><code>size in (width, height).</code></td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_layout_mappingindex-node"><a id="default_node_layout_mapping" href="#default_node_layout_mapping"><code>def default_node_layout_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default layout mapping for nodes.</p>
-<p>Provides constant value of [0.00, 0.00, 55.0, 55.0] for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_layout_mapping_property"><code>node_layout_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_layout_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_layout_mapping(custom_node_layout_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_layout</code></td>
-<td><code>float 4-tuple</code></td>
-<td><code>layout containin position and size: (x, y, width, height).</code></td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_heat_mappingindex-node"><a id="default_heat_mapping" href="#default_heat_mapping"><code>def default_heat_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default heat mapping for nodes and edges.</p>
-<p>Provides constant value of None for all nodes and edges.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>Position in element list.</td>
-</tr>
-<tr>
-<td><code>element</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#heat_mapping_property"><code>heat_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_heat_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_heat_mapping(custom_heat_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>heat</code></td>
-<td><code>float</code></td>
-<td><code>The heat can be a number between 0 and 1.</code></td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_edge_thickness_factor_mappingindex-edge"><a id="default_edge_thickness_factor_mapping" href="#default_edge_thickness_factor_mapping"><code>def default_edge_thickness_factor_mapping(index, edge)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default thickness factor mapping for edges.</p>
-<p>Provides constant value of 1.0 for all edges.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in edges list.</td>
-</tr>
-<tr>
-<td><code>edge</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#edge_thickness_factor_mapping_property"><code>edge_thickness_factor_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_thickness_factor_mapping(edge: typing.Dict):
-         ...
-In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edge_thickness_factor</code></td>
-<td><code>float</code></td>
-<td>Positive thickness factor.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_type_mappingindex-node"><a id="default_node_type_mapping" href="#default_node_type_mapping"><code>def default_node_type_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default type mapping for nodes.</p>
-<p>Provides constant value of <code>None</code> for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_type_mapping_property"><code>node_type_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_type_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_type_mapping(custom_node_type_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_type</code></td>
-<td><code>None</code></td>
-<td>Node Type.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_parent_mappingindex-node"><a id="default_node_parent_mapping" href="#default_node_parent_mapping"><code>def default_node_parent_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default parent mapping for nodes.</p>
-<p>Provides constant value of <code>None</code> for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>parent</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_parent_mapping_property"><code>node_parent_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>parent</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_parent</code></td>
-<td><code>None</code></td>
-<td>Node parent Id.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_parent_group_mappingindex-node"><a id="default_node_parent_group_mapping" href="#default_node_parent_group_mapping"><code>def default_node_parent_group_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default parent group mapping for nodes.</p>
-<p>Provides constant value of <code>None</code> for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>parent</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_parent_group_mapping_property"><code>node_parent_group_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_group_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>parent</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_parent_group</code></td>
-<td><code>None</code></td>
-<td>Node parent label.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_position_mappingindex-node"><a id="default_node_position_mapping" href="#default_node_position_mapping"><code>def default_node_position_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default position mapping for nodes.</p>
-<p>Provides constant value of [0.0, 0.0] for all nodes.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_position_mapping_property"><code>node_position_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_position_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_position_mapping(custom_node_position_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_position</code></td>
-<td><code>float 2-tuple</code></td>
-<td>Position in euclidian plane.</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_node_coordinate_mappingindex-node"><a id="default_node_coordinate_mapping" href="#default_node_coordinate_mapping"><code>def default_node_coordinate_mapping(index, node)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default coordinate mapping for nodes.</p>
-<p>Provides constant value of <code>None</code> for all nodes.
-There is no coordinate mapping unless explicitly set.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) position in nodes list.</td>
-</tr>
-<tr>
-<td><code>node</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#node_coordinate_mapping_property"><code>node_coordinate_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_coordinate_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_coordinate_mapping(custom_node_coordinate_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>node_coordinate</code></td>
-<td><code>float 2-tuple</code></td>
-<td>geo coordinates in latitude and longitude .</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3 id="def-default_directed_mappingindex-edge"><a id="default_directed_mapping_method" href="#default_directed_mapping_method"><code>def default_directed_mapping(index, edge)</code></a><br></h3>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default directed mapping for edges.</p>
-<p>Uses the graph wide directed attribute for all edges.</p>
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>index</code></td>
-<td><code>int</code></td>
-<td>(optional) Position in edges list.</td>
-</tr>
-<tr>
-<td><code>edge</code></td>
-<td><code>typing.Dict</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<p>This is the default value for the <a href="#directed_mapping_property"><code>directed_mapping</code></a> property.<br />
-Can be 'overwritten' by setting the property with a function of the same signature.</p>
-<p>If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.</p>
-<p><strong>Example</strong></p>
-<pre><code class="language-Python">In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_directed_mapping(edge: typing.Dict):
-         ...
-In [4]: w.set_directed_mapping(custom_directed_mapping)
-</code></pre>
-<p><strong>Returns</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>directed</code></td>
-<td><code>bool</code></td>
-<td>Whether the edge is directed or not.</td>
-</tr>
-</tbody>
-</table>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb">31_nested_graphs.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h3 id="heat-mapping">Heat mapping</h3>
+<p>Numeric values on nodes and edges may be visualized as a heatmap overlay on the graph visualization.</p>
+<ul>
+<li><code>heat_mapping: Optional[Union[str, Callable[[dict], float]]]</code><ul>
+<li>The returned heat needs to be normalized in-between <code>0</code> and <code>1</code>.</li>
+</ul>
+</li>
+</ul>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb">29_heat_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h3 id="fine-tuning-automatic-layouts">Fine-tuning automatic layouts</h3>
+<p>Some mappings affect specific automatic layouts:</p>
+<ul>
+<li>
+<p><code>node_type_mapping: Optional[Union[str, Callable[[dict], str]]]</code></p>
+<ul>
+<li>Assign a specific "type" string to each item. This affects most of the automatic layouts such that same types are placed adjacent to each other, if possible.</li>
+<li>See also <a href="https://docs.yworks.com/yfileshtml/dguide/node_types/">Layout with Custom Node Types</a>.</li>
+</ul>
+</li>
+<li>
+<p><code>node_cell_mapping: Optional[Union[str, Callable[[dict], Tuple[int, int]]]]</code></p>
+<ul>
+<li>Assign a cell tuple <code>(row, column)</code> to each node. This information is considered by the hierarchical layout and helps to fine-tune the result, for example, to highlight specific structures of the graph or to convey critical information.</li>
+</ul>
+</li>
+</ul>
+<p>For example, see</p>
+<ul>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb">09_type_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>"Node-cell mapping" in <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb">v1.9.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+</ul>
+<h2 id="edge-direction">Edge direction</h2>
+<p>By default, edges are visualized undirected, i.e., no arrowhead is rendered. This can be changed globally by setting the following property:</p>
+<ul>
+<li><code>directed: bool</code><ul>
+<li>Specifies whether all edges should be rendered with an arrowhead indicating its direction.</li>
+</ul>
+</li>
+</ul>
+<p>Alternatively, the direction visualization can be specified per edge through the <a href="#node-and-edge-visualization-mappings">Node and edge visualization mappings</a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb">10_direction_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h2 id="neighborhood">Neighborhood</h2>
+<ul>
+<li><code>neighborhood: dict</code><ul>
+<li>Controls the initial neighborhood view settings by setting a dict with <code>max_distance</code> and <code>selected_nodes</code> keys.</li>
+<li>For example, <code>w.neighborhood = {"max_distance": 2, "selected_nodes":[2]}</code>.</li>
+</ul>
+</li>
+<li><code>set_neighborhood(max_distance: int, selected_nodes: Optional[List[dict]])</code></li>
+<li>Similar to the <code>neighborhood</code> property, allows setting the values directly.</li>
+</ul>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb">24_neighborhood.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h2 id="sidebar">Sidebar</h2>
+<p>The sidebar of the widget provides different panels that can be controlled interactively or programmatically by the following API:</p>
+<ul>
+<li><code>sidebar: dict</code><ul>
+<li>Controls the initial sidebar configuration by setting a dict with <code>enabled</code> and <code>start_with</code> keys.</li>
+<li>For example, <code>w.sidebar = {"enabled": True, "start_with": "Search"}</code>.</li>
+</ul>
+</li>
+<li><code>set_sidebar(enabled: bool, start_with: str)</code><ul>
+<li>Similar to the <code>sidebar</code> property, allows setting the values directly.</li>
+</ul>
+</li>
+</ul>
+<p>Supported values for <code>start_with</code> are: <code>"About"</code>, <code>"Search"</code>, <code>"Data"</code>, <code>"Neighborhood"</code></p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb">23_sidebar.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h2 id="overview">Overview</h2>
+<p>The graph overview shows the current viewport in relation to the whole graph and allows users to quickly navigate large structures.</p>
+<ul>
+<li><code>overview: bool</code><ul>
+<li>By default, the overview is expanded unless the widget's width is too small. This behavior can be overwritten by setting the property.</li>
+</ul>
+</li>
+<li><code>set_overview(enabled: bool)</code><ul>
+<li>Similar to the <code>overview</code> property.</li>
+</ul>
+</li>
+</ul>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb">25_overview.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h2 id="selection">Selection</h2>
+<p>The currently selected node and edge dicts can be accessed in the Python cell with the following method:</p>
+<ul>
+<li><code>get_selection(): Tuple[List[dict], List[dict]]</code><ul>
+<li>Returns a tuple of lists containing the selected nodes and edges, i.e., <code>nodes, edges = w.get_selection()</code>.</li>
+</ul>
+</li>
+</ul>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb">21_selection_export.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h2 id="displaying-the-graph-widget">Displaying the graph widget</h2>
+<p>To display the interactive graph widget in the Jupyter notebook use one of the following methods:</p>
+<ul>
+<li><code>show()</code></li>
+<li><code>display(w)</code></li>
+</ul>
+<p>For example, see any of the <a href="https://github.com/yWorks/yfiles-jupyter-graphs/tree/main/examples">example notebooks</a>.</p>
               
             </div>
           </div><footer>

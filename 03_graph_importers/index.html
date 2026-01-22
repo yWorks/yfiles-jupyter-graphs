@@ -48,7 +48,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../02_graph_widget/">GraphWidget</a>
+                <li class="toctree-l1"><a class="reference internal" href="../02_graph_widget/">GraphWidget API documentation</a>
                 </li>
               </ul>
               <ul class="current">
@@ -143,6 +143,15 @@
 <li>Node labels are combined with ':' and added as 'label' property on the item</li>
 <li>Node and relationship properties are available on the graph item's <code>properties</code>.</li>
 <li>Each node label or relationship type is assigned a specific color.</li>
+<li>The following properties are used as labels (in descending priority):<ul>
+<li><code>"name"</code></li>
+<li><code>"title"</code></li>
+<li><code>"label"</code></li>
+<li><code>"description"</code></li>
+<li><code>"caption"</code></li>
+<li><code>"text"</code></li>
+</ul>
+</li>
 </ul>
 <h3 id="example">Example</h3>
 <p>First, create a Neo4j driver with access to your database</p>
@@ -154,7 +163,7 @@ NEO4J_USERNAME = &quot;movies&quot;
 NEO4J_PASSWORD = &quot;movies&quot;
 
 # create a neo4j session to run queries
-driver = GraphDatabase.driver(uri = NEO4J_URI, auth = (NEO4J_USERNAME, NEO4J_PASSWORD), database = 'movies')
+driver = GraphDatabase.driver(uri = NEO4J_URI, auth = (NEO4J_USERNAME, NEO4J_PASSWORD), database = &quot;movies&quot;)
 session = driver.session()
 </code></pre>
 <p>This driver can then be used to query a result graph by importing the result with the yFiles Graphs for Jupyter widget:</p>
@@ -164,8 +173,8 @@ def showGraph(cypher: str):
 
     # potentially configure some mappings of the widget...
     def node_label_mapping(node):
-        properties = node['properties']
-        return properties.get('name', properties.get('label', '&lt;unlabeled&gt;')) 
+        properties = node[&quot;properties&quot;]
+        return properties.get(&quot;name&quot;, properties.get(&quot;label&quot;, &quot;&lt;unlabeled&gt;&quot;)) 
 
     w.node_label_mapping = node_label_mapping
 
@@ -241,7 +250,7 @@ showGraph(&quot;MATCH (s)-[r]-&gt;(t) RETURN s,r,t LIMIT 20&quot;)
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../02_graph_widget/" class="btn btn-neutral float-left" title="GraphWidget"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../02_graph_widget/" class="btn btn-neutral float-left" title="GraphWidget API documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../04_key_activation/" class="btn btn-neutral float-right" title="Key activation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
