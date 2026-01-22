@@ -12,6 +12,13 @@ Importer for graphs from [Neo4j](https://pypi.org/project/neo4j/).
 - Node labels are combined with ':' and added as 'label' property on the item
 - Node and relationship properties are available on the graph item's `properties`.
 - Each node label or relationship type is assigned a specific color.
+- The following properties are used as labels (in descending priority):
+    - `"name"`
+    - `"title"`
+    - `"label"`
+    - `"description"`
+    - `"caption"`
+    - `"text"`
 
 ### Example
 
@@ -25,7 +32,7 @@ NEO4J_USERNAME = "movies"
 NEO4J_PASSWORD = "movies"
 
 # create a neo4j session to run queries
-driver = GraphDatabase.driver(uri = NEO4J_URI, auth = (NEO4J_USERNAME, NEO4J_PASSWORD), database = 'movies')
+driver = GraphDatabase.driver(uri = NEO4J_URI, auth = (NEO4J_USERNAME, NEO4J_PASSWORD), database = "movies")
 session = driver.session()
 ```
 
@@ -37,8 +44,8 @@ def showGraph(cypher: str):
     
     # potentially configure some mappings of the widget...
     def node_label_mapping(node):
-        properties = node['properties']
-        return properties.get('name', properties.get('label', '<unlabeled>')) 
+        properties = node["properties"]
+        return properties.get("name", properties.get("label", "<unlabeled>")) 
     
     w.node_label_mapping = node_label_mapping
     

@@ -1,2058 +1,335 @@
-# GraphWidget
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Class
+# `GraphWidget` API documentation
+The main class of the widget that can be imported from the `yfiles_jupyter_graphs` module.
 
-Inherits from `ipywidgets.DOMWidget`.
+## Constructor
 
-**The main widget class.**
-
-To be used in jupyter-notebook or jupyter-lab.
+| Argument             | Type                | Description                                                                                                                                                                  | Default |
+|----------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| `widget_layout`      | `ipywidgets.Layout` | Optional. Specifies the widget's size.<br> See [ipywidgets.Layout](https://ipywidgets.readthedocs.io/en/7.6.3/examples/Widget%20Styling.html#The-layout-attribute) for more. | `None`  |
+| `overview_enabled`   | `bool`              | Optional. Whether the overview is expanded.<br>By default, dependant on the widget's width.                                                                                  | `None`  |
+| `context_start_with` | `str`               | Optional. The sidebar panel that should<br> be opened at start. Collapsed by default.<br> Supported values:<br>`"About"`, `"Search"`, `"Data"`, `"Neighborhood"`.            | `None`  |
+| `graph`              | `object`            | Optional. Specify a graph object to import<br> from start.                                                                                                                   | `None`  |
 
 ### Example
 
 ```Python
 from yfiles_jupyter_graphs import GraphWidget
 w = GraphWidget()
-w.show()
+w.nodes = [
+    {"id": 0, "properties": {"firstName": "Alpha", "label": "Person A"}},
+    {"id": "one", "properties": {"firstName": "Bravo", "label": "Person B"}},
+    {"id": 2.0, "properties": {"firstName": "Charlie", "label": "Person C", "has_hat": False}},
+    {"id": True, "properties": {"firstName": "Delta", "label": "Person D", "likes_pizza": True}}
+]
+w.edges = [
+    {"id": "zero", "start": 0, "end": "one", "properties": {"since": "1992", "label": "knows"}},
+    {"id": 1, "start": "one", "end": True, "properties": {"label": "knows", "since": "1992"}},
+    {"id": 2.0, "start": 2.0, "end": True, "properties": {"label": "knows", "since": "1992"}},
+    {"id": False, "start": 0, "end": 2.0, "properties": {"label": "knows", "since": 234}}
+]
+display(w)
 ```
 
-See notebooks for more examples.
+See the [example notebooks](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/00_toc.ipynb) for more.
 
-### Notes
+## Providing data
 
-Nodes and edges properties should be constructed recursively with basic python types otherwise {de-}serializers will fail.
+To pass data to the widget, you need to set the `nodes` and `edges` properties of the widget. There are only few requirements to the structuring of the provided data:
 
-## Properties
+* `nodes: List[dict[str, Any]]`
+    * Each node must provide an `id` property.
 
-### <a id="nodes_property" href="#nodes_property"><code>nodes: typing.List[typing.Dict]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data structure.
+* `edges: List[dict[str, Any]]`
+    * Each edge must provide a `start` and `end` property that resolve to the node `id`s to form the graph structure.
 
-**`def get_nodes()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the nodes traitlets property.
+Optionally, provide additional properties in a `properties` property.
 
-**Notes**
+For example, see [01_introduction.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-This function acts as an alias for using GraphWidget.nodes property e.g. `w.nodes == w.get_nodes()`.
+To map custom properties to visual features, see [Data-driven visualization mappings](#data-driven-visualization-mappings).
 
-**Returns**
+### Importing from other graph packages
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `nodes` | `typing.List[typing.Dict]` | Each node has the keys `id: int` and `properties: typing.Dict`. It might include keys that are not set directly, see (default) node mappings for details. |
+Aside from passing structured data, you can also import from other graph formats by passing the graph object to the constructor's `graph` kwarg,
+or use:
 
-**`def set_nodes(nodes)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the nodes traitlets property.
+* `w.import_graph(graph_object)`
 
-**Parameters**
+The import supports the following packages: `neo4j`, `graph_tool`, `igraph `, `networkx`, `pygraphviz`, `rdflib` and `pandas` dataframes.
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `nodes` | `typing.List[typing.Dict]` | Each node should have the keys `id: int` and `properties: typing.Dict`. Properties should be constructed recursively with basic python types, otherwise {de-}serializers will fail. |
+For example, see
 
-**Example**
+* NetworkX: [13_networkx_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* Pandas dataframes: [14_pandas_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* PyGraphviz: [15_graphviz_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* Neo4j: [16_neo4j_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* iGraph: [17_igraph_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* graph-tool: [18_graph-tool_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* RDFLib: [19_rdflib_import.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.set_nodes([
-            {'id': 0, 'properties': {'label': 'Hello World'}},
-            {'id': 1, 'properties': {'label': 'This is a second node.'}}
-        ])
-```
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.nodes property e.g. `w.nodes = [{...}]` has the same effect as using `w.set_nodes([{...}])`.
-
-&nbsp;
-
-### <a id="edges_property" href="#edges_property"><code>edges: typing.List[typing.Dict]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data structure.
-
-**`def get_edges()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edges traitlets property.
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.edges property e.g. `w.edges == w.get_edges()` is `true`.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edges` | `typing.List[typing.Dict]` | Each edge has the keys `id: int`, `start: int`, `end: int` and `properties: typing.Dict`. It might include keys that are not set directly, see (default) edge mappings for details. |
-
-**`def set_edges(edges)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edges traitlets property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edges` | `typing.List[typing.Dict]` | Each edge should have the keys `id: int`, `start: int`, `end:int` and `properties: typing.Dict`. Ids for start and end should be among used node ids, otherwise the edge does not appear. Properties should be constructed recursively with basic python types, otherwise {de-}serializers will fail. |
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.set_edges([
-            {'id': 0, 'start': 0, 'end': 1, 'properties': {'label': 'edge between first and second node'}}
-        ])
-```
-**Notes**
-
-This function acts as an alias for using GraphWidget.edges property e.g. `w.edges = [{...}]` has the same effect as using `w.set_edges([{...}])`.
-
-&nbsp;
-
-### <a id="get_selection" href="#get_selection"><code>def get_selection()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Returns the nodes and edges, that are selected in the displayed widget.
-
-**Returns**
-
-| Name    | Type | Description             |
-|---------| ----------- |-------------------------|
-| `nodes` | `typing.List[typing.Dict]` | List of selected nodes. |
-| `edges` | `typing.List[typing.Dict]` | List of selected edges. |
-
-&nbsp;
-
-### <a id="directed_property" href="#directed_property"><code>directed: bool</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Graph wide flag for edge type.
-
-**`def get_directed()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the directed traitlets property.
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.directed property e.g. `w.directed == w.get_directed()` is `true`.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `directed` | `bool` | Whether the graph is interpreted as directed. |
-
-**`def set_directed(directed)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the directed traitlets property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `directed` | `bool` | Whether the graph is interpreted as directed. |
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.directed property e.g. `w.directed = x` has the same effect as using `w.set_directed(x)`.
-
-&nbsp;
-
-### <a id="graph_layout_property" href="#graph_layout_property"><code>graph_layout: typing.Dict</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Choose an algorithm for positioning nodes and/or edges.
-
-**`def get_graph_layout()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the graph layout traitlet property.
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.graph_layout property
-e.g. `w.graph_layout == w.get_graph_layout()` is `true`.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `graph_layout` | `typing.Dict` | Returned dict has keys algorithm: str and options: dict, however options are empty because the algorithms use default settings from yFiles library. |
-
-**`def set_graph_layout(algorithm)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Choose graph layout.
-
-Currently the algorithms use default settings from yFiles library.
-
-**Parameters**
-
-| Name | Type | Description                                                                                                                                                                                                                                                           |
-| ----------- | ----------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `algorithm` | `str` | Specify graph layout (or edge router) algorithm. Available algorithms are: ["circular", "circular_straight_line", "hierarchic", "organic", "interactive_organic", "orthogonal", "radial", "tree", "map", "orthogonal_edge_router", "organic_edge_router", "no_layout"] |
-
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.graph_layout property
-e.g. `w.graph_layout = 'organic'` has the same effect as using `w.set_graph_layout('organic')`.  
-Setting `w.graph_layout = {'algorithm': 'organic', 'options': {}}` works as well,
-which corresponds to using value given through the associated getter.
-In case you want to use the edge routers
-you should set a custom node position mapping as well.
-
-See [yFiles docs](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary) for more details about the algorithms.
-
-&nbsp;
-
-### <a id="neighborhood_property" href="#neighborhood_property"><code>neighborhood: typing.Dict</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Control neighborhood view component.
-
-**`def get_neighborhood()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the neighborhood traitlets property.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `neighborhood` | `typing.Dict` | Returned dict has keys max_distance: int and selected_nodes: list, a list of node ids. |
-
-**`def set_neighborhood(max_distance, selected_nodes)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the neighborhood view in the widget.
-
-The number of hops and focused nodes can be chosen.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `max_distance` | `int` | Set the maximum distance between selected and included nodes. If there are multiple paths to one (or multiple) selected nodes, the smallest path length is considered for this threshold. |
-| `selected_nodes` | `typing.List` (optional) | Choose a list of node ids that are highlighted in both main and neighborhood component. They act as starting points for neighborhood calculation. |
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.neighborhood property.  
-You can assign values by `w.neighborhood = {'max_distance': 2, 'selected_nodes':[2]}`
-or `w.set_neighborhood(2, [2])`, both are equivalent.  
-The short form `w.neighborhood = 3` sets only the max_distance variable
-and resets the selected nodes.
-
-&nbsp;
-
-### <a id="sidebar_property" href="#sidebar_property"><code>sidebar: typing.Dict</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Control sidebar component.
-
-**`def get_sidebar()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the sidebar traitlets property.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `sidebar` | `typing.Dict` | Returned dict has keys enabled: bool and start_with: str, whereat first one indicates open or closed sidebar and second one indicates start panel on widget show. |
-
-**`def set_sidebar(enabled, start_with)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the appearance of the sidebar in the widget.
-
-Can be used to collapse sidebar or start with any panel.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `enabled` | `bool` | Whether to open or collapse sidebar at widget startup. |
-| `start_with` | `str` | The start panel identifier. Available are 'Neighborhood', 'Data', 'Search' and 'About' (the default). |
-
-**Notes**
-
-This function acts as an alias for using GraphWidget.sidebar property.
-You can assign values by `w.sidebar = {'enabled': True, 'start_with': 'Search'}`
-or `w.set_sidebar(True, 'Search')`, both are equivalent.
-The short form `w.sidebar = True` sets only the enabled variable
-and resets the start_with back to the default.
-
-&nbsp;
-
-### <a id="overview_property" href="#overview_property"><code>overview: bool</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Control overview component.
-
-**`def get_overview()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the overview traitlets property.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `overview` | `bool` | Indicates open or closed overview state. A value of None means that a specific behaviour based on widget layout is followed. |
-
-**`def set_overview(enabled)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Specify the appearance of the overview component in the widget.
-
-Can be used to force open overview in case of a small widget layout or
-force collapsed overview in case of large widget layout.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `enabled` | `bool` | Whether to open or collapse overview at widget startup. |
-
-&nbsp;
-
-### <a id="node_label_mapping_property" href="#node_label_mapping_property"><code>node_label_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node label on a per node basis.
-
-**`def get_node_label_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node label mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_label_mapping`](#default_node_label_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_label_mapping` | `Union[callable, str]` | A function that produces node labels or the name of the property to use for binding. |
-
-**`def set_node_label_mapping(node_label_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node label mapping property.
-
-**Parameters**
-
-| Name                 | Type                   | Description                                                                                                                                                                                                          |
-|----------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `node_label_mapping` | `Union[callable, str]` | A function that produces node labels or the name of the property to use for binding. The function should have the same signature as `default_node_label_mapping` e.g. take in a node dictionary and return a string. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.node_label_mapping = 'id'
-```
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_label_mapping(node: dict):
-         ...
-In [4]: w.set_node_label_mapping(custom_node_label_mapping)
-```
-
-**`def del_node_label_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the name property.
-
-Remove a custom node label mapping.
-
-&nbsp;
-
-### <a id="edge_label_mapping_property" href="#edge_label_mapping_property"><code>edge_label_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge label on a per edge basis.
-
-**`def get_edge_label_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge label mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_edge_label_mapping`](#default_edge_label_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_label_mapping` | `Union[callable, str]` |  A function that produces edge labels or the name of the property to use for binding.|
-
-**`def set_edge_label_mapping(edge_label_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge label mapping property.
-
-**Parameters**
-
-| Name                 | Type                   | Description                                                                                                                                                                                                          |
-|----------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `edge_label_mapping` | `Union[callable, str]` | A function that produces edge labels or the name of the property to use for binding. The funtion should have the same signature as `default_edge_label_mapping` e.g. take in an edge dictionary and return a string. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.edge_label_mapping = 'id'
-```
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_label_mapping(node: dict):
-         ...
-In [4]: w.set_edge_label_mapping(custom_edge_label_mapping)
-```
-
-**`def del_edge_label_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge label mapping property.
-
-Remove a custom edge label mapping.
-
-&nbsp;
-
-### <a id="node_property_mapping_property" href="#node_property_mapping_property"><code>node_property_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node properties on a per node basis.
-
-**`def get_node_property_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node property mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_property_mapping`](#default_node_property_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_property_mapping` | `Union[callable, str]` | A function that produces node properties or the name of the property to use for binding. |
-
-**`def set_node_property_mapping(node_property_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node property mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_property_mapping` | `Union[callable, str]` | A function that produces node properties or the name of the property to use for binding. The function should have the same signature as `default_node_property_mapping` e.g. take in a node dictionary and return a dictionary. |
-
-**Notes**
-
-Properties are changed inplace by this mapping.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_property_mapping(node: dict):
-         ...
-In [4]: w.set_node_property_mapping(custom_node_property_mapping)
-```
-
-**`def del_node_property_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node property mapping property.
-
-Remove a custom node property mapping.
-
-&nbsp;
-
-### <a id="edge_property_mapping_property" href="#edge_property_mapping_property"><code>edge_property_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge properties on a per edge basis.
-
-**`def get_edge_property_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge property mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_edge_property_mapping`](#default_edge_property_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_property_mapping` | `Union[callable, str]` | A function that produces edge properties or the name of the property to use for binding. |
-
-**`def set_edge_property_mapping(edge_property_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge property mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_property_mapping` | `Union[callable, str]` | A function that produces edge properties or the name of the property to use for binding. The function should have the same signature as `default_edge_property_mapping` e.g. take in an edge dictionary and return a dictionary. |
-
-**Notes**
-
-Properties are changed inplace by this mapping.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_property_mapping(node: dict):
-         ...
-In [4]: w.set_edge_property_mapping(custom_edge_property_mapping)
-```
-
-**`def del_edge_property_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge property mapping property.
-
-Remove a custom edge property mapping.
-
-&nbsp;
-
-### <a id="node_color_mapping_property" href="#node_color_mapping_property"><code>node_color_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node color on a per node basis.
-
-**`def get_node_color_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node color mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_color_mapping`](#default_node_color_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_color_mapping` | `Union[callable, str]` | A function that produces node colors or the name of the property to use for binding. |
-
-**`def set_node_color_mapping(node_color_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node color mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_color_mapping` | `Union[callable, str]` | A function that produces node colors or the name of the property to use for binding. The function should have the same signature as `default_node_color_mapping` e.g. take in a node dictionary and return a string. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_color_mapping(node: dict):
-         ...
-In [4]: w.set_node_color_mapping(custom_node_color_mapping)
-```
-
-**`def del_node_color_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node color mapping property.
-
-Remove a custom node color mapping.
-
-&nbsp;
-
-### <a id="node_styles_mapping_property" href="#node_styles_mapping_property"><code>node_styles_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node styles on a per node basis.
-
-**`def get_node_styles_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node styles mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_styles_mapping`](#default_node_styles_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_styles_mapping` | `Union[callable, str]` | A function that produces node styles or the name of the property to use for binding. |
-
-**`def set_node_styles_mapping(node_styles_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node styles mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_styles_mapping` | `Union[callable, str]` | A function that produces node styles or the name of the property to use for binding. The function should have the same signature as `default_node_styles_mapping` e.g. take in a node dictionary and return a string. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_styles_mapping(node: dict):
-         ...
-In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
-```
-
-**`def del_node_styles_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node styles mapping property.
-
-Remove a custom node styles mapping.
-
-&nbsp;
-
-### <a id="edge_styles_mapping_property" href="#edge_styles_mapping_property"><code>edge_styles_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge styles on a per edge basis.
-
-**`def get_edge_styles_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge styles mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_edge_styles_mapping`](#default_edge_styles_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_styles_mapping` | `Union[callable, str]` | A function that produces edge styles or the name of the property to use for binding. |
-
-**`def set_edge_styles_mapping(edge_styles_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge styles mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_styles_mapping` | `Union[callable, str]` | A function that produces edge styles or the name of the property to use for binding. The function should have the same signature as `default_edge_styles_mapping` e.g. take in a edge dictionary and return a string. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_styles_mapping(edge: dict):
-         ...
-In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
-```
-
-**`def del_edge_styles_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge styles mapping property.
-
-Remove a custom edge styles mapping.
-
-&nbsp;
-
-### <a id="edge_color_mapping_property" href="#edge_color_mapping_property"><code>edge_color_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge color on a per edge basis.
-
-**`def get_edge_color_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge color mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_edge_color_mapping`](#default_edge_color_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_color_mapping` | `Union[callable, str]` | A function that produces edge colors or the name of the property to use for binding. |
-
-**`def set_edge_color_mapping(edge_color_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge color mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_color_mapping` | `Union[callable, str]` | A function that produces edge colors or the name of the property to use for binding. The function should have the same signature as `default_edge_color_mapping` e.g. take in an edge dictionary and return a string. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_color_mapping(node: dict):
-         ...
-In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
-```
-
-**`def del_edge_color_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge color mapping property.
-
-Remove a custom edge color mapping.
-
-&nbsp;
-
-### <a id="node_scale_factor_mapping_property" href="#node_scale_factor_mapping_property"><code>node_scale_factor_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node scale factor on a per node basis.
-
-**`def get_node_scale_factor_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node scale factor mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_scale_factor_mapping`](#default_node_scale_factor_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_scale_factor_mapping` | `Union[callable, str]` | A function that produces node scale factor or the name of the property to use for binding. |
-
-**`def set_node_scale_factor_mapping(node_scale_factor_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node scale factor mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_scale_factor_mapping` | `Union[callable, str]` | A function that produces node scale factors or the name of the property to use for binding. The function should have the same signature as `default_node_scale_factor_mapping` e.g. take in a node dictionary and return a positive float. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_scale_factor_mapping(node: dict):
-         ...
-In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
-```
-
-**`def del_node_scale_factor_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node scale factor mapping property.
-
-Remove a custom node scale factor mapping.
-
-&nbsp;
-
-### <a id="node_size_mapping_property" href="#node_size_mapping_property"><code>node_size_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node size on a per node basis.
-
-**`def get_node_size_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node size mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_size_mapping`](#default_node_size_mapping) is returned.
-
-**Returns**
-
-| Name                | Type | Description                                                                         |
-|---------------------| ----------- |-------------------------------------------------------------------------------------|
-| `node_size_mapping` | `Union[callable, str]` | A function that produces node sizes or the name of the property to use for binding. |
-
-**`def set_node_size_mapping(node_size_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node size mapping property.
-
-A custom size mapping is only used if there is no custom [`node_layout`](#node_layout_mapping_property) mapping.
-
-If a custom node layout mapping and a custom size mapping is set, the node layout mapping always takes precedence.
-
-**Parameters**
-
-| Name                | Type | Description                                                                                                                                                                                                                        |
-|---------------------| ----------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `node_size_mapping` | `Union[callable, str]` | A function that produces node sizes or the name of the property to use for binding. The function should have the same signature as `default_node_size_mapping` e.g. take in a node dictionary and return a positive float 2-tuple. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_size_mapping(node: dict):
-         ...
-In [4]: w.set_node_size_mapping(custom_node_size_mapping)
-```
-
-**`def del_node_size_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node size mapping property.
-
-Remove a custom node size mapping.
-
-&nbsp;
-
-### <a id="node_layout_mapping_property" href="#node_layout_mapping_property"><code>node_layout_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node layout on a per node basis.
-
-**`def get_node_layout_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node layout mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_layout_mapping`](#default_node_layout_mapping) is returned.
-Node layouts combine node position and node size. 
-The default node layout mapping is the currently set position and size mapping.
-
-If a custom size or position mapping is set using [`set_node_size_mapping`](#default_node_size_mapping) or [`set_node_position_mapping`](#default_node_position_mapping),
-the default layout changes.
-
-If a custom node layout mapping and a custom size/position mapping is set, the layout mapping takes precedence.
-
-**Returns**
-
-| Name                  | Type | Description                                                                           |
-|-----------------------| ----------- |---------------------------------------------------------------------------------------|
-| `node_layout_mapping` | `Union[callable, str]` | A function that produces node layouts or the name of the property to use for binding. |
-
-**`def set_node_layout_mapping(node_layout_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node layout mapping property.
-
-**Parameters**
-
-| Name                  | Type | Description                                                                                                                                                                                                                            |
-|-----------------------| ----------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `node_layout_mapping` | `Union[callable, str]` | A function that produces node layouts or the name of the property to use for binding. The function should have the same signature as `default_node_layout_mapping` e.g. take in a node dictionary and return a positive float 4-tuple. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_layout_mapping(node: dict):
-         ...
-In [4]: w.set_node_layout_mapping(custom_node_layout_mapping)
-```
-
-**`def del_node_layout_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node layout mapping property.
-
-
-Remove a custom node layout mapping.
-
-
-&nbsp;
-
-### <a id="edge_thickness_factor_mapping_property" href="#edge_thickness_factor_mapping_property"><code>edge_thickness_factor_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of edge thickness factor on a per edge basis.
-
-**`def get_edge_thickness_factor_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the edge thickness factor mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_edge_thickness_factor_mapping`](#default_edge_thickness_factor_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_thickness_factor_mapping` | `Union[callable, str]` | A function that produces edge thickness factors or the name of the property to use for binding. |
-
-**`def set_edge_thickness_factor_mapping(edge_thickness_factor_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the edge thickness factor mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_thickness_factor_mapping` | `Union[callable, str]` | A function that produces edge thickness factors or the name of the property to use for binding. The function should have the same signature as `default_edge_thickness_factor_mapping` e.g. take in an edge dictionary and return a positive float. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_thickness_factor_mapping(node: dict):
-         ...
-In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping)
-```
-
-**`def del_edge_thickness_factor_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the edge thickness factor mapping property.
-
-Remove a custom edge thickness factor mapping.
-
-&nbsp;
-
-### <a id="node_type_mapping_property" href="#node_type_mapping_property"><code>node_type_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node type on a per node basis.
-
-**`def get_node_type_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node type mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_type_mapping`](#default_node_type_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_type_mapping` | `Union[callable, str]` | A function that produces node types or the name of the property to use for binding. |
-
-**`def set_node_type_mapping(node_type_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node type mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_type_mapping` | `Union[callable, str]` | A function that produces node types or the name of the property to use for binding. The function should have the same signature as `default_node_type_mapping` e.g. take in a node dictionary and return a bool/int/float or str value. |
-
-**Notes**
-
-Node types give more information for some layout algorithms.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_type_mapping(node: dict):
-         ...
-In [4]: w.set_node_type_mapping(custom_node_type_mapping)
-```
-
-**References**
-
-[Layout with Custom Node Types](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#node_types)
-
-
-**`def del_node_type_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node type mapping property.
-
-Remove a custom node type mapping.
-
-&nbsp;
-
-### <a id="node_parent_mapping_property" href="#node_parent_mapping_property"><code>node_parent_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node parent on a per node basis.
-
-**`def get_node_parent_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node parent mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_parent_mapping`](#default_node_parent_mapping) is returned.
-
-**Returns**
-
-| Name | parent | Description |
-| ----------- | ----------- | ----------- |
-| `node_parent_mapping` | `Union[callable, str]` | A function that produces node parents or the name of the property to use for binding. |
-
-**`def set_node_parent_mapping(node_parent_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node parent mapping property.
-
-**Parameters**
-
-| Name | parent | Description                                                                                                                                                                                                                                    |
-| ----------- | ----------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `node_parent_mapping` | `Union[callable, str]` | A function that produces node parent ids or the name of the property to use for binding. The function should have the same signature as `default_node_parent_mapping` e.g. take in a node dictionary and return a bool/int/float or str value. |
-
-**Notes**
-
-Given node parent ids create group nodes instead of regular nodes.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_mapping(node: dict):
-         ...
-In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
-```
-
-
-**`def del_node_parent_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent mapping property.
-
-Remove a custom node parent mapping.
-
-&nbsp;### <a id="node_parent_group_mapping_property" href="#node_parent_group_mapping_property"><code>node_parent_group_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node parent group on a per node basis.
-
-**`def get_node_parent_group_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node parent group mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_parent_group_mapping`](#default_node_parent_group_mapping) is returned.
-
-**Returns**
-
-| Name | Type                   | Description                                                                           |
-| ----------- |------------------------|---------------------------------------------------------------------------------------|
-| `node_parent_group_mapping` | `Union[callable, str]` | A function that produces node parents or the name of the property to use for binding. |
-
-**`def set_node_parent_group_mapping(node_parent_group_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node parent group mapping property.
-
-**Parameters**
-
-| Name | Type                   | Description                                                                                                                                                                                                                                                                      |
-| ----------- |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `node_parent_group_mapping` | `Union[callable, str]` | A function that produces node parents ids or the name of the property to use for binding. The function should have the same signature as `default_node_parent_group_mapping` e.g. take in a node dictionary and return a str/int/float or dict with a required `label` property. |
-
-**Notes**
-
-For every returned parent group, a new group node is created. In contrast to `node_parent_mapping` this mapping does not
-require the group nodes to be part of the given node dataset.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_group_mapping(node: dict):
-         ...
-In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
-```
-
-
-**`def del_node_parent_group_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node parent group mapping property.
-
-Remove a custom node parent group mapping.
-
-&nbsp;
-
-### <a id="node_position_mapping_property" href="#node_position_mapping_property"><code>node_position_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node position on a per node basis.
-
-**`def get_node_position_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node position mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_position_mapping`](#default_node_position_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_position_mapping` | `Union[callable, str]` | A function that produces node positions or the name of the property to use for binding. |
-
-**`def set_node_position_mapping(node_position_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node position mapping property.
-
-A custom position mapping is only used if there is no custom [`node_layout`](#node_layout_mapping_property) mapping.
-
-If a custom node layout mapping and a custom position mapping is set, the node layout mapping takes precedence.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_position_mapping` | `Union[callable, str]` | A function that produces node positions or the name of the property to use for binding. The function should have the same signature as `default_node_position_mapping` e.g. take in a node dictionary and return a float 2-tuple. |
-
-**Notes**
-
-Only edge router algorithms consider node positions,  
-all other algorithms calculate node positions themselves.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_position_mapping(node: dict):
-         ...
-In [4]: w.set_node_position_mapping(custom_node_position_mapping)
-```
-
-**`def del_node_position_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node position mapping property.
-
-Remove a custom node position mapping.
-
-&nbsp;
-
-### <a id="heat_mapping_property" href="#heat_mapping_property"><code>heat_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of heat value on a per node and edge basis.
-
-**`def get_heat_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the heat mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_heat_mapping`](#default_heat_mapping) is returned.
-
-**Returns**
-
-| Name                | Type | Description                                                                          |
-|---------------------| ----------- |--------------------------------------------------------------------------------------|
-| `heat_mapping` | `Union[callable, str]` | A function that produces heat values or the name of the property to use for binding. |
-
-**`def set_heat_mapping(heat_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the heat mapping property.
-
-**Parameters**
-
-| Name           | Type | Description                                                                                                                                                                                                      |
-|----------------| ----------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `heat_mapping` | `Union[callable, str]` | A function that produces heat values or the name of the property to use for binding. The function should have the same signature as `default_heat_mapping` e.g. take in a element dictionary and return a float. |
-
-**Notes**
-
-This mapping is used for both edges and nodes
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_heat_mapping(element: dict):
-         ...
-In [4]: w.set_heat_mapping(custom_heat_mapping)
-```
-
-**`def del_heat_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the heat mapping property.
-
-Remove a custom heat mapping.
-
-&nbsp;
-
-### <a id="node_coordinate_mapping_property" href="#node_coordinate_mapping_property"><code>node_coordinate_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change of node coordinate on a per node basis.
-
-**`def get_node_coordinate_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the node coordinate mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_node_coordinate_mapping`](#default_node_coordinate_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_coordinate_mapping` | `Union[callable, str]` | A function that produces node coordinates or the name of the property to use for binding. |
-
-**`def set_node_coordinate_mapping(node_coordinate_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the node coordinate mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_coordinate_mapping` | `Union[callable, str]` | A function that produces node coordinates or the name of the property to use for binding. The function should have the same signature as `default_node_coordinate_mapping` e.g. take in a node dictionary and return a float 2-tuple. |
-
-**Notes**
-
-Only the map layout consider node coordinates,  
-all other algorithms ignore node coordinates.
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_coordinate_mapping(node: dict):
-         ...
-In [4]: w.set_node_coordinate_mapping(custom_node_coordinate_mapping)
-```
-
-**`def del_node_coordinate_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the node coordinate mapping property.
-
-Remove a custom node coordinate mapping.
-
-&nbsp;
-
-### <a id="directed_mapping_property" href="#directed_mapping_property"><code>directed_mapping: Union[callable, str]</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Data dependent change if an edge is directed or not.
-
-**`def get_directed_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Getter for the directed mapping property.
-
-**Notes**
-
-If no mapping is explicitly set, [`default_directed_mapping`](#default_directed_mapping) is returned.
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `directed_mapping` | `Union[callable, str]` | A function that produces edge directions or the name of the property to use for binding. |
-
-**`def set_directed_mapping(directed_mapping)`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Setter for the directed mapping property.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `directed_mapping` | `Union[callable, str]` | A function that produces edge directions or the name of the property to use for binding. The function should have the same signature as `default_directed_mapping` e.g. take in an edge dictionary and return a boolean value. |
-
-**Example**
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_directed_mapping(node: dict):
-         ...
-In [4]: w.set_directed_mapping(custom_directed_mapping)
-```
-
-**`def del_directed_mapping()`**<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Deleter for the directed mapping property.
-
-Remove a custom directed mapping.
-
-&nbsp;
-
-## Methods
-
-### <a id="init_method" href="#init_method"><code>def __init__(widget_layout = None, overview_enabled = None, context_start_with = '')</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GraphWidget constructor.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `widget_layout` | `ipywidgets.Layout` (optional) | Can be used to specify general widget appearance through css attributes. See [references](#References) for a link to their documentation and available keywords. |
-| `overview_enabled` | `bool` (optional) | Enable graph overview component. Default behaviour depends on cell width. |
-| `context_start_with` | `str` (optional) | Specify context tab name to start with that tab opened. Default behaviour is open with *About* dialog. Use `None` to start with closed sidebar. Available are *Neighborhood*, *Data*, *Search* and *About*. |
-
-&nbsp;
-
-### <a id="show_method" href="#show_method"><code>def show()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Display widget in Jupyter.
-
-Same as using single object reference in cell directly.
-
-**Notes**
-
-Mappings will only be applied shortly before showing the widget.
-
-&nbsp;
-
-### <a id="import_graph_method" href="#import_graph_method"><code>def import_graph(graph)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Import a graph object defined in an external module.
-
-Sets the [`nodes`](#nodes_property), [`edges`](#edges_property) and [`directed`](#directed_property) traitlets properties
-with information extracted from the graph object.   
-See [graph importers](#graph_importers) for object specific transformation details.
-
-**Parameters**
-
-| Name | Type                                                                                                    | Description |
-| ----------- |---------------------------------------------------------------------------------------------------------| ----------- |
-| `graph` | `networkx.{Multi}{Di}Graph`  &#124; `graph_tool.Graph` &#124; `igraph.Graph` &#124; `pygraphviz.AGraph` | The graph data structure. |
-
-**Example**
-```Python
-In [1]: from networkx import florentine_families_graph
-In [2]: from yfiles_jupyter_graphs import GraphWidget
-In [3]: w = GraphWidget()
-In [4]: w.import_graph(florentine_families_graph())
-```
-
-**Notes**
-
+**Note**<br>
 Some graph data structures have special attributes for labels, some don't.
-Same goes for other graph properties. 
+The same goes for other graph properties.
 This method and the underlying transformations should be seen as best effort
 to provide an easy way to input data into the widget.
 For more granular control use nodes and edges properties directly.
 
-&nbsp;
+## Automatic layout algorithms
 
-### <a id="circular_layout_method" href="#circular_layout_method"><code>def circular_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "circular".
+There are different layouts available to customize the arrangement of nodes and edges in the graph visualization.
 
-See [yFiles circular layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular)
-for more details about this specific algorithm.
+* `graph_layout: Optional[str]`
+    * By default, a force-directed layout is applied to the graph. Otherwise, the values of the below table can be used.
 
-&nbsp;
+| Value                      | Description                                                                                                    |
+|----------------------------|----------------------------------------------------------------------------------------------------------------|
+| `"circular"`               | Arranges nodes in singly cycle and bundles edge paths.                                                         |
+| `"circular_straight_line"` | Arranges nodes in singly cycle and uses straight-line edge paths.                                              |
+| `"hierarchic"`             | Organizes nodes in hierarchical layers to emphasize directional flow.                                          |
+| `"organic"`                | Uses a force-directed algorithm to create a natural, free-form<br> network layout.                             |
+| `"interactive_organic"`    | Similar to `ORGANIC` but dynamically adjusts the layout as the user<br>interacts with it.                      |
+| `"orthogonal"`             | Positions nodes on a grid with right-angled edges for clear,<br> structured diagrams.                          |
+| `"radial"`                 | Places a central node in the middle and arranges others in rings<br> around it to show hierarchy or influence. |
+| `"tree"`                   | Displays nodes in a branching tree structure from a defined root node.                                         |
+| `"map"`                    | Uses user-defined geo-coordinates to place the nodes on a world map                                            |
+| `"orthogonal_edge_router"` | Reroutes edges at right angles to minimize overlap and improve readability.                                    |
+| `"organic_edge_router"`    | Smoothly routes edges around obstacles in a natural, curved manner.                                            |
+| `"no_layout"`              | Leaves node positions unchanged without applying any automatic layout.                                         |
 
-### <a id="circular_straight_line_layout_method" href="#circular_straight_line_layout_method"><code>def circular_straight_line_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "circular_straight_line".
+For example, see [22_layouts.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-Similar to circular layout but with straight edge paths instead of bundled paths.
+The layouts can also be set through methods on the widget, e.g. `w.hierarchic_layout()`.
 
-See [yFiles circular layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-circular)
-for more details about this specific algorithm.
+For more in-depth information about layout algorithms, see [yFiles SDK – Layout Algorithms](https://www.yfiles.com/the-yfiles-sdk/key-benefits#layout-algorithms).
 
-&nbsp;
 
-### <a id="hierarchic_layout_method" href="#hierarchic_layout_method"><code>def hierarchic_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "hierarchic".
+## Data-driven visualization mappings
 
-See [yFiles hierarchic layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-hierarchical)
-for more details about this specific algorithm.
+You can adjust the graph visualization on an item basis by providing the following mapping functions.
+Each mapping is passed the original data object of your original node / edge data, and you need to return
+a mapping-specific dict or value to that is reflected in the graph visualization.
 
-&nbsp;
+### Property mappings 
 
-### <a id="organic_layout_method" href="#organic_layout_method"><code>def organic_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic".
+Specify what data should be put on the items `properties` field, and therefore considered by the other data mappings
 
-See [yFiles organic layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic)
-for more details about this specific algorithm.
+* `node_property_mapping: Optional[Union[str, Callable[[dict], dict]]]`
+* `edge_property_mapping: Optional[Union[str, Callable[[dict], dict]]]`
 
-&nbsp;
+By default, the origin dict for each item is returned.
 
-### <a id="orthogonal_layout_method" href="#orthogonal_layout_method"><code>def orthogonal_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "orthogonal".
+### Label mappings
 
-See [yFiles orthogonal layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-orthogonal)
-for more details about this specific algorithm.
+Specify the visualized text on each item.
 
-&nbsp;
+* `node_label_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]`
+* `edge_label_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]`
 
-### <a id="radial_layout_method" href="#radial_layout_method"><code>def radial_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "radial".
+Returning a string will first be resolved against the `properties` of the item's dict and if there is no such property 
+key the value is used as-is. Alternatively, return a `dict` with the following properties to have full 
+control over the item's text:
 
-See [yFiles radial layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-radial)
-for more details about this specific algorithm.
+#### Label style dict
+* `font: str`: The font used for the label.
+* `text: str`: The text that is added to the item.
+* `font_size: int`: The text size.
+* `font_weight: str`: The font weight. One of `"bold"`, `"bolder"`, `"normal"`, `"lighter"`.
+* `color: string`: The text color.
+* `background_color: str`: A color string that is used as the label's background.
+* `position: str`: Where the label is placed relatively to the node. One of `"center"`, `"north"`, `"east"`, `"south"`, `"west"`.
+* `maximum_width: int`: The maximum width of the label. By default, the label is clipped at the given size, or wrapped when `wrapping` is set.
+* `maximum_height: int`: The maximum height of the label. Clips the label at the given height. May be combined with `wrapping`.
+* `wrapping: str`: Text wrapping for the label. Must be set in combination with `maximum_width`. One of `"none"`, `"character"`, `"character_ellipsis"`, `"word"`, `"word_ellipsis"`.
+* `text_alignment: str`: The horizontal text alignment when `wrapping` is enabled. One of `"left"`, `"center"`, `"right"`.
 
-&nbsp;
+For example, see [02a_label_styles_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-### <a id="tree_layout_method" href="#tree_layout_method"><code>def tree_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "tree".
+### Color mappings
+Specify the color of each item.
+* `node_color_mapping: Optional[Union[str, Callable[[dict], str]]]`
+* `edge_color_mapping: Optional[Union[str, Callable[[dict], str]]]`
+  
+Return any CSS color value (e.g., a color constant, a hex value, a rgb string, etc.).
 
-See [yFiles tree layout guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-tree)
-for more details about this specific algorithm.
+For example, see [03_color_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-&nbsp;
+### Node and edge visualization mappings
+Specify the visualization properties of nodes and edges by returning a dict with specific properties.
 
-### <a id="orthogonal_edge_router_method" href="#orthogonal_edge_router_method"><code>def orthogonal_edge_router()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "orthogonal_edge_router".
+* `node_styles_mapping: Optional[Union[str, Callable[[dict], dict]]]`
+    * Return a dict with the following, optional properties:
+        * `color`: CSS color value
+        * `image`: URL or data URL of the image
+        * `shape`: One of `"ellipse"`, `"hexagon"`, `"hexagon2"`, `"octagon"`, `"pill"`, `"rectangle"`, `"round-rectangle"`, `"triangle"`
 
-See [yFiles orthogonal edge router guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-polyline_router)
-for more details about this specific algorithm.
+* `edge_styles_mapping: Optional[Union[str, Callable[[dict], dict]]]`
+    * Return a dict with the following, optional properties:
+        * `color`: `str` (a CSS color value)
+        * `directed`: `bool`
+        * `thickness`: `float`
+        * `dash_style`: One of `"solid"`, `"dash"`, `"dot"`, `"dash-dot"`, `"dash-dot-dot"`, or a dashing string like `"5 10"` or `"5, 10"`
 
-&nbsp;
+* `edge_thickness_factor_mapping: Optional[Union[str, Callable[[dict], float]]]`
+    * Controls the thickness of the edges with a factor that is multiplied to its base size.
 
-### <a id="interactive_organic_layout_method" href="#interactive_organic:layout_method"><code>def interactive_organic_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "interactive_organic_layout".
+* `directed_mapping: Optional[Union[str, Callable[[dict], bool]]]`
+    * Allows specifying which edge should be visualized with direction (indicated by an arrow).
 
-See [yFiles interactive organic layout guide](https://docs.yworks.com/yfileshtml/#/dguide/organic_layout#interactive_organic_layout)
-for more details about this specific algorithm.
+For example, see
 
-&nbsp;
+* [08_styles_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* [10_direction_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* [11_thickness_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-### <a id="organic_edge_router_method" href="#organic_edge_router_method"><code>def organic_edge_router()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "organic_edge_router".
+### Geometry mappings
+Specify the location and/or size of nodes. Note that the location of an item is overwritten from an automatic layout,
+unless the `no_layout` option is used.
 
-See [yFiles organic edge router guide](https://docs.yworks.com/yfileshtml/#/dguide/layout-summary#layout_styles-organic_router)
-for more details about this specific algorithm.
+* `node_scale_factor_mapping: Optional[Union[str, Callable[[dict], float]]]`
+    * Controls the node size with a factor that is multiplied to its base size.
 
-&nbsp;
+* `node_size_mapping: Optional[Union[str, Callable[[int, dict], float]]]`
+    * Controls the node size by width and height by returning a tuple `(width, height)`.
 
-### <a id="no_layout" href="#no_layout"><code>def no_layout()</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alias for GraphWidget.<a href="#graph_layout_property">graph_layout</a> = "no_layout".
+* `node_position_mapping: Optional[Union[str, Callable[[dict], Tuple[float, float]]]]`
+    * Controls the position of the node by returning a tuple: `(x, y)`.
 
-No layout algorithm is applied.
+* `node_layout_mapping: Optional[Union[str, Callable[[dict], Tuple[float, float, float, float]]]]`
+    * Controls the bounding box of the nodes (position and size) by returning a 4-tuple: `(x, y, width, height)`.
 
-&nbsp;
+For example, see
 
-### <a id="default_element_label_mapping" href="#default_element_label_mapping"><code>def default_element_label_mapping(index, element)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.
+* [04_layout_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* [05_size_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* [06_position_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-The default label mapping for graph elements.
+### Geospatial mapping
+Specify a geo-coordinate for the nodes that is used by the geospatial layout option.
 
-Element (dict) should have key properties which itself should be a dict.  
-Then one of the following values (in descending priority) is used as label if the label is a string:
-- properties["label"]
-- properties["yf_label"]
+* `node_coordinate_mapping: Optional[Union[str, Callable[[dict], Tuple[float, float]]]]`
+    * The mapping is supposed to return a tuple of `(latitude, longitude)`.
 
-When importing a Neo4j graph, the following properties are values are used as labels (in descending priority):
+For example, see [30_leaflet_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-- properties['name']
-- properties['title']
-- properties['label']
-- properties['description']
-- properties['caption']
-- properties['text']
+### Hierarchy mappings
+Specify which nodes should be grouped together.
 
-**Parameters**
+* `node_parent_mapping: Optional[Union[str, Callable[[dict], Union[str, int, float]]]]`
+    * This mapping does not create new group nodes and just resolves the mapped id against the given dataset.
+      It should be used when the group nodes are already **part of** the given dataset.
+    * It should return an id for each given node object which is then used as parent group node for this child node. If the parent node does not existing in the dataset, no grouping is created.
 
-| Name | Type | Description                                               |
-| ----------- | ----------- |-----------------------------------------------------------|
-| `index` | `int` | (optional) Position in corresponding nodes or edges list. |
-| `element` | `typing.Dict` | Can be both node or edge.                                 |
-
-**Notes**
-
-This is the default value for the {[node](#node_label_mapping_property)|[edge](#edge_label_mapping_property)}_label_mapping property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: w.{node|edge}_label_mapping = 'id'
+* `node_parent_group_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]`
+    * This mapping always creates new group nodes based on the given mapping.
+      It should be used when the group nodes are **not part of** the given dataset.
+    * The returned value must either be a `str` which is used as label and id for the new group node (i.e. nodes with the same mapped `str` are grouped together), or it must be a dict with a mandatory `label` property (return same labels for different nodes defines the group for these nodes) and optional more key-value pairs that are added as properties to the group. These additional properties are also considered when resolving other node mappings (e.g. for the styling of group nodes).
+    * Example Snippets
+      
+```python
+w = GraphWidget()
+w.nodes = airports
+w.edges = flight_paths
+# Assuming each node has a "country" property, group all nodes with the same "country" into groups, 
+# labeled with the value of the "country" property.
+w.node_parent_group_mapping = "country"
+display(w)
 ```
 
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_element_label_mapping(element: typing.Dict):
-         ...
-In [4]: w.set_{node|edge}_label_mapping(custom_element_label_mapping)
+```python
+w = GraphWidget()
+w.nodes = airports
+w.edges = flight_paths
+# Assuming each node has a "country" property, group all nodes with the same "country" into groups, 
+# and assign additional properties to group nodes that can be mapped e.g. by node_styles_mapping.
+w.node_parent_group_mapping = lambda node: {"label": node["properties"]["country"], "color": "#9F4499", "char_count": len(node["properties"]["country"])}
+display(w)
 ```
 
-**Returns**
+For example, see [31_nested_graphs.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-| Name                 | Type         | Description |
-|----------------------|--------------|------------|
-| `label`              | `str`        | The node or edge label. |
-| `label` | typing.Dict` | A `Dict` with mappings for style attributes. See below for supported values. |
+### Heat mapping
+Numeric values on nodes and edges may be visualized as a heatmap overlay on the graph visualization.
 
-Supported style attributes in the return `Dict`:
-```Python
-can contain the following key-value-pairs:
-    "text": str
-        Is used as the label.
-    "fontSize": number
-        Sets the size of the font.
-    "color": string
-        Css color value for the text color.
-    "backgroundColor": str
-        Css color value for the background color.
-    "position": 'center' | 'north' | 'east' | 'south' | 'west'
-        The label position at the node. Applies only to node labels.
-    "maximumWidth": number
-        The maximum width of the label. By default, the label is clipped at the given size, or wrapped when "wrapping" is set.
-    "maximumHeight": number
-        The maximum height of the label. Clips the label at the given height. May be combined with "wrapping".
-    "wrapping": 'character' | 'character_ellipsis' | 'none' | 'word' | 'word_ellipsis'
-        Text wrapping for the label. Must be set in combination with "maximumWidth".
-    "textAlignment": 'center' | 'left' | 'right'
-        The horizontal text alignment when "wrapping" is enabled.
-    "fontWeight": 'bold' | 'bolder' | 'lighter' | 'normal'`: The font thickness.
-        
-```
+* `heat_mapping: Optional[Union[str, Callable[[dict], float]]]`
+    * The returned heat needs to be normalized in-between `0` and `1`.
 
+For example, see [29_heat_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-&nbsp;
+### Fine-tuning automatic layouts
+Some mappings affect specific automatic layouts:
 
-### <a id="default_node_label_mapping" href="#default_node_label_mapping"><code>def default_node_label_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default label mapping for nodes.
+* `node_type_mapping: Optional[Union[str, Callable[[dict], str]]]`
+    * Assign a specific "type" string to each item. This affects most of the automatic layouts such that same types are placed adjacent to each other, if possible.
+    * See also [Layout with Custom Node Types](https://docs.yworks.com/yfileshtml/dguide/node_types/).
 
-See [`default_element_label_mapping`](#default_element_label_mapping).
+* `node_cell_mapping: Optional[Union[str, Callable[[dict], Tuple[int, int]]]]`
+    * Assign a cell tuple `(row, column)` to each node. This information is considered by the hierarchical layout and helps to fine-tune the result, for example, to highlight specific structures of the graph or to convey critical information.
 
-&nbsp;
+For example, see
 
-### <a id="default_edge_label_mapping" href="#default_edge_label_mapping"><code>def default_edge_label_mapping(index, edge)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default label mapping for edges.
+* [09_type_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+* "Node-cell mapping" in [v1.9.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-See [`default_element_label_mapping`](#default_element_label_mapping).
+## Edge direction
 
-&nbsp;
+By default, edges are visualized undirected, i.e., no arrowhead is rendered. This can be changed globally by setting the following property:
 
-### <a id="default_element_property_mapping" href="#default_element_property_mapping"><code>def default_element_property_mapping(index, element)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for graph elements.
+* `directed: bool`
+    * Specifies whether all edges should be rendered with an arrowhead indicating its direction.
 
-Simply selects the properties value of element dictionary.
+Alternatively, the direction visualization can be specified per edge through the [Node and edge visualization mappings](#node-and-edge-visualization-mappings).
 
-**Parameters**
+For example, see [10_direction_mapping.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-| Name | Type | Description                                               |
-| ----------- | ----------- |-----------------------------------------------------------|
-| `index` | `int` | (optional) Position in corresponding nodes or edges list. |
-| `element` | `typing.Dict` | Can be both node or edge.                                 |
+## Neighborhood
 
-**Notes**
+* `neighborhood: dict`
+    * Controls the initial neighborhood view settings by setting a dict with `max_distance` and `selected_nodes` keys.
+    * For example, `w.neighborhood = {"max_distance": 2, "selected_nodes":[2]}`.
+* `set_neighborhood(max_distance: int, selected_nodes: Optional[List[dict]])`
+   * Similar to the `neighborhood` property, allows setting the values directly.
 
-This is the default value for the {[node](#node_property_mapping_property)|[edge](#edge_property_mapping_property)}_property_mapping property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
+For example, see [24_neighborhood.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
+## Sidebar
 
-When a string is provided as the function argument, the key will be searched for in both the properties 
-dictionary and the element keys.
+The sidebar of the widget provides different panels that can be controlled interactively or programmatically by the following API:
 
-**Example**
+* `sidebar: dict`
+    * Controls the initial sidebar configuration by setting a dict with `enabled` and `start_with` keys.
+    * For example, `w.sidebar = {"enabled": True, "start_with": "Search"}`.
+* `set_sidebar(enabled: bool, start_with: str)`
+    * Similar to the `sidebar` property, allows setting the values directly.
 
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_element_property_mapping(element: typing.Dict):
-         ...
-In [4]: w.set_{node|edge}_property_mapping(custom_element_property_mapping)
-```
+Supported values for `start_with` are: `"About"`, `"Search"`, `"Data"`, `"Neighborhood"`
 
-**Returns**
+For example, see [23_sidebar.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `properties` | `typing.Dict` | The node or edge properties. |
+## Overview
 
-&nbsp;
+The graph overview shows the current viewport in relation to the whole graph and allows users to quickly navigate large structures.
 
-### <a id="default_node_property_mapping" href="#default_node_property_mapping"><code>def default_node_property_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for nodes.
+* `overview: bool`
+    * By default, the overview is expanded unless the widget's width is too small. This behavior can be overwritten by setting the property.
+* `set_overview(enabled: bool)`
+    * Similar to the `overview` property.
 
-See [`default_element_property_mapping`](#default_element_property_mapping).
+For example, see [25_overview.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-&nbsp;
+## Selection
 
-### <a id="default_edge_property_mapping" href="#default_edge_property_mapping"><code>def default_edge_property_mapping(index, edge)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default property mapping for edges.
+The currently selected node and edge dicts can be accessed in the Python cell with the following method:
 
-See [`default_element_property_mapping`](#default_element_property_mapping).
+* `get_selection(): Tuple[List[dict], List[dict]]`
+    * Returns a tuple of lists containing the selected nodes and edges, i.e., `nodes, edges = w.get_selection()`.
 
-&nbsp;
+For example, see [21_selection_export.ipynb](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb) <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
-### <a id="default_node_color_mapping" href="#default_node_color_mapping"><code>def default_node_color_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default color mapping for nodes.
+## Displaying the graph widget
 
-Provides constant value of '#15afac' for all nodes.
+To display the interactive graph widget in the Jupyter notebook use one of the following methods:
 
-**Parameters**
+* `show()`
+* `display(w)`
 
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_color_mapping`](#node_color_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_color_mapping(node: typing.Dict):
-          ...
-In [4]: w.set_node_color_mapping(custom_node_color_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `color` | `str` | CSS color value. |
-
-**References**
-
-[css color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
-
-[yFiles docs Fill api](https://docs.yworks.com/yfileshtml/#/api/Fill)
-
-&nbsp;
-
-### <a id="default_node_styles_mapping" href="#default_node_styles_mapping"><code>def default_node_styles_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default styles mapping for nodes.
-
-Provides constant value of {} for all nodes.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_styles_mapping`](#node_styles_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_styles_mapping(node: typing.Dict):
-          ...
-In [4]: w.set_node_styles_mapping(custom_node_styles_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description                                                                  |
-| ----------- | ----------- |------------------------------------------------------------------------------|
-| `styles` | `typing.Dict` | A `Dict` with mappings for style attributes. See below for supported values. |
-
-Supported style attributes in the return `Dict`:
-```Python
-can contain the following key-value-pairs:
-    "color": str
-        CSS color value.
-    "shape": str
-        The shape of the node. Possible values: 'ellipse', 'hexagon', 'hexagon2', 'octagon', 'pill', 'rectangle', 'round-rectangle' or 'triangle'.
-    "image": str
-        Url or data URL of the image.
-```
-
-**References**
-
-[css color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
-
-[Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)
-
-&nbsp;
-
-### <a id="default_edge_styles_mapping" href="#default_edge_styles_mapping"><code>def default_edge_styles_mapping(index, edge)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default styles mapping for edges.
-
-Provides constant value of {} for all edges.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in edges list. |
-| `edge` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`edge_styles_mapping`](#edge_styles_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_styles_mapping(edge: typing.Dict):
-          ...
-In [4]: w.set_edge_styles_mapping(custom_edge_styles_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description                                                                  |
-| ----------- | ----------- |------------------------------------------------------------------------------|
-| `styles` | `typing.Dict` | A `Dict` with mappings for style attributes. See below for supported values. |
-
-Supported style attributes in the return `Dict`:
-```Python
-can contain the following key-value-pairs:
-    "color": str
-        CSS color value.
-    "directed": bool
-        Whether the edge should be visualized with a target arrow.
-    "thickness": float
-        The thickness of the stroke of the edge.
-    "dashStyle": str
-        The dash styling of the edge. Can be one of the following strings:
-            - "solid"
-            - "dash"
-            - "dot"
-            - "dash-dot"
-            - "dash-dot-dot"
-            - "5 10"
-            - "5, 10"
-            - ...
-```
-
-**References**
-
-[css color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
-
-[Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)
-
-&nbsp;
-
-### <a id="default_edge_color_mapping" href="#default_edge_color_mapping"><code>def default_edge_color_mapping(index, edge)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default color mapping for edges.
-
-Provides constant value of '#15afac' for all edges.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in edges list. |
-| `edge` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`edge_color_mapping`](#edge_color_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_color_mapping(edge: typing.Dict):
-         ...
-In [4]: w.set_edge_color_mapping(custom_edge_color_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `color` | `str` | CSS color value. |
-
-**References**
-
-[css color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
-
-[yFiles docs Fill api](https://docs.yworks.com/yfileshtml/#/api/Fill)
-
-&nbsp;
-
-### <a id="default_node_scale_factor_mapping" href="#default_node_scale_factor_mapping"><code>def default_node_scale_factor_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default scale factor mapping for nodes.
-
-Provides constant value of 1.0 for all nodes.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_scale_factor_mapping`](#node_scale_factor_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_scale_factor_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_scale_factor_mapping(custom_node_scale_factor_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_scale_factor` | `float` | Positive scale factor. |
-
-&nbsp;
-
-### <a id="default_node_size_mapping" href="#default_node_size_mapping"><code>def default_node_size_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default size mapping for nodes.
-
-Provides constant value of [55.0,55.0] for all nodes.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
-
-**Notes**
-
-This is the default value for the [`node_size_mapping`](#node_size_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_size_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_size_mapping(custom_node_size_mapping)
-```
-
-**Returns**
-
-| Name        | Type            | Description                |
-|-------------|-----------------|----------------------------|
-| `node_size` | `float 2-tuple` | `size in (width, height).` |
-
-&nbsp;
-
-### <a id="default_node_layout_mapping" href="#default_node_layout_mapping"><code>def default_node_layout_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default layout mapping for nodes.
-
-Provides constant value of [0.00, 0.00, 55.0, 55.0] for all nodes.
-
-**Parameters**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `index` | `int` | Position in nodes list. |
-| `node` | `typing.Dict` | |
-
-**Notes**
-
-This is the default value for the [`node_layout_mapping`](#node_layout_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_layout_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_layout_mapping(custom_node_layout_mapping)
-```
-
-**Returns**
-
-| Name          | Type            | Description                                                  |
-|---------------|-----------------|--------------------------------------------------------------|
-| `node_layout` | `float 4-tuple` | `layout containin position and size: (x, y, width, height).` |
-
-&nbsp;
-
-### <a id="default_heat_mapping" href="#default_heat_mapping"><code>def default_heat_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default heat mapping for nodes and edges.
-
-Provides constant value of None for all nodes and edges.
-
-**Parameters**
-
-| Name      | Type | Description               |
-|-----------| ----------- |---------------------------|
-| `index`   | `int` | Position in element list. |
-| `element` | `typing.Dict` |                           |
-
-**Notes**
-
-This is the default value for the [`heat_mapping`](#heat_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_heat_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_heat_mapping(custom_heat_mapping)
-```
-
-**Returns**
-
-| Name   | Type            | Description                                 |
-|--------|-----------------|---------------------------------------------|
-| `heat` | `float` | `The heat can be a number between 0 and 1.` |
-
-&nbsp;
-
-### <a id="default_edge_thickness_factor_mapping" href="#default_edge_thickness_factor_mapping"><code>def default_edge_thickness_factor_mapping(index, edge)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default thickness factor mapping for edges.
-
-Provides constant value of 1.0 for all edges.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in edges list. |
-| `edge` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`edge_thickness_factor_mapping`](#edge_thickness_factor_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_edge_thickness_factor_mapping(edge: typing.Dict):
-         ...
-In [4]: w.set_edge_thickness_factor_mapping(custom_edge_thickness_factor_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `edge_thickness_factor` | `float` | Positive thickness factor. |
-
-&nbsp;
-
-### <a id="default_node_type_mapping" href="#default_node_type_mapping"><code>def default_node_type_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default type mapping for nodes.
-
-Provides constant value of `None` for all nodes.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_type_mapping`](#node_type_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_type_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_type_mapping(custom_node_type_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_type` | `None` | Node Type. |
-
-&nbsp;
-
-### <a id="default_node_parent_mapping" href="#default_node_parent_mapping"><code>def default_node_parent_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default parent mapping for nodes.
-
-Provides constant value of `None` for all nodes.
-
-**Parameters**
-
-| Name | parent | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_parent_mapping`](#node_parent_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_parent_mapping(custom_node_parent_mapping)
-```
-
-**Returns**
-
-| Name | parent | Description     |
-| ----------- | ----------- |-----------------|
-| `node_parent` | `None` | Node parent Id. |
-
-&nbsp;
-
-### <a id="default_node_parent_group_mapping" href="#default_node_parent_group_mapping"><code>def default_node_parent_group_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default parent group mapping for nodes.
-
-Provides constant value of `None` for all nodes.
-
-**Parameters**
-
-| Name | parent | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_parent_group_mapping`](#node_parent_group_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_parent_group_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_parent_group_mapping(custom_node_parent_group_mapping)
-```
-
-**Returns**
-
-| Name                | parent | Description        |
-|---------------------| ----------- |--------------------|
-| `node_parent_group` | `None` | Node parent label. |
-
-&nbsp;
-
-### <a id="default_node_position_mapping" href="#default_node_position_mapping"><code>def default_node_position_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default position mapping for nodes.
-
-Provides constant value of [0.0, 0.0] for all nodes.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_position_mapping`](#node_position_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_position_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_position_mapping(custom_node_position_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `node_position` | `float 2-tuple` | Position in euclidian plane. |
-
-&nbsp;
-
-### <a id="default_node_coordinate_mapping" href="#default_node_coordinate_mapping"><code>def default_node_coordinate_mapping(index, node)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default coordinate mapping for nodes.
-
-Provides constant value of `None` for all nodes.
-There is no coordinate mapping unless explicitly set.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) position in nodes list. |
-| `node` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`node_coordinate_mapping`](#node_coordinate_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_node_coordinate_mapping(node: typing.Dict):
-         ...
-In [4]: w.set_node_coordinate_mapping(custom_node_coordinate_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description                                 |
-| ----------- | ----------- |---------------------------------------------|
-| `node_coordinate` | `float 2-tuple` | geo coordinates in latitude and longitude . |
-
-&nbsp;
-
-### <a id="default_directed_mapping_method" href="#default_directed_mapping_method"><code>def default_directed_mapping(index, edge)</code></a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The default directed mapping for edges.
-
-Uses the graph wide directed attribute for all edges.
-
-**Parameters**
-
-| Name | Type | Description                        |
-| ----------- | ----------- |------------------------------------|
-| `index` | `int` | (optional) Position in edges list. |
-| `edge` | `typing.Dict` |                                    |
-
-**Notes**
-
-This is the default value for the [`directed_mapping`](#directed_mapping_property) property.  
-Can be 'overwritten' by setting the property with a function of the same signature.
-
-If the given mapping function has only one parameter (that is not typed as int),
-then it will be called with the element (typing.Dict) as first parameter.
-
-**Example**
-
-```Python
-In [1]: from yfiles_jupyter_graphs import GraphWidget
-In [2]: w = GraphWidget()
-In [3]: def custom_directed_mapping(edge: typing.Dict):
-         ...
-In [4]: w.set_directed_mapping(custom_directed_mapping)
-```
-
-**Returns**
-
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-| `directed` | `bool` | Whether the edge is directed or not. |
+For example, see any of the [example notebooks](https://github.com/yWorks/yfiles-jupyter-graphs/tree/main/examples).
