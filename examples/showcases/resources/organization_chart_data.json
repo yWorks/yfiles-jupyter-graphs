@@ -1,0 +1,403 @@
+{
+  "departments": [
+    {
+      "id": "d-01",
+      "name": "Executive",
+      "address": "1 Acme Plaza, Suite 600, Springfield, IL 62701",
+      "phone": "+1-555-0600"
+    },
+    {
+      "id": "d-02",
+      "name": "Engineering",
+      "address": "1 Acme Plaza, Suite 500, Springfield, IL 62701",
+      "phone": "+1-555-0500"
+    },
+    {
+      "id": "d-03",
+      "name": "Finance",
+      "address": "1 Acme Plaza, Suite 400, Springfield, IL 62701",
+      "phone": "+1-555-0400"
+    },
+    {
+      "id": "d-04",
+      "name": "Marketing",
+      "address": "1 Acme Plaza, Suite 300, Springfield, IL 62701",
+      "phone": "+1-555-0300"
+    },
+    {
+      "id": "d-05",
+      "name": "Operations",
+      "address": "1 Acme Plaza, Suite 200, Springfield, IL 62701",
+      "phone": "+1-555-0200"
+    },
+    {
+      "id": "d-06",
+      "name": "Human Resources",
+      "address": "1 Acme Plaza, Suite 100, Springfield, IL 62701",
+      "phone": "+1-555-0100"
+    }
+  ],
+  "people": [
+    {
+      "id": "p-001",
+      "name": "Margaret Okafor",
+      "role": "Chief Executive Officer",
+      "departmentId": "d-01",
+      "email": "margaret.okafor@acme-corp.com",
+      "phone": "+1-555-0101"
+    },
+    {
+      "id": "p-002",
+      "name": "David Chen",
+      "role": "Chief Technology Officer",
+      "departmentId": "d-02",
+      "email": "david.chen@acme-corp.com",
+      "phone": "+1-555-0102"
+    },
+    {
+      "id": "p-003",
+      "name": "Priya Sharma",
+      "role": "Chief Financial Officer",
+      "departmentId": "d-03",
+      "email": "priya.sharma@acme-corp.com",
+      "phone": "+1-555-0103"
+    },
+    {
+      "id": "p-004",
+      "name": "James Okonkwo",
+      "role": "Chief Marketing Officer",
+      "departmentId": "d-04",
+      "email": "james.okonkwo@acme-corp.com",
+      "phone": "+1-555-0104"
+    },
+    {
+      "id": "p-005",
+      "name": "Sofia Reyes",
+      "role": "Chief Operating Officer",
+      "departmentId": "d-05",
+      "email": "sofia.reyes@acme-corp.com",
+      "phone": "+1-555-0105"
+    },
+    {
+      "id": "p-006",
+      "name": "Tariq Hassan",
+      "role": "Chief Human Resources Officer",
+      "departmentId": "d-06",
+      "email": "tariq.hassan@acme-corp.com",
+      "phone": "+1-555-0106"
+    },
+    {
+      "id": "p-007",
+      "name": "Yuki Tanaka",
+      "role": "VP of Software Engineering",
+      "departmentId": "d-02",
+      "email": "yuki.tanaka@acme-corp.com",
+      "phone": "+1-555-0107"
+    },
+    {
+      "id": "p-008",
+      "name": "Lena Müller",
+      "role": "VP of Infrastructure",
+      "departmentId": "d-02",
+      "email": "lena.muller@acme-corp.com",
+      "phone": "+1-555-0108"
+    },
+    {
+      "id": "p-009",
+      "name": "Emmanuel Dubois",
+      "role": "VP of Financial Planning",
+      "departmentId": "d-03",
+      "email": "emmanuel.dubois@acme-corp.com",
+      "phone": "+1-555-0109"
+    },
+    {
+      "id": "p-010",
+      "name": "Aisha Patel",
+      "role": "VP of Accounting",
+      "departmentId": "d-03",
+      "email": "aisha.patel@acme-corp.com",
+      "phone": "+1-555-0110"
+    },
+    {
+      "id": "p-011",
+      "name": "Carlos Vega",
+      "role": "VP of Brand & Communications",
+      "departmentId": "d-04",
+      "email": "carlos.vega@acme-corp.com",
+      "phone": "+1-555-0111"
+    },
+    {
+      "id": "p-012",
+      "name": "Nina Kowalski",
+      "role": "VP of Supply Chain",
+      "departmentId": "d-05",
+      "email": "nina.kowalski@acme-corp.com",
+      "phone": "+1-555-0112"
+    },
+    {
+      "id": "p-013",
+      "name": "Obinna Eze",
+      "role": "VP of Facilities",
+      "departmentId": "d-05",
+      "email": "obinna.eze@acme-corp.com",
+      "phone": "+1-555-0113"
+    },
+    {
+      "id": "p-014",
+      "name": "Fatima Al-Rashid",
+      "role": "VP of Talent Acquisition",
+      "departmentId": "d-06",
+      "email": "fatima.al-rashid@acme-corp.com",
+      "phone": "+1-555-0114"
+    },
+    {
+      "id": "p-015",
+      "name": "Benjamin Torres",
+      "role": "Engineering Manager, Platform",
+      "departmentId": "d-02",
+      "email": "benjamin.torres@acme-corp.com",
+      "phone": "+1-555-0115"
+    },
+    {
+      "id": "p-016",
+      "name": "Mei-Ling Zhou",
+      "role": "Engineering Manager, Product",
+      "departmentId": "d-02",
+      "email": "mei-ling.zhou@acme-corp.com",
+      "phone": "+1-555-0116"
+    },
+    {
+      "id": "p-017",
+      "name": "Aleksei Volkov",
+      "role": "Infrastructure Manager",
+      "departmentId": "d-02",
+      "email": "aleksei.volkov@acme-corp.com",
+      "phone": "+1-555-0117"
+    },
+    {
+      "id": "p-018",
+      "name": "Danielle Moreau",
+      "role": "Financial Planning Manager",
+      "departmentId": "d-03",
+      "email": "danielle.moreau@acme-corp.com",
+      "phone": "+1-555-0118"
+    },
+    {
+      "id": "p-019",
+      "name": "Kwame Asante",
+      "role": "Accounting Manager",
+      "departmentId": "d-03",
+      "email": "kwame.asante@acme-corp.com",
+      "phone": "+1-555-0119"
+    },
+    {
+      "id": "p-020",
+      "name": "Ingrid Lindqvist",
+      "role": "Accounts Payable Manager",
+      "departmentId": "d-03",
+      "email": "ingrid.lindqvist@acme-corp.com",
+      "phone": "+1-555-0120"
+    },
+    {
+      "id": "p-021",
+      "name": "Ravi Krishnamurthy",
+      "role": "Brand Manager",
+      "departmentId": "d-04",
+      "email": "ravi.krishnamurthy@acme-corp.com",
+      "phone": "+1-555-0121"
+    },
+    {
+      "id": "p-022",
+      "name": "Camille Fontaine",
+      "role": "Content & Communications Manager",
+      "departmentId": "d-04",
+      "email": "camille.fontaine@acme-corp.com",
+      "phone": "+1-555-0122"
+    },
+    {
+      "id": "p-023",
+      "name": "Samuel Nkrumah",
+      "role": "Supply Chain Manager",
+      "departmentId": "d-05",
+      "email": "samuel.nkrumah@acme-corp.com",
+      "phone": "+1-555-0123"
+    },
+    {
+      "id": "p-024",
+      "name": "Hana Sato",
+      "role": "Logistics Manager",
+      "departmentId": "d-05",
+      "email": "hana.sato@acme-corp.com",
+      "phone": "+1-555-0124"
+    },
+    {
+      "id": "p-025",
+      "name": "Marcus Webb",
+      "role": "Facilities Manager",
+      "departmentId": "d-05",
+      "email": "marcus.webb@acme-corp.com",
+      "phone": "+1-555-0125"
+    },
+    {
+      "id": "p-026",
+      "name": "Zara Ahmed",
+      "role": "Procurement Manager",
+      "departmentId": "d-05",
+      "email": "zara.ahmed@acme-corp.com",
+      "phone": "+1-555-0126"
+    },
+    {
+      "id": "p-027",
+      "name": "Patrick O'Sullivan",
+      "role": "Talent Acquisition Manager",
+      "departmentId": "d-06",
+      "email": "patrick.osullivan@acme-corp.com",
+      "phone": "+1-555-0127"
+    },
+    {
+      "id": "p-028",
+      "name": "Nadia Petrov",
+      "role": "Employee Relations Manager",
+      "departmentId": "d-06",
+      "email": "nadia.petrov@acme-corp.com",
+      "phone": "+1-555-0128"
+    },
+    {
+      "id": "p-029",
+      "name": "Jerome Washington",
+      "role": "Senior Software Engineer",
+      "departmentId": "d-02",
+      "email": "jerome.washington@acme-corp.com",
+      "phone": "+1-555-0129"
+    },
+    {
+      "id": "p-030",
+      "name": "Ananya Iyer",
+      "role": "Software Engineer",
+      "departmentId": "d-02",
+      "email": "ananya.iyer@acme-corp.com",
+      "phone": "+1-555-0130"
+    },
+    {
+      "id": "p-031",
+      "name": "Lukas Becker",
+      "role": "Software Engineer",
+      "departmentId": "d-02",
+      "email": "lukas.becker@acme-corp.com",
+      "phone": "+1-555-0131"
+    },
+    {
+      "id": "p-032",
+      "name": "Chioma Obi",
+      "role": "DevOps Engineer",
+      "departmentId": "d-02",
+      "email": "chioma.obi@acme-corp.com",
+      "phone": "+1-555-0132"
+    },
+    {
+      "id": "p-033",
+      "name": "Felipe Castillo",
+      "role": "Financial Analyst",
+      "departmentId": "d-03",
+      "email": "felipe.castillo@acme-corp.com",
+      "phone": "+1-555-0133"
+    },
+    {
+      "id": "p-034",
+      "name": "Yemi Adeyemi",
+      "role": "Senior Accountant",
+      "departmentId": "d-03",
+      "email": "yemi.adeyemi@acme-corp.com",
+      "phone": "+1-555-0134"
+    },
+    {
+      "id": "p-035",
+      "name": "Simone Beaumont",
+      "role": "Accounts Payable Specialist",
+      "departmentId": "d-03",
+      "email": "simone.beaumont@acme-corp.com",
+      "phone": "+1-555-0135"
+    },
+    {
+      "id": "p-036",
+      "name": "Hiroshi Nakamura",
+      "role": "Marketing Specialist",
+      "departmentId": "d-04",
+      "email": "hiroshi.nakamura@acme-corp.com",
+      "phone": "+1-555-0136"
+    },
+    {
+      "id": "p-037",
+      "name": "Amara Diallo",
+      "role": "Content Writer",
+      "departmentId": "d-04",
+      "email": "amara.diallo@acme-corp.com",
+      "phone": "+1-555-0137"
+    },
+    {
+      "id": "p-038",
+      "name": "Lars Eriksson",
+      "role": "Logistics Coordinator",
+      "departmentId": "d-05",
+      "email": "lars.eriksson@acme-corp.com",
+      "phone": "+1-555-0138"
+    },
+    {
+      "id": "p-039",
+      "name": "Blessing Osei",
+      "role": "Procurement Specialist",
+      "departmentId": "d-05",
+      "email": "blessing.osei@acme-corp.com",
+      "phone": "+1-555-0139"
+    },
+    {
+      "id": "p-040",
+      "name": "Valentina Cruz",
+      "role": "HR Specialist",
+      "departmentId": "d-06",
+      "email": "valentina.cruz@acme-corp.com",
+      "phone": "+1-555-0140"
+    }
+  ],
+  "edges": [
+    { "source": "p-001", "target": "p-002" },
+    { "source": "p-001", "target": "p-003" },
+    { "source": "p-001", "target": "p-004" },
+    { "source": "p-001", "target": "p-005" },
+    { "source": "p-001", "target": "p-006" },
+    { "source": "p-002", "target": "p-007" },
+    { "source": "p-002", "target": "p-008" },
+    { "source": "p-003", "target": "p-009" },
+    { "source": "p-003", "target": "p-010" },
+    { "source": "p-004", "target": "p-011" },
+    { "source": "p-005", "target": "p-012" },
+    { "source": "p-005", "target": "p-013" },
+    { "source": "p-006", "target": "p-014" },
+    { "source": "p-007", "target": "p-015" },
+    { "source": "p-007", "target": "p-016" },
+    { "source": "p-008", "target": "p-017" },
+    { "source": "p-009", "target": "p-018" },
+    { "source": "p-010", "target": "p-019" },
+    { "source": "p-010", "target": "p-020" },
+    { "source": "p-011", "target": "p-021" },
+    { "source": "p-011", "target": "p-022" },
+    { "source": "p-012", "target": "p-023" },
+    { "source": "p-012", "target": "p-024" },
+    { "source": "p-013", "target": "p-025" },
+    { "source": "p-013", "target": "p-026" },
+    { "source": "p-014", "target": "p-027" },
+    { "source": "p-014", "target": "p-028" },
+    { "source": "p-015", "target": "p-029" },
+    { "source": "p-016", "target": "p-030" },
+    { "source": "p-016", "target": "p-031" },
+    { "source": "p-017", "target": "p-032" },
+    { "source": "p-018", "target": "p-033" },
+    { "source": "p-019", "target": "p-034" },
+    { "source": "p-020", "target": "p-035" },
+    { "source": "p-021", "target": "p-036" },
+    { "source": "p-022", "target": "p-037" },
+    { "source": "p-024", "target": "p-038" },
+    { "source": "p-026", "target": "p-039" },
+    { "source": "p-027", "target": "p-040" }
+  ]
+}

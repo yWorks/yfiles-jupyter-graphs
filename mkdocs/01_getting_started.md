@@ -1,47 +1,57 @@
 # Getting started
 
-## Requirements
-- [python](https://www.python.org/) >= 3.6
+## Install
+
+Prerequisites:
+- [python](https://www.python.org/) >= 3.7
 - [jupyter](https://jupyter.org/install) notebook or lab
 - [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) >= 7.6.0
 
-## Installation
-
-If you already have Jupyter installed, just `pip install` the prebuilt extension from the [Python Package Index](https://pypi.org/).
-
 ```bash
-pip install yfiles_jupyter_graphs
+pip install yfiles-jupyter-graphs
 ```
 
-To install `yfiles_jupyter_graphs` from within a Jupyter Notebook cell, use `%pip` instead of `!pip` to ensure that it
-is installed in the correct Python environment.
+> Important: When installing from inside a notebook, prefer `%pip install yfiles-jupyter-graphs` over `!pip install` to
+> ensure the package is installed into the running kernel’s environment.
 
-If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use [`docker`](https://www.docker.com/), too:
-
-Form a shell, create a docker image that contains all that is required:
+### Docker (optional)
+If you want to start with a clean Jupyter environment that has the widget preinstalled:
 
 ```bash
 mkdir yfiles-jupyter && cd yfiles-jupyter
 echo -e "FROM jupyter/scipy-notebook\nRUN pip install yfiles-jupyter-graphs" > Dockerfile
 docker build -t yfiles-jupyter-graphs-on-docker .
-```
-
-(the above has been tested successfully with `scipy-notebook:lab-3.4.7` and `yfiles-jupyter-graphs==1.2.1`), but we want to make sure that it will also work with  upcoming versions - file an issue if it doesn't work for you!)
-
-You can then create a fresh new instance of your server from this image like so:
-
-```bash
 docker run -it -p 8888:8888 --name yfiles-jupyter yfiles-jupyter-graphs-on-docker
 ```
 
-## Usage
+> This approach has been verified with `scipy-notebook:lab-3.4.7` and `yfiles-jupyter-graphs==1.2.1`.
+> If you encounter issues with a newer image, please open an issue.
+ 
+## Quickstart
+Display a simple graph:
 
-In a notebook which has the wiget installed in the server, in a Python cell, you can then do this:
-
-## Usage
 ```python
-"""Execute in jupyter notebook or jupyter lab"""
-from yfiles_jupyter_graphs import GraphWidget
-# shows empty widget
-GraphWidget()
+from yfiles_jupyter_graphs import GraphWidget, Node, Edge
+w = GraphWidget(
+    nodes=[
+        Node(id=0, properties={"firstName": "Alpha", "label": "Person A"}),
+        Node(id=1, properties={"firstName": "Bravo", "label": "Person B"}),
+        Node(id=2, properties={"firstName": "Charlie", "label": "Person C", "has_hat": False}),
+        Node(id=3, properties={"firstName": "Delta", "label": "Person D", "likes_pizza": True})
+    ],
+    edges=[
+        Edge(start=0, end=1, properties={"since": "1992", "label": "knows"}),
+        Edge(start=1, end=3, properties={"label": "knows", "since": "1992"}),
+        Edge(start=2, end=3, properties={"label": "knows", "since": "1992"}),
+        Edge(start=0, end=2, properties={"label": "knows", "since": 234})
+    ],
+    directed=True
+)
+display(w)
 ```
+
+Use the toolbar and sidebar to inspect data, search graph, explore neighborhood and change layouts.
+
+### Next steps
+- Check out [more examples](https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/00_toc.ipynb) for the different features.
+- Jump directly to the API [documentation](https://yworks.github.io/yfiles-jupyter-graphs/02_graph_widget/).

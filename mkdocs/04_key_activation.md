@@ -4,11 +4,12 @@ yFiles Graphs for Jupyter is allow-listed on well-known domains like
 
 - [JupyterLab or Jupyter Notebook](https://jupyter.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [Google Colaboratory](https://colab.research.google.com/)
-- [Google Vertex AI Workbench](https://cloud.google.com/vertex-ai)
-- [Google Dataproc](https://cloud.google.com/dataproc)
+- [Google Colab](https://colab.research.google.com/)
+- [Gemini Enterprise Agent Platform](https://cloud.google.com/products/gemini-enterprise-agent-platform)
+- [Managed Service for Apache Spark](https://cloud.google.com/products/managed-service-for-apache-spark)
 - [Azure Machine Learning Studio Notebooks](https://azure.microsoft.com/en-us/products/machine-learning/)
 - [Amazon SageMaker](https://aws.amazon.com/sagemaker/)
+- [Kaggle](https://www.kaggle.com)
 
 and
 
@@ -17,8 +18,7 @@ and
 
 ## Unknown domains
 
-If your domain is unknown to the widget, you will see a popup in the widget that states that it runs on an unknown
-domain.
+If your domain is unknown to the widget, you will see a popup in the widget that states that it runs on an unknown domain.
 
 The widget's popup provides a button with which you can temporarily continue using yFiles Graphs for Jupyter.
 
