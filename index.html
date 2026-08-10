@@ -42,13 +42,17 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">yFiles Graphs for Jupyter</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#yfiles-jupyter-graphs-for-neo4j">yfiles-jupyter-graphs-for-neo4j</a>
+    <li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#yfiles-jupyter-graphs-for-sparql">yfiles-jupyter-graphs-for-sparql</a>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#supported-environments">Supported Environments</a>
+    <li class="toctree-l2"><a class="reference internal" href="#choose-your-path">Choose your path</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    <li class="toctree-l2"><a class="reference internal" href="#where-it-runs">Where it runs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ai-coding-assistant">AI Coding Assistant</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#feature-gallery">Feature Gallery</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a>
     </li>
@@ -106,34 +110,82 @@
     <img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-logo.svg" alt='yFiles Graphs for Jupyter logo'  width="400px" style='max-width: 400px'>
 </p>
 
-<p><a href="https://badge.fury.io/py/yfiles-jupyter-graphs"><img alt="PyPI version" src="https://badge.fury.io/py/yfiles-jupyter-graphs.svg" /></a></p>
-<p>A graph diagram visualization widget for Jupyter Notebooks and Labs powered by <a href="https://www.yfiles.com/the-yfiles-sdk/web/yfiles-for-html?utm_campaign=yfiles4jupyter&amp;utm_source=github&amp;utm_medium=readme">yFiles for HTML</a>.</p>
-<p><img alt="A screenshot showing the yFiles graph widget in a jupyter lab notebook" src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/yfiles-jupyter-graphs-introduction.png" /></p>
-<h2 id="yfiles-jupyter-graphs-for-neo4j"><code>yfiles-jupyter-graphs-for-neo4j</code></h2>
-<p>For working with Neo4j databases, we
-built <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/">yfiles-jupyter-graphs-for-neo4j</a>, an open-source
-extension on top of <code>yfiles-jupyter-graphs</code>. This extension provides an easier Python interface for the
-driver and allows direct configuration of data mappings depending on the label or type of the node or relationship.</p>
-<h2 id="yfiles-jupyter-graphs-for-sparql"><code>yfiles-jupyter-graphs-for-sparql</code></h2>
-<p>For working with RDF databases and SPARQL queries, we built
-<a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql/">yfiles-jupyter-graphs-for-sparql</a>, an open-source
-extension on top of <code>yfiles-jupyter-graphs</code>. This extension provides a specifically tailored API for easier and more
-domain specific usage in RDF databases with SPARQL.</p>
-<p>So if you are planning to use the extension with Neo4j databases, consider
-using <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/">yfiles-jupyter-graphs-for-neo4j</a>.</p>
-<h2 id="supported-environments">Supported Environments</h2>
+<p><a href="https://badge.fury.io/py/yfiles-jupyter-graphs"><img alt="PyPI version" src="https://badge.fury.io/py/yfiles-jupyter-graphs.svg" /></a>
+<a href="https://pypi.org/project/yfiles-jupyter-graphs/"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/yfiles-jupyter-graphs" /></a>
+<a href="https://pypi.org/project/yfiles-jupyter-graphs/"><img alt="Python Versions" src="https://img.shields.io/pypi/pyversions/yfiles-jupyter-graphs.svg" /></a>
+<a href="LICENSE.md"><img alt="License" src="https://img.shields.io/badge/license-See%20LICENSE.md-blue" /></a></p>
+<blockquote>
+<p>Using Neo4j, Kuzu, or SPARQL? Use our dedicated integrations instead:
+<a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j">Neo4j</a> ·
+<a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-kuzu">Kuzu</a> ·
+<a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql">SPARQL</a></p>
+</blockquote>
+<p>A graph visualization widget for Jupyter Notebook and JupyterLab powered by <a href="https://www.yfiles.com/the-yfiles-sdk/web/yfiles-for-html?utm_campaign=yfiles4jupyter&amp;utm_source=github&amp;utm_medium=readme">yFiles for HTML</a>.</p>
+<p>Visualize graphs from many sources out of the box:
+- <a href="https://networkx.org/">NetworkX</a> ✅
+- <a href="https://igraph.org/python/">igraph</a> ✅
+- <a href="https://pypi.org/project/neo4j/">neo4j</a> ✅ (use the dedicated <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j">neo4j package</a>)
+- <a href="https://pygraphviz.github.io/">pygraphviz</a> ✅
+- Native Python dicts/lists ✅</p>
+<p>Many more formats are supported via <a href="https://networkx.org/documentation/stable/reference/readwrite/index.html#reading-and-writing-graphs">NetworkX imports</a>.</p>
+<h3 id="quickstart">Quickstart</h3>
+<p>Display a simple graph:</p>
+<pre><code class="language-python">from yfiles_jupyter_graphs import GraphWidget, Node, Edge
+w = GraphWidget(
+    nodes=[
+        Node(id=0, properties={&quot;firstName&quot;: &quot;Alpha&quot;, &quot;label&quot;: &quot;Person A&quot;}),
+        Node(id=1, properties={&quot;firstName&quot;: &quot;Bravo&quot;, &quot;label&quot;: &quot;Person B&quot;}),
+        Node(id=2, properties={&quot;firstName&quot;: &quot;Charlie&quot;, &quot;label&quot;: &quot;Person C&quot;, &quot;has_hat&quot;: False}),
+        Node(id=3, properties={&quot;firstName&quot;: &quot;Delta&quot;, &quot;label&quot;: &quot;Person D&quot;, &quot;likes_pizza&quot;: True})
+    ],
+    edges=[
+        Edge(start=0, end=1, properties={&quot;since&quot;: &quot;1992&quot;, &quot;label&quot;: &quot;knows&quot;}),
+        Edge(start=1, end=3, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}),
+        Edge(start=2, end=3, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}),
+        Edge(start=0, end=2, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: 234})
+    ],
+    directed=True
+)
+display(w)
+</code></pre>
+<hr />
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li>Fast, production-grade graph rendering (yFiles engine)</li>
+<li>Multiple automatic layouts (hierarchical, organic, circular, ...)</li>
+<li>Data-driven styling (colors, sizes, labels, ...) from node/edge attributes</li>
+<li>Sidebars for search, data inspection, and neighborhood exploration</li>
+<li>Heatmaps and map visualization</li>
+</ul>
+<h3 id="choose-your-path">Choose your path</h3>
+<p>There are extensions built on top of <code>yfiles-jupyter-graphs</code> that provide tailored APIs and convenient data mapping for their respective ecosystems:</p>
+<ul>
+<li>If you work with Neo4j: use <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j">yfiles-jupyter-graphs-for-neo4j</a></li>
+<li>If you work with Kuzu: use <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-kuzu">yfiles-jupyter-graphs-for-kuzu</a></li>
+<li>If you query via SPARQL: use <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-sparql">yfiles-jupyter-graphs-for-sparql</a></li>
+</ul>
+<p>Otherwise, continue below with <code>yfiles-jupyter-graphs</code>.</p>
+<h3 id="where-it-runs">Where it runs</h3>
 <ul>
 <li><a href="https://jupyter.org/">JupyterLab or Jupyter Notebook</a></li>
 <li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a href="https://colab.research.google.com/">Google Colaboratory</a></li>
-<li><a href="https://cloud.google.com/vertex-ai">Google Vertex AI Workbench</a></li>
-<li><a href="https://cloud.google.com/dataproc">Google Dataproc</a></li>
+<li><a href="https://colab.research.google.com/">Google Colab</a></li>
+<li><a href="https://cloud.google.com/products/gemini-enterprise-agent-platform">Gemini Enterprise Agent Platform</a></li>
+<li><a href="https://cloud.google.com/products/managed-service-for-apache-spark">Managed Service for Apache Spark</a></li>
 <li><a href="https://azure.microsoft.com/en-us/products/machine-learning/">Azure Machine Learning Studio Notebooks</a></li>
 <li><a href="https://aws.amazon.com/sagemaker/">Amazon SageMaker</a></li>
 <li><a href="https://www.kaggle.com">Kaggle</a></li>
 <li>Just try it in your preferred platform for Jupyter notebooks</li>
 </ul>
-<h2 id="features">Features</h2>
+<h3 id="ai-coding-assistant">AI Coding Assistant</h3>
+<p>Working with an AI coding agent? Our <a href="agent-guide.md">agent guide</a> contains instructions and best practices for coding agents.</p>
+<p><strong>Example start prompt:</strong></p>
+<blockquote>
+<p>Read the instructions at https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/refs/heads/main/agent-guide.md. 
+Then, create a new Jupyter notebook that step-by-step explores the <data-file-path> and visualizes it using yfiles-jupyter-graphs. 
+Be creative and design visualizations that highlight interesting insights and aspects of the data.</p>
+</blockquote>
+<h3 id="feature-gallery">Feature Gallery</h3>
 <table>
     <tr>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/28_little-alchemy_example.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/neighborhood.png" title="See Node Neighborhood" alt="neighborhood sidebar"></a><br>
@@ -144,8 +196,8 @@ using <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/">yfile
         <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb">Choose Graph Layout</a></td>
     </tr>
     <tr>
-        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/data.png" title="Investigate Nodes and Edges Data" alt="data sidebar"></a><br>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb">Investigate Nodes or Edges Data</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/feature_showcase.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/data.png" title="Investigate Nodes and Edges Data" alt="data sidebar"></a><br>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/feature_showcase.ipynb">Investigate Nodes or Edges Data</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/search.png" title="Search for Nodes or Edges" alt="search sidebar"></a><br>
@@ -156,8 +208,8 @@ using <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/">yfile
         <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb">Import Graph Data</a></td>
     </tr>
     <tr>
-        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/element_color_mapping.png" title="Make Data Dependent Property Changes" alt="element color mapping"></a><br>
-        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb">Make Data Dependent Property Changes</a></td>
+        <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.10.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/data_driven_visualization.png" title="Make Data Dependent Property Changes" alt="element color mapping"></a><br>
+        <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.10.ipynb">Make Data Dependent Property Changes</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb"><img src="https://raw.githubusercontent.com/yWorks/yfiles-jupyter-graphs/main/screenshots/heat_mapping.png" title="Define a heatmap background" alt="heat mapping"></a><br>
@@ -174,11 +226,11 @@ using <a href="https://github.com/yWorks/yfiles-jupyter-graphs-for-neo4j/">yfile
 </table>
 
 <p>For example code look <a href="https://github.com/yWorks/yfiles-jupyter-graphs/tree/main/examples">here</a>.</p>
-<h2 id="code-of-conduct">Code of Conduct</h2>
+<h3 id="code-of-conduct">Code of Conduct</h3>
 <p>This project and everyone participating in it is governed by the <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.
 By participating, you are expected to uphold this code.
 Please report unacceptable behavior to <a href="mailto:contact@yworks.com">contact@yworks.com</a>.</p>
-<h2 id="feedback">Feedback</h2>
+<h3 id="feedback">Feedback</h3>
 <p>This widget is by no means perfect.
 If you find something is not working as expected
 we are glad to receive an issue report from you.
@@ -187,15 +239,16 @@ and check if the issue is not an unsupported feature or known issue.
 If you did not find anything related, report a new issue with necessary information.
 Please also provide a clear and descriptive title and stick to the issue templates.
 See <a href="https://github.com/yWorks/yfiles-jupyter-graphs/issues">issues</a>.</p>
-<h2 id="dependencies">Dependencies</h2>
+<h3 id="dependencies">Dependencies</h3>
 <ul>
-<li><a href="https://github.com/scttcper/tinycolor">@ctrl/tinycolor</a></li>
 <li><a href="https://github.com/jupyter-widgets/ipywidgets">@jupyter-widgets/base</a></li>
 <li><a href="https://github.com/Templarian/MaterialDesign-JS">@mdi/js</a></li>
+<li><a href="https://leafletjs.com/">Leaflet</a></li>
+<li><a href="[https://github.com/scttcper/tinycolor](https://github.com/bgrins/TinyColor)">tinycolor2</a></li>
 <li><a href="https://vuejs.org/">Vue</a></li>
 <li><a href="https://github.com/chenfengjw163/vue-json-viewer">vue-json-viewer</a></li>
 </ul>
-<h2 id="license">License</h2>
+<h3 id="license">License</h3>
 <p>See <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/LICENSE.md">LICENSE</a> file.</p>
               
             </div>
@@ -249,5 +302,5 @@ See <a href="https://github.com/yWorks/yfiles-jupyter-graphs/issues">issues</a>.
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-01-22 08:18:56.051115+00:00
+Build Date UTC : 2026-08-10 08:18:15.910181+00:00
 -->

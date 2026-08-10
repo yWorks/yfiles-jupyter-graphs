@@ -100,6 +100,40 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#selection">Selection</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-classes-and-enums">Data classes and enums</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#node">Node</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#edge">Edge</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nodestyle">NodeStyle</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nodeshape">NodeShape</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#edgestyle">EdgeStyle</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#dashstyle">DashStyle</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#labelstyle">LabelStyle</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#labelposition">LabelPosition</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#textwrapping">TextWrapping</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fontweight">FontWeight</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#textalignment">TextAlignment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#layout">Layout</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#displaying-the-graph-widget">Displaying the graph widget</a>
     </li>
     </ul>
@@ -176,20 +210,27 @@
 </tr>
 </tbody>
 </table>
+<p>The widget's data and configuration properties can also be provided as constructor keyword
+arguments. This includes <code>nodes</code>, <code>edges</code>, <code>license</code>, and the data-driven visualization
+mapping properties described below, such as <code>node_label_mapping</code>, <code>node_color_mapping</code>,
+<code>node_layout_mapping</code>, <code>edge_label_mapping</code>, and <code>directed_mapping</code>. Passing a property as a
+constructor keyword argument is equivalent to assigning it after construction, for example:</p>
+<pre><code class="language-python">w = GraphWidget(nodes=nodes, edges=edges, node_label_mapping=&quot;label&quot;)
+</code></pre>
 <h3 id="example">Example</h3>
-<pre><code class="language-Python">from yfiles_jupyter_graphs import GraphWidget
+<pre><code class="language-Python">from yfiles_jupyter_graphs import GraphWidget, Node, Edge
 w = GraphWidget()
 w.nodes = [
-    {&quot;id&quot;: 0, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Alpha&quot;, &quot;label&quot;: &quot;Person A&quot;}},
-    {&quot;id&quot;: &quot;one&quot;, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Bravo&quot;, &quot;label&quot;: &quot;Person B&quot;}},
-    {&quot;id&quot;: 2.0, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Charlie&quot;, &quot;label&quot;: &quot;Person C&quot;, &quot;has_hat&quot;: False}},
-    {&quot;id&quot;: True, &quot;properties&quot;: {&quot;firstName&quot;: &quot;Delta&quot;, &quot;label&quot;: &quot;Person D&quot;, &quot;likes_pizza&quot;: True}}
+    Node(id=0, properties={&quot;firstName&quot;: &quot;Alpha&quot;, &quot;label&quot;: &quot;Person A&quot;}),
+    Node(id=1, properties={&quot;firstName&quot;: &quot;Bravo&quot;, &quot;label&quot;: &quot;Person B&quot;}),
+    Node(id=2, properties={&quot;firstName&quot;: &quot;Charlie&quot;, &quot;label&quot;: &quot;Person C&quot;, &quot;has_hat&quot;: False}),
+    Node(id=3, properties={&quot;firstName&quot;: &quot;Delta&quot;, &quot;label&quot;: &quot;Person D&quot;, &quot;likes_pizza&quot;: True})
 ]
 w.edges = [
-    {&quot;id&quot;: &quot;zero&quot;, &quot;start&quot;: 0, &quot;end&quot;: &quot;one&quot;, &quot;properties&quot;: {&quot;since&quot;: &quot;1992&quot;, &quot;label&quot;: &quot;knows&quot;}},
-    {&quot;id&quot;: 1, &quot;start&quot;: &quot;one&quot;, &quot;end&quot;: True, &quot;properties&quot;: {&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}},
-    {&quot;id&quot;: 2.0, &quot;start&quot;: 2.0, &quot;end&quot;: True, &quot;properties&quot;: {&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}},
-    {&quot;id&quot;: False, &quot;start&quot;: 0, &quot;end&quot;: 2.0, &quot;properties&quot;: {&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: 234}}
+    Edge(start=0, end=1, properties={&quot;since&quot;: &quot;1992&quot;, &quot;label&quot;: &quot;knows&quot;}),
+    Edge(start=1, end=3, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}),
+    Edge(start=2, end=3, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}),
+    Edge(start=0, end=2, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: 234})
 ]
 display(w)
 </code></pre>
@@ -198,20 +239,33 @@ display(w)
 <p>To pass data to the widget, you need to set the <code>nodes</code> and <code>edges</code> properties of the widget. There are only few requirements to the structuring of the provided data:</p>
 <ul>
 <li>
-<p><code>nodes: List[dict[str, Any]]</code></p>
+<p><code>nodes: List[Union[Node, dict[str, Any]]]</code></p>
 <ul>
 <li>Each node must provide an <code>id</code> property.</li>
 </ul>
 </li>
 <li>
-<p><code>edges: List[dict[str, Any]]</code></p>
+<p><code>edges: List[Union[Edge, dict[str, Any]]]</code></p>
 <ul>
 <li>Each edge must provide a <code>start</code> and <code>end</code> property that resolve to the node <code>id</code>s to form the graph structure.</li>
 </ul>
 </li>
 </ul>
 <p>Optionally, provide additional properties in a <code>properties</code> property.</p>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb">01_introduction.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>Instead of plain dictionaries, the <a href="#node"><code>Node</code></a> and <a href="#edge"><code>Edge</code></a> dataclasses can be used, which are the
+preferred way due to better developer experience (e.g., code-completion). Plain dictionaries are still
+supported for backwards compatibility.</p>
+<pre><code class="language-python">from yfiles_jupyter_graphs import GraphWidget, Node, Edge
+w = GraphWidget()
+w.nodes = [
+    Node(id=0, properties={&quot;label&quot;: &quot;Hello World&quot;}),
+    Node(id=1, properties={&quot;label&quot;: &quot;This is a second node.&quot;})
+]
+w.edges = [
+    Edge(start=0, end=1, properties={&quot;label&quot;: &quot;knows&quot;})
+]
+</code></pre>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb">01_introduction.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/01_introduction.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <p>To map custom properties to visual features, see <a href="#data-driven-visualization-mappings">Data-driven visualization mappings</a>.</p>
 <h3 id="importing-from-other-graph-packages">Importing from other graph packages</h3>
 <p>Aside from passing structured data, you can also import from other graph formats by passing the graph object to the constructor's <code>graph</code> kwarg,
@@ -222,13 +276,13 @@ or use:</p>
 <p>The import supports the following packages: <code>neo4j</code>, <code>graph_tool</code>, <code>igraph</code>, <code>networkx</code>, <code>pygraphviz</code>, <code>rdflib</code> and <code>pandas</code> dataframes.</p>
 <p>For example, see</p>
 <ul>
-<li>NetworkX: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb">13_networkx_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>Pandas dataframes: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb">14_pandas_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>PyGraphviz: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb">15_graphviz_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>Neo4j: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb">16_neo4j_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>iGraph: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb">17_igraph_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>graph-tool: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb">18_graph-tool_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>RDFLib: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb">19_rdflib_import.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>NetworkX: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb">13_networkx_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/13_networkx_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>Pandas dataframes: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb">14_pandas_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/14_pandas_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>PyGraphviz: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb">15_graphviz_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/15_graphviz_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>Neo4j: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb">16_neo4j_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/16_neo4j_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>iGraph: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb">17_igraph_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/17_igraph_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>graph-tool: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb">18_graph-tool_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/18_graph-tool_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>RDFLib: <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb">19_rdflib_import.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/19_rdflib_import.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
 </ul>
 <p><strong>Note</strong><br>
 Some graph data structures have special attributes for labels, some don't.
@@ -239,8 +293,9 @@ For more granular control use nodes and edges properties directly.</p>
 <h2 id="automatic-layout-algorithms">Automatic layout algorithms</h2>
 <p>There are different layouts available to customize the arrangement of nodes and edges in the graph visualization.</p>
 <ul>
-<li><code>graph_layout: Optional[str]</code><ul>
+<li><code>graph_layout: Union[Layout, str]</code><ul>
 <li>By default, a force-directed layout is applied to the graph. Otherwise, the values of the below table can be used.</li>
+<li>Preferably set via the <a href="#layout"><code>Layout</code></a> enum, e.g. <code>w.graph_layout = Layout.HIERARCHICAL</code>. Plain strings are also accepted for backwards compatibility.</li>
 </ul>
 </li>
 </ul>
@@ -261,7 +316,7 @@ For more granular control use nodes and edges properties directly.</p>
 <td>Arranges nodes in singly cycle and uses straight-line edge paths.</td>
 </tr>
 <tr>
-<td><code>"hierarchic"</code></td>
+<td><code>"hierarchical"</code></td>
 <td>Organizes nodes in hierarchical layers to emphasize directional flow.</td>
 </tr>
 <tr>
@@ -302,13 +357,15 @@ For more granular control use nodes and edges properties directly.</p>
 </tr>
 </tbody>
 </table>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb">22_layouts.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
-<p>The layouts can also be set through methods on the widget, e.g. <code>w.hierarchic_layout()</code>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb">22_layouts.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/22_layouts.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>The layouts can also be set through convenience methods on the widget, e.g. <code>w.hierarchical_layout()</code>.</p>
 <p>For more in-depth information about layout algorithms, see <a href="https://www.yfiles.com/the-yfiles-sdk/key-benefits#layout-algorithms">yFiles SDK – Layout Algorithms</a>.</p>
 <h2 id="data-driven-visualization-mappings">Data-driven visualization mappings</h2>
 <p>You can adjust the graph visualization on an item basis by providing the following mapping functions.
 Each mapping is passed the original data object of your original node / edge data, and you need to return
 a mapping-specific dict or value to that is reflected in the graph visualization.</p>
+<p>To remove a mapping, set the property to <code>None</code>, e.g. <code>w.node_color_mapping = None</code>. </p>
+<p>The legacy <code>set_*</code>, <code>get_*</code> and <code>del_*</code> methods are deprecated. Use the properties directly instead.</p>
 <h3 id="property-mappings">Property mappings</h3>
 <p>Specify what data should be put on the items <code>properties</code> field, and therefore considered by the other data mappings</p>
 <ul>
@@ -319,55 +376,56 @@ a mapping-specific dict or value to that is reflected in the graph visualization
 <h3 id="label-mappings">Label mappings</h3>
 <p>Specify the visualized text on each item.</p>
 <ul>
-<li><code>node_label_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]</code></li>
-<li><code>edge_label_mapping: Optional[Union[str, Callable[[dict], Union[str, dict]]]]</code></li>
+<li><code>node_label_mapping: Optional[Union[str, Callable[[dict], Union[str, LabelStyle]]]]</code></li>
+<li><code>edge_label_mapping: Optional[Union[str, Callable[[dict], Union[str, LabelStyle]]]]</code></li>
 </ul>
 <p>Returning a string will first be resolved against the <code>properties</code> of the item's dict and if there is no such property 
-key the value is used as-is. Alternatively, return a <code>dict</code> with the following properties to have full 
-control over the item's text:</p>
+key the value is used as-is. Alternatively, return a <a href="#labelstyle"><code>LabelStyle</code></a> dataclass with the following properties 
+to have full control over the item's text:</p>
 <h4 id="label-style-dict">Label style dict</h4>
 <ul>
 <li><code>font: str</code>: The font used for the label.</li>
 <li><code>text: str</code>: The text that is added to the item.</li>
 <li><code>font_size: int</code>: The text size.</li>
-<li><code>font_weight: str</code>: The font weight. One of <code>"bold"</code>, <code>"bolder"</code>, <code>"normal"</code>, <code>"lighter"</code>.</li>
+<li><code>font_weight: FontWeight</code>: The font weight.</li>
 <li><code>color: string</code>: The text color.</li>
 <li><code>background_color: str</code>: A color string that is used as the label's background.</li>
-<li><code>position: str</code>: Where the label is placed relatively to the node. One of <code>"center"</code>, <code>"north"</code>, <code>"east"</code>, <code>"south"</code>, <code>"west"</code>.</li>
+<li><code>position: LabelPosition</code>: Where the label is placed relatively to the node.</li>
 <li><code>maximum_width: int</code>: The maximum width of the label. By default, the label is clipped at the given size, or wrapped when <code>wrapping</code> is set.</li>
 <li><code>maximum_height: int</code>: The maximum height of the label. Clips the label at the given height. May be combined with <code>wrapping</code>.</li>
-<li><code>wrapping: str</code>: Text wrapping for the label. Must be set in combination with <code>maximum_width</code>. One of <code>"none"</code>, <code>"character"</code>, <code>"character_ellipsis"</code>, <code>"word"</code>, <code>"word_ellipsis"</code>.</li>
-<li><code>text_alignment: str</code>: The horizontal text alignment when <code>wrapping</code> is enabled. One of <code>"left"</code>, <code>"center"</code>, <code>"right"</code>.</li>
+<li><code>wrapping: TextWrapping</code>: Text wrapping for the label. Must be set in combination with <code>maximum_width</code>.</li>
+<li><code>text_alignment: TextAlignment</code>: The horizontal text alignment when <code>wrapping</code> is enabled.</li>
 </ul>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb">02a_label_styles_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb">02a_label_styles_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/02a_label_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h3 id="color-mappings">Color mappings</h3>
 <p>Specify the color of each item.
 * <code>node_color_mapping: Optional[Union[str, Callable[[dict], str]]]</code>
 * <code>edge_color_mapping: Optional[Union[str, Callable[[dict], str]]]</code></p>
 <p>Return any CSS color value (e.g., a color constant, a hex value, a rgb string, etc.).</p>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb">03_color_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb">03_color_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/03_color_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h3 id="node-and-edge-visualization-mappings">Node and edge visualization mappings</h3>
-<p>Specify the visualization properties of nodes and edges by returning a dict with specific properties.</p>
+<p>Specify the visualization properties of nodes and edges by returning a <a href="#nodestyle"><code>NodeStyle</code></a> / <a href="#edgestyle"><code>EdgeStyle</code></a> 
+dataclass (preferred) or a dict with specific properties.</p>
 <ul>
 <li>
-<p><code>node_styles_mapping: Optional[Union[str, Callable[[dict], dict]]]</code></p>
+<p><code>node_styles_mapping: Optional[Union[str, Callable[[dict], NodeStyle]]]</code></p>
 <ul>
-<li>Return a dict with the following, optional properties:<ul>
-<li><code>color</code>: CSS color value</li>
-<li><code>image</code>: URL or data URL of the image</li>
-<li><code>shape</code>: One of <code>"ellipse"</code>, <code>"hexagon"</code>, <code>"hexagon2"</code>, <code>"octagon"</code>, <code>"pill"</code>, <code>"rectangle"</code>, <code>"round-rectangle"</code>, <code>"triangle"</code></li>
+<li>Return a <code>NodeStyle</code> with the following, optional properties:<ul>
+<li><code>color</code>: <code>str</code>, a CSS color value</li>
+<li><code>image</code>: <code>str</code>, an URL or data URL of the image</li>
+<li><code>shape</code>: <code>NodeShape</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p><code>edge_styles_mapping: Optional[Union[str, Callable[[dict], dict]]]</code></p>
+<p><code>edge_styles_mapping: Optional[Union[str, Callable[[dict], EdgeStyle]]]</code></p>
 <ul>
-<li>Return a dict with the following, optional properties:<ul>
+<li>Return an <code>EdgeStyle</code> or a dict with the following, optional properties:<ul>
 <li><code>color</code>: <code>str</code> (a CSS color value)</li>
 <li><code>directed</code>: <code>bool</code></li>
 <li><code>thickness</code>: <code>float</code></li>
-<li><code>dash_style</code>: One of <code>"solid"</code>, <code>"dash"</code>, <code>"dot"</code>, <code>"dash-dot"</code>, <code>"dash-dot-dot"</code>, or a dashing string like <code>"5 10"</code> or <code>"5, 10"</code></li>
+<li><code>dash_style</code>: <code>DashStyle</code> or a dashing string like <code>"5 10"</code> or <code>"5, 10"</code></li>
 </ul>
 </li>
 </ul>
@@ -387,9 +445,9 @@ control over the item's text:</p>
 </ul>
 <p>For example, see</p>
 <ul>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb">08_styles_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb">10_direction_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb">11_thickness_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb">08_styles_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/08_styles_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb">10_direction_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb">11_thickness_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/11_thickness_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
 </ul>
 <h3 id="geometry-mappings">Geometry mappings</h3>
 <p>Specify the location and/or size of nodes. Note that the location of an item is overwritten from an automatic layout,
@@ -422,9 +480,9 @@ unless the <code>no_layout</code> option is used.</p>
 </ul>
 <p>For example, see</p>
 <ul>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb">04_layout_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb">05_size_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb">06_position_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb">04_layout_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/04_layout_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb">05_size_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/05_size_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb">06_position_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/06_position_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
 </ul>
 <h3 id="geospatial-mapping">Geospatial mapping</h3>
 <p>Specify a geo-coordinate for the nodes that is used by the geospatial layout option.</p>
@@ -434,7 +492,7 @@ unless the <code>no_layout</code> option is used.</p>
 </ul>
 </li>
 </ul>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb">30_leaflet_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb">30_leaflet_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/30_leaflet_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h3 id="hierarchy-mappings">Hierarchy mappings</h3>
 <p>Specify which nodes should be grouped together.</p>
 <ul>
@@ -472,7 +530,7 @@ w.edges = flight_paths
 w.node_parent_group_mapping = lambda node: {&quot;label&quot;: node[&quot;properties&quot;][&quot;country&quot;], &quot;color&quot;: &quot;#9F4499&quot;, &quot;char_count&quot;: len(node[&quot;properties&quot;][&quot;country&quot;])}
 display(w)
 </code></pre>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb">31_nested_graphs.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb">31_nested_graphs.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/31_nested_graphs.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h3 id="heat-mapping">Heat mapping</h3>
 <p>Numeric values on nodes and edges may be visualized as a heatmap overlay on the graph visualization.</p>
 <ul>
@@ -481,7 +539,7 @@ display(w)
 </ul>
 </li>
 </ul>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb">29_heat_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb">29_heat_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/29_heat_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h3 id="fine-tuning-automatic-layouts">Fine-tuning automatic layouts</h3>
 <p>Some mappings affect specific automatic layouts:</p>
 <ul>
@@ -501,8 +559,8 @@ display(w)
 </ul>
 <p>For example, see</p>
 <ul>
-<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb">09_type_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
-<li>"Node-cell mapping" in <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb">v1.9.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li><a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb">09_type_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/09_type_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
+<li>"Node-cell mapping" in <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb">v1.9.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/feature-releases/v1.9.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></li>
 </ul>
 <h2 id="edge-direction">Edge direction</h2>
 <p>By default, edges are visualized undirected, i.e., no arrowhead is rendered. This can be changed globally by setting the following property:</p>
@@ -513,57 +571,558 @@ display(w)
 </li>
 </ul>
 <p>Alternatively, the direction visualization can be specified per edge through the <a href="#node-and-edge-visualization-mappings">Node and edge visualization mappings</a>.</p>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb">10_direction_mapping.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb">10_direction_mapping.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/10_direction_mapping.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h2 id="neighborhood">Neighborhood</h2>
 <ul>
-<li><code>neighborhood: dict</code><ul>
-<li>Controls the initial neighborhood view settings by setting a dict with <code>max_distance</code> and <code>selected_nodes</code> keys.</li>
-<li>For example, <code>w.neighborhood = {"max_distance": 2, "selected_nodes":[2]}</code>.</li>
+<li><code>neighborhood: Union[int, dict]</code><ul>
+<li>Controls the initial neighborhood view settings.</li>
+<li>Pass an <code>int</code> to only set the <code>max_distance</code> (number of hops), e.g. <code>w.neighborhood = 2</code>.</li>
+<li>Pass a <code>dict</code> with <code>max_distance</code> and <code>selected_nodes</code> keys to set both, e.g. <code>w.neighborhood = {"max_distance": 2, "selected_nodes": [2]}</code>.</li>
 </ul>
 </li>
-<li><code>set_neighborhood(max_distance: int, selected_nodes: Optional[List[dict]])</code></li>
-<li>Similar to the <code>neighborhood</code> property, allows setting the values directly.</li>
 </ul>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb">24_neighborhood.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb">24_neighborhood.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/24_neighborhood.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h2 id="sidebar">Sidebar</h2>
 <p>The sidebar of the widget provides different panels that can be controlled interactively or programmatically by the following API:</p>
 <ul>
-<li><code>sidebar: dict</code><ul>
-<li>Controls the initial sidebar configuration by setting a dict with <code>enabled</code> and <code>start_with</code> keys.</li>
-<li>For example, <code>w.sidebar = {"enabled": True, "start_with": "Search"}</code>.</li>
-</ul>
-</li>
-<li><code>set_sidebar(enabled: bool, start_with: str)</code><ul>
-<li>Similar to the <code>sidebar</code> property, allows setting the values directly.</li>
+<li><code>sidebar: Union[bool, dict]</code><ul>
+<li>Controls the initial sidebar configuration.</li>
+<li>Pass a <code>bool</code> to simply open (<code>True</code>) or collapse (<code>False</code>) the sidebar, e.g. <code>w.sidebar = True</code>.</li>
+<li>Pass a <code>dict</code> with <code>enabled</code> or <code>start_with</code> keys for full control, e.g. <code>w.sidebar = {"enabled": True, "start_with": "Search"}</code>.</li>
 </ul>
 </li>
 </ul>
 <p>Supported values for <code>start_with</code> are: <code>"About"</code>, <code>"Search"</code>, <code>"Data"</code>, <code>"Neighborhood"</code></p>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb">23_sidebar.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb">23_sidebar.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/23_sidebar.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h2 id="overview">Overview</h2>
 <p>The graph overview shows the current viewport in relation to the whole graph and allows users to quickly navigate large structures.</p>
 <ul>
 <li><code>overview: bool</code><ul>
-<li>By default, the overview is expanded unless the widget's width is too small. This behavior can be overwritten by setting the property.</li>
-</ul>
-</li>
-<li><code>set_overview(enabled: bool)</code><ul>
-<li>Similar to the <code>overview</code> property.</li>
+<li>By default, the overview is expanded unless the widget's width is too small. This behavior can be overwritten by setting the property, e.g. <code>w.overview = False</code>.</li>
 </ul>
 </li>
 </ul>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb">25_overview.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb">25_overview.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/25_overview.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
 <h2 id="selection">Selection</h2>
-<p>The currently selected node and edge dicts can be accessed in the Python cell with the following method:</p>
+<p>The currently selected node and edge dicts can be accessed in the Python cell with the following property:</p>
 <ul>
-<li><code>get_selection(): Tuple[List[dict], List[dict]]</code><ul>
-<li>Returns a tuple of lists containing the selected nodes and edges, i.e., <code>nodes, edges = w.get_selection()</code>.</li>
+<li><code>selection: Tuple[List[dict], List[dict]]</code><ul>
+<li>Returns a tuple of lists containing the selected nodes and edges, i.e., <code>nodes, edges = w.selection</code>.</li>
 </ul>
 </li>
 </ul>
-<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb">21_selection_export.ipynb</a> <a target="_blank" href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<p>For example, see <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb">21_selection_export.ipynb</a> <a target="_blank" href="https://colab.research.google.com/github/yWorks/yfiles-jupyter-graphs/blob/main/examples/21_selection_export.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.</p>
+<h2 id="data-classes-and-enums">Data classes and enums</h2>
+<p>The widget exposes a number of dataclasses and enums that can be used instead of plain dictionaries and strings.
+They are the <strong>preferred</strong> way to provide structured data and styles because they offer better developer experience
+such as code-completion and type-checking. For backwards compatibility, plain dictionaries and strings (for enum
+values) are still accepted wherever a dataclass is expected.</p>
+<p>All classes below can be imported directly from the <code>yfiles_jupyter_graphs</code> module.</p>
+<h3 id="node">Node</h3>
+<p>Represents a node in the graph.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>str \| int</code></td>
+<td>The unique identifier of the node.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Additional properties of the node.</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from yfiles_jupyter_graphs import Node
+node = Node(id=0, properties={&quot;label&quot;: &quot;Hello&quot;, &quot;group&quot;: &quot;A&quot;})
+</code></pre>
+<h3 id="edge">Edge</h3>
+<p>Represents an edge in the graph.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td><code>str \| int</code></td>
+<td>The id of the start node.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td><code>str \| int</code></td>
+<td>The id of the end node.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>str \| int</code></td>
+<td>Optional. The unique identifier of the edge. Auto-generated if not provided.</td>
+<td>uuid</td>
+</tr>
+<tr>
+<td><code>properties</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Additional properties of the edge.</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from yfiles_jupyter_graphs import Edge
+edge = Edge(start=0, end=1, properties={&quot;label&quot;: &quot;knows&quot;})
+</code></pre>
+<h3 id="nodestyle">NodeStyle</h3>
+<p>Styling options for nodes, returned by <a href="#node-and-edge-visualization-mappings"><code>node_styles_mapping</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color</code></td>
+<td><code>str \| None</code></td>
+<td>CSS color value.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td><code>str \| None</code></td>
+<td>URL or data URL of the image.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>shape</code></td>
+<td><code>NodeShape \| None</code></td>
+<td>The shape of the node (see <a href="#nodeshape"><code>NodeShape</code></a>).</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from yfiles_jupyter_graphs import NodeStyle, NodeShape
+w.node_styles_mapping = lambda node: NodeStyle(color=&quot;#FF0000&quot;, shape=NodeShape.RECTANGLE)
+</code></pre>
+<h4 id="nodeshape">NodeShape</h4>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NodeShape.ELLIPSE</code></td>
+<td><code>"ellipse"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.HEXAGON</code></td>
+<td><code>"hexagon"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.HEXAGON_STANDING</code></td>
+<td><code>"hexagon_standing"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.OCTAGON</code></td>
+<td><code>"octagon"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.PILL</code></td>
+<td><code>"pill"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.RECTANGLE</code></td>
+<td><code>"rectangle"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.ROUND_RECTANGLE</code></td>
+<td><code>"round_rectangle"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.TRIANGLE</code></td>
+<td><code>"triangle"</code></td>
+</tr>
+<tr>
+<td><code>NodeShape.SQUIRCLE</code></td>
+<td><code>"squircle"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="edgestyle">EdgeStyle</h3>
+<p>Styling options for edges, returned by <a href="#node-and-edge-visualization-mappings"><code>edge_styles_mapping</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color</code></td>
+<td><code>str \| None</code></td>
+<td>CSS color value.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>directed</code></td>
+<td><code>bool \| None</code></td>
+<td>Whether the edge is visualized with an arrowhead.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>thickness</code></td>
+<td><code>float \| None</code></td>
+<td>The stroke thickness of the edge.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>dash_style</code></td>
+<td><code>DashStyle \| str \| None</code></td>
+<td>The dash style (see <a href="#dashstyle"><code>DashStyle</code></a>). Custom dashing strings like <code>"5 10"</code> are also accepted.</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from yfiles_jupyter_graphs import EdgeStyle, DashStyle
+w.edge_styles_mapping = lambda edge: EdgeStyle(color=&quot;#0000FF&quot;, directed=True, dash_style=DashStyle.DASH)
+</code></pre>
+<h4 id="dashstyle">DashStyle</h4>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DashStyle.SOLID</code></td>
+<td><code>"solid"</code></td>
+</tr>
+<tr>
+<td><code>DashStyle.DASH</code></td>
+<td><code>"dash"</code></td>
+</tr>
+<tr>
+<td><code>DashStyle.DOT</code></td>
+<td><code>"dot"</code></td>
+</tr>
+<tr>
+<td><code>DashStyle.DASH_DOT</code></td>
+<td><code>"dash-dot"</code></td>
+</tr>
+<tr>
+<td><code>DashStyle.DASH_DOT_DOT</code></td>
+<td><code>"dash-dot-dot"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="labelstyle">LabelStyle</h3>
+<p>Styling options for labels, returned by <a href="#label-mappings"><code>node_label_mapping</code></a> and <a href="#label-mappings"><code>edge_label_mapping</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td><code>str \| None</code></td>
+<td>The text that is added to the item.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td><code>str \| None</code></td>
+<td>The font used for the label.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>font_size</code></td>
+<td><code>int \| None</code></td>
+<td>The text size.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>font_weight</code></td>
+<td><code>FontWeight \| None</code></td>
+<td>The font weight (see <a href="#fontweight"><code>FontWeight</code></a>).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>str \| None</code></td>
+<td>The text color.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>background_color</code></td>
+<td><code>str \| None</code></td>
+<td>A color string used as the label's background.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>LabelPosition \| None</code></td>
+<td>Where the label is placed (see <a href="#labelposition"><code>LabelPosition</code></a>).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>maximum_width</code></td>
+<td><code>int \| None</code></td>
+<td>The maximum width of the label.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>maximum_height</code></td>
+<td><code>int \| None</code></td>
+<td>The maximum height of the label.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>wrapping</code></td>
+<td><code>TextWrapping \| None</code></td>
+<td>Text wrapping (see <a href="#textwrapping"><code>TextWrapping</code></a>).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>text_alignment</code></td>
+<td><code>TextAlignment \| None</code></td>
+<td>Horizontal text alignment (see <a href="#textalignment"><code>TextAlignment</code></a>).</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">from yfiles_jupyter_graphs import LabelStyle, LabelPosition
+w.node_label_mapping = lambda node: LabelStyle(text=node[&quot;properties&quot;][&quot;label&quot;], position=LabelPosition.SOUTH, color=&quot;#FF0000&quot;)
+</code></pre>
+<h4 id="labelposition">LabelPosition</h4>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LabelPosition.CENTER</code></td>
+<td><code>"center"</code></td>
+</tr>
+<tr>
+<td><code>LabelPosition.NORTH</code></td>
+<td><code>"north"</code></td>
+</tr>
+<tr>
+<td><code>LabelPosition.EAST</code></td>
+<td><code>"east"</code></td>
+</tr>
+<tr>
+<td><code>LabelPosition.SOUTH</code></td>
+<td><code>"south"</code></td>
+</tr>
+<tr>
+<td><code>LabelPosition.WEST</code></td>
+<td><code>"west"</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="textwrapping">TextWrapping</h4>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextWrapping.NONE</code></td>
+<td><code>"none"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.CLIP</code></td>
+<td><code>"clip"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.TRIM_CHARACTER</code></td>
+<td><code>"trim_character"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.TRIM_CHARACTER_ELLIPSIS</code></td>
+<td><code>"trim_character_ellipsis"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.TRIM_WORD</code></td>
+<td><code>"trim_word"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.TRIM_WORD_ELLIPSIS</code></td>
+<td><code>"trim_word_ellipsis"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.WRAP_CHARACTER</code></td>
+<td><code>"wrap_character"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.WRAP_CHARACTER_ELLIPSIS</code></td>
+<td><code>"wrap_character_ellipsis"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.WRAP_WORD</code></td>
+<td><code>"wrap_word"</code></td>
+</tr>
+<tr>
+<td><code>TextWrapping.WRAP_WORD_ELLIPSIS</code></td>
+<td><code>"wrap_word_ellipsis"</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="fontweight">FontWeight</h4>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FontWeight.BOLD</code></td>
+<td><code>"bold"</code></td>
+</tr>
+<tr>
+<td><code>FontWeight.BOLDER</code></td>
+<td><code>"bolder"</code></td>
+</tr>
+<tr>
+<td><code>FontWeight.NORMAL</code></td>
+<td><code>"normal"</code></td>
+</tr>
+<tr>
+<td><code>FontWeight.LIGHTER</code></td>
+<td><code>"lighter"</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="textalignment">TextAlignment</h4>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextAlignment.CENTER</code></td>
+<td><code>"center"</code></td>
+</tr>
+<tr>
+<td><code>TextAlignment.LEFT</code></td>
+<td><code>"left"</code></td>
+</tr>
+<tr>
+<td><code>TextAlignment.RIGHT</code></td>
+<td><code>"right"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="layout">Layout</h3>
+<p>Enum of available automatic layout algorithms, used with <a href="#automatic-layout-algorithms"><code>graph_layout</code></a>.</p>
+<pre><code class="language-python">from yfiles_jupyter_graphs import GraphWidget, Layout
+w = GraphWidget()
+w.graph_layout = Layout.HIERARCHICAL
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Layout.CIRCULAR</code></td>
+<td><code>"circular"</code></td>
+</tr>
+<tr>
+<td><code>Layout.CIRCULAR_STRAIGHT_LINE</code></td>
+<td><code>"circular_straight_line"</code></td>
+</tr>
+<tr>
+<td><code>Layout.HIERARCHICAL</code></td>
+<td><code>"hierarchical"</code></td>
+</tr>
+<tr>
+<td><code>Layout.ORGANIC</code></td>
+<td><code>"organic"</code></td>
+</tr>
+<tr>
+<td><code>Layout.INTERACTIVE_ORGANIC</code></td>
+<td><code>"interactive_organic"</code></td>
+</tr>
+<tr>
+<td><code>Layout.ORTHOGONAL</code></td>
+<td><code>"orthogonal"</code></td>
+</tr>
+<tr>
+<td><code>Layout.RADIAL</code></td>
+<td><code>"radial"</code></td>
+</tr>
+<tr>
+<td><code>Layout.TREE</code></td>
+<td><code>"tree"</code></td>
+</tr>
+<tr>
+<td><code>Layout.MAP</code></td>
+<td><code>"map"</code></td>
+</tr>
+<tr>
+<td><code>Layout.ORTHOGONAL_EDGE_ROUTER</code></td>
+<td><code>"orthogonal_edge_router"</code></td>
+</tr>
+<tr>
+<td><code>Layout.ORGANIC_EDGE_ROUTER</code></td>
+<td><code>"organic_edge_router"</code></td>
+</tr>
+<tr>
+<td><code>Layout.NO_LAYOUT</code></td>
+<td><code>"no_layout"</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="displaying-the-graph-widget">Displaying the graph widget</h2>
-<p>To display the interactive graph widget in the Jupyter notebook use one of the following methods:</p>
+<p>To display the interactive graph widget in the Jupyter notebook, use one of the following methods:</p>
 <ul>
 <li><code>show()</code></li>
 <li><code>display(w)</code></li>

@@ -46,13 +46,17 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Getting started</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
+    <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#docker-optional">Docker (optional)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+        </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    <li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#next-steps">Next steps</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#usage_1">Usage</a>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -94,36 +98,54 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="getting-started">Getting started</h1>
-<h2 id="requirements">Requirements</h2>
-<ul>
-<li><a href="https://www.python.org/">python</a> &gt;= 3.6</li>
-<li><a href="https://jupyter.org/install">jupyter</a> notebook or lab</li>
-<li><a href="https://github.com/jupyter-widgets/ipywidgets">ipywidgets</a> &gt;= 7.6.0</li>
-</ul>
-<h2 id="installation">Installation</h2>
-<p>If you already have Jupyter installed, just <code>pip install</code> the prebuilt extension from the <a href="https://pypi.org/">Python Package Index</a>.</p>
-<pre><code class="language-bash">pip install yfiles_jupyter_graphs
+<h2 id="install">Install</h2>
+<p>Prerequisites:
+- <a href="https://www.python.org/">python</a> &gt;= 3.7
+- <a href="https://jupyter.org/install">jupyter</a> notebook or lab
+- <a href="https://github.com/jupyter-widgets/ipywidgets">ipywidgets</a> &gt;= 7.6.0</p>
+<pre><code class="language-bash">pip install yfiles-jupyter-graphs
 </code></pre>
-<p>To install <code>yfiles_jupyter_graphs</code> from within a Jupyter Notebook cell, use <code>%pip</code> instead of <code>!pip</code> to ensure that it
-is installed in the correct Python environment.</p>
-<p>If you want to start clean and get a fresh new Jupyter Lab with the widget readily installed and available, you can use <a href="https://www.docker.com/"><code>docker</code></a>, too:</p>
-<p>Form a shell, create a docker image that contains all that is required:</p>
+<blockquote>
+<p>Important: When installing from inside a notebook, prefer <code>%pip install yfiles-jupyter-graphs</code> over <code>!pip install</code> to
+ensure the package is installed into the running kernel’s environment.</p>
+</blockquote>
+<h3 id="docker-optional">Docker (optional)</h3>
+<p>If you want to start with a clean Jupyter environment that has the widget preinstalled:</p>
 <pre><code class="language-bash">mkdir yfiles-jupyter &amp;&amp; cd yfiles-jupyter
 echo -e &quot;FROM jupyter/scipy-notebook\nRUN pip install yfiles-jupyter-graphs&quot; &gt; Dockerfile
 docker build -t yfiles-jupyter-graphs-on-docker .
+docker run -it -p 8888:8888 --name yfiles-jupyter yfiles-jupyter-graphs-on-docker
 </code></pre>
-<p>(the above has been tested successfully with <code>scipy-notebook:lab-3.4.7</code> and <code>yfiles-jupyter-graphs==1.2.1</code>), but we want to make sure that it will also work with  upcoming versions - file an issue if it doesn't work for you!)</p>
-<p>You can then create a fresh new instance of your server from this image like so:</p>
-<pre><code class="language-bash">docker run -it -p 8888:8888 --name yfiles-jupyter yfiles-jupyter-graphs-on-docker
+<blockquote>
+<p>This approach has been verified with <code>scipy-notebook:lab-3.4.7</code> and <code>yfiles-jupyter-graphs==1.2.1</code>.
+If you encounter issues with a newer image, please open an issue.</p>
+</blockquote>
+<h2 id="quickstart">Quickstart</h2>
+<p>Display a simple graph:</p>
+<pre><code class="language-python">from yfiles_jupyter_graphs import GraphWidget, Node, Edge
+w = GraphWidget(
+    nodes=[
+        Node(id=0, properties={&quot;firstName&quot;: &quot;Alpha&quot;, &quot;label&quot;: &quot;Person A&quot;}),
+        Node(id=1, properties={&quot;firstName&quot;: &quot;Bravo&quot;, &quot;label&quot;: &quot;Person B&quot;}),
+        Node(id=2, properties={&quot;firstName&quot;: &quot;Charlie&quot;, &quot;label&quot;: &quot;Person C&quot;, &quot;has_hat&quot;: False}),
+        Node(id=3, properties={&quot;firstName&quot;: &quot;Delta&quot;, &quot;label&quot;: &quot;Person D&quot;, &quot;likes_pizza&quot;: True})
+    ],
+    edges=[
+        Edge(start=0, end=1, properties={&quot;since&quot;: &quot;1992&quot;, &quot;label&quot;: &quot;knows&quot;}),
+        Edge(start=1, end=3, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}),
+        Edge(start=2, end=3, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: &quot;1992&quot;}),
+        Edge(start=0, end=2, properties={&quot;label&quot;: &quot;knows&quot;, &quot;since&quot;: 234})
+    ],
+    directed=True
+)
+display(w)
 </code></pre>
-<h2 id="usage">Usage</h2>
-<p>In a notebook which has the wiget installed in the server, in a Python cell, you can then do this:</p>
-<h2 id="usage_1">Usage</h2>
-<pre><code class="language-python">&quot;&quot;&quot;Execute in jupyter notebook or jupyter lab&quot;&quot;&quot;
-from yfiles_jupyter_graphs import GraphWidget
-# shows empty widget
-GraphWidget()
-</code></pre>
+<p>Use the toolbar and sidebar to inspect data, search graph, explore neighborhood and change layouts.</p>
+<h3 id="next-steps">Next steps</h3>
+<ul>
+<li>Check out <a href="https://github.com/yWorks/yfiles-jupyter-graphs/blob/main/examples/00_toc.ipynb">more examples</a> for the different features.</li>
+<li>Jump directly to the API <a href="https://yworks.github.io/yfiles-jupyter-graphs/02_graph_widget/">documentation</a>.</li>
+</ul>
               
             </div>
           </div><footer>
